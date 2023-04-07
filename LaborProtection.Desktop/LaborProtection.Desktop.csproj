@@ -11,7 +11,12 @@
     <ProjectReference Include="..\LaborProtection.Common\LaborProtection.Common.csproj" />
     <ProjectReference Include="..\LaborProtection.Database\LaborProtection.Database.csproj" />
     <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />
+    <ProjectReference Include="..\LaborProtection.Localization\LaborProtection.Localization.csproj" />
     <ProjectReference Include="..\LaborProtection.Services\LaborProtection.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

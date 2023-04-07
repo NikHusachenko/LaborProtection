@@ -6,7 +6,23 @@
         xmlns:local="clr-namespace:LaborProtection.Desktop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions x:Uid="rowDefinitions">
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="150" Margin="5, 0, 5, 0">Add component</Button>
+            <Button Width="150" Margin="5, 0, 5, 0">View</Button>
+            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding Message}"></Button>
+            <ComboBox Width="50" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
+                <ComboBoxItem>UA</ComboBoxItem>
+                <ComboBoxItem>ru</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <Frame Grid.Row="1" x:Name="pagesFrame" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

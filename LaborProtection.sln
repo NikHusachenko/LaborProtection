@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.Database", "LaborProtection.Database\LaborProtection.Database.csproj", "{7E3FE6AF-D8FB-44CC-9641-4BFDE20C41DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Database", "LaborProtection.Database\LaborProtection.Database.csproj", "{7E3FE6AF-D8FB-44CC-9641-4BFDE20C41DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.EntityFramework", "LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj", "{ABA798B3-F591-45D2-968F-5203C66EDE3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.EntityFramework", "LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj", "{ABA798B3-F591-45D2-968F-5203C66EDE3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.Common", "LaborProtection.Common\LaborProtection.Common.csproj", "{876D1AA6-5CCE-4E9A-BE7C-82058C9095E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Common", "LaborProtection.Common\LaborProtection.Common.csproj", "{876D1AA6-5CCE-4E9A-BE7C-82058C9095E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.Services", "LaborProtection.Services\LaborProtection.Services.csproj", "{A5D587A8-D614-44E4-BD55-740202ABCEC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Services", "LaborProtection.Services\LaborProtection.Services.csproj", "{A5D587A8-D614-44E4-BD55-740202ABCEC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.Desktop", "LaborProtection.Desktop\LaborProtection.Desktop.csproj", "{39B6372B-43E1-492D-9527-0CBD4A95BD9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Desktop", "LaborProtection.Desktop\LaborProtection.Desktop.csproj", "{39B6372B-43E1-492D-9527-0CBD4A95BD9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Localization", "LaborProtection.Localization\LaborProtection.Localization.csproj", "{99E71C54-BBF9-497C-BF97-7FC91864C9E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
