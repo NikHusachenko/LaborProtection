@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LaborProtection.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowState="Maximized"
+        MinHeight="900"
+        MinWidth="1600">
     
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions x:Uid="rowDefinitions">
@@ -14,9 +17,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding AddComponent}"></Button>
-            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding View}"></Button>
-            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding Calculation}"></Button>
+            <Button Width="150" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
+            <Button Width="150" Margin="5, 0, 5, 0">View</Button>
+            <Button Width="150" Margin="5, 0, 5, 0">Calculation</Button>
             <ComboBox x:Name="selectLanguage" Width="50" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
                 <ComboBoxItem>UA</ComboBoxItem>

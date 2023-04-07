@@ -1,4 +1,5 @@
-﻿using LaborProtection.Localization;
+﻿using LaborProtection.Desktop.Pages;
+using LaborProtection.Localization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,6 +19,11 @@ namespace LaborProtection.Desktop
             }
 
             _sharedLocalizer = LocalizationConfigurationManager.SwitchLocale(culture);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            pagesFrame.Navigate(new CreateComponentPage());
         }
     }
 }
