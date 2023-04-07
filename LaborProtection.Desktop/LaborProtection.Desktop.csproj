@@ -7,4 +7,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LaborProtection.Common\LaborProtection.Common.csproj" />
+    <ProjectReference Include="..\LaborProtection.Database\LaborProtection.Database.csproj" />
+    <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />
+    <ProjectReference Include="..\LaborProtection.Services\LaborProtection.Services.csproj" />
+  </ItemGroup>
+
 </Project>
