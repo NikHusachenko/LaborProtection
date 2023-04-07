@@ -1,26 +1,23 @@
 ﻿using LaborProtection.Localization;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace LaborProtection.Desktop
 {
     public partial class MainWindow : Window
     {
-        private readonly SharedLocalizer _sharedLocalizer;
-        public string Message { get; set; }
-
-        public MainWindow()
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataContext = this;
+            ComboBox languagePicker = sender as ComboBox;
+            ComboBoxItem item = languagePicker.SelectedItem as ComboBoxItem;
 
-            _sharedLocalizer = new SharedLocalizer();
-            Message = _sharedLocalizer["Calculation"];
+            string culture = LocalizationConfigurationManager.DefaultCulture.Name;
+            if (item.Content != null)
+            {
+                culture = item.Content.ToString();
+            }
 
-            InitializeComponent();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            MessageBox.Show(_sharedLocalizer["Hello"]);
+            _sharedLocalizer = LocalizationConfigurationManager.SwitchLocale(culture);
         }
     }
 }

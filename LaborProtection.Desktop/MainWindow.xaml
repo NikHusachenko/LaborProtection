@@ -14,10 +14,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="150" Margin="5, 0, 5, 0">Add component</Button>
-            <Button Width="150" Margin="5, 0, 5, 0">View</Button>
-            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding Message}"></Button>
-            <ComboBox Width="50" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
+            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding AddComponent}"></Button>
+            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding View}"></Button>
+            <Button Width="150" Margin="5, 0, 5, 0" Content="{Binding Calculation}"></Button>
+            <ComboBox x:Name="selectLanguage" Width="50" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
                 <ComboBoxItem>UA</ComboBoxItem>
                 <ComboBoxItem>ru</ComboBoxItem>

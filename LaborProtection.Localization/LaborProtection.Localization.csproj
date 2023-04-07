@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="en_EN.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ru_RU.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ru_RU.resx</DependentUpon>
+    </Compile>
     <Compile Update="ua_UA.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -16,6 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="en_EN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_EN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ru_RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ru_RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="ua_UA.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ua_UA.Designer.cs</LastGenOutput>
