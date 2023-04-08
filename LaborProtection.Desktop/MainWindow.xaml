@@ -18,10 +18,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
-            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0">View</Button>
-            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0">Calculation</Button>
-            <ComboBox x:Name="selectLanguage" Width="50" FontSize="17" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0">View</Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0">Calculation</Button>
+            <ComboBox x:Name="selectLanguage" FontFamily="Arial" Width="50" FontSize="16" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
                 <ComboBoxItem>UA</ComboBoxItem>
                 <ComboBoxItem>ru</ComboBoxItem>
