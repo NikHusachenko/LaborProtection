@@ -14,24 +14,24 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="True">
+        <Grid Grid.Row="0" Grid.Column="0" Height="auto" ShowGridLines="True">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0">Light name</Label>
             <TextBox Grid.Row="0" Width="auto" Height="auto" Margin="5, 25, 5, 15" />
 
             <Label Grid.Row="1">Lignt type</Label>
-            <ComboBox Grid.Row="1" Width="auto" Margin="5, 25, 5, 15">
+            <ComboBox Grid.Row="1" Width="auto" Height="auto" Margin="5, 25, 5, 15">
                 <ComboBoxItem>ЛСП</ComboBoxItem>
                 <ComboBoxItem>ЛСО</ComboBoxItem>
                 <ComboBoxItem>ОД</ComboBoxItem>
@@ -44,22 +44,22 @@
             <TextBox Grid.Row="3" Height="auto" Margin="5, 25, 5, 15" />
 
             <Label Grid.Row="4">Height</Label>
-            <TextBox Grid.Row="4" Height="auto" Margin="5,25,5,25" />
+            <TextBox Grid.Row="4" Height="auto" Margin="5, 25, 5, 15" />
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="0" ShowGridLines="True">
+        <Grid Grid.Column="1" Grid.Row="0" Height="auto" ShowGridLines="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Width="auto" Height="auto" Grid.Row="0" Margin="5,10,5,264" Click="Button_Click" Grid.RowSpan="2">Load image</Button>
+            <Button Width="auto" Height="20" Grid.Row="0" Margin="5, 10, 5, 25" Click="Button_Click">Load image</Button>
         </Grid>
 
-        <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Width="150">
+        <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Width="150">
             Back
         </Button>
-        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Width="150">
+        <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Width="150">
             Save
         </Button>
     </Grid>
