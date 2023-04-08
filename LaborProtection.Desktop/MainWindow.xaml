@@ -9,18 +9,19 @@
         WindowState="Maximized"
         MinHeight="900"
         MinWidth="1600">
-    
+
+
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions x:Uid="rowDefinitions">
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="150" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
-            <Button Width="150" Margin="5, 0, 5, 0">View</Button>
-            <Button Width="150" Margin="5, 0, 5, 0">Calculation</Button>
-            <ComboBox x:Name="selectLanguage" Width="50" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
+            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
+            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0">View</Button>
+            <Button Width="150" FontSize="18" Height="35" Margin="5, 0, 5, 0">Calculation</Button>
+            <ComboBox x:Name="selectLanguage" Width="50" FontSize="17" HorizontalAlignment="Right" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
                 <ComboBoxItem>UA</ComboBoxItem>
                 <ComboBoxItem>ru</ComboBoxItem>
