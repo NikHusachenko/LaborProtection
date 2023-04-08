@@ -14,52 +14,55 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="True">
+        <Grid Grid.Row="0" Grid.Column="0" Height="auto" ShowGridLines="True">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0">Light name</Label>
-            <TextBox Grid.Row="0" Width="auto" Height="20" Margin="5, 25, 5, 15" />
+            <Label Grid.Row="0" Grid.Column="0" FontSize="20" FontFamily="Candara"  Margin="8,0,0,0">Light name</Label>
+            <TextBox Grid.Row="0" Height="25" Width="auto" Margin="5, 30, 5, 15" />
 
-            <Label Grid.Row="1">Lignt type</Label>
-            <ComboBox Grid.Row="1" Width="auto" Margin="5, 25, 5, 15">
+            <Label Grid.Row="1" FontSize="20" FontFamily="Candara" Margin="8,0,0,0">Light type</Label>
+            <ComboBox Grid.Row="1" Height="25" Width="auto" Margin="5, 30, 5, 15">
                 <ComboBoxItem>ЛСП</ComboBoxItem>
                 <ComboBoxItem>ЛСО</ComboBoxItem>
                 <ComboBoxItem>ОД</ComboBoxItem>
             </ComboBox>
 
-            <Label Grid.Row="2">Price</Label>
-            <TextBox Grid.Row="2" Height="20" Margin="5, 25, 5, 15" />
+            <Label Grid.Row="2" FontSize="20" FontFamily="Candara" Margin="8,0,0,0">Price</Label>
+            <TextBox Grid.Row="2" Height="25" Width="765" Margin="5, 30, 5, 15" />
 
-            <Label Grid.Row="3">Light count</Label>
-            <TextBox Grid.Row="3" Height="20" Margin="5, 25, 5, 15" />
+            <Label Grid.Row="3" FontSize="20" FontFamily="Candara" Margin="8,0,0,0">Light count</Label>
+            <TextBox Grid.Row="3" Height="25" Width="765" Margin="5, 30, 5, 15" />
 
-            <Label Grid.Row="4">Height</Label>
-            <TextBox Grid.Row="4" Height="20" Margin="5, 25, 5, 15" />
+            <Label Grid.Row="4" FontSize="20" FontFamily="Candara" Margin="8,0,0,0">Height</Label>
+            <TextBox Grid.Row="4" Height="25" Width="765" Margin="5, 30, 5, 15" />
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="0" ShowGridLines="True">
+        <Grid Grid.Column="1" Grid.Row="0" Height="auto" ShowGridLines="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Width="auto" Height="20" Grid.Row="0" Margin="5, 10, 5, 25" Click="Button_Click">Load image</Button>
+            <Button Width="700" Height="auto" FontSize="20" Grid.Row="0" Margin="5, 20, 5, 25" Click="Button_Click">Load image</Button>
         </Grid>
-        
-        <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Width="150">
+
+        <Button Grid.Row="2"  FontSize="25" Grid.Column="0" HorizontalAlignment="Left" Margin="10,0,0,10" Width="160" Height="48" Grid.RowSpan="2">
             Back
         </Button>
-        <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Width="150">
+        <Button Grid.Row="3"  FontSize="25" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,10" Width="160" Height="48" Grid.RowSpan="2">
             Save
         </Button>
     </Grid>
