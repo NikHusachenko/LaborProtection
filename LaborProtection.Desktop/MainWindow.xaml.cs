@@ -18,7 +18,8 @@ namespace LaborProtection.Desktop
 
 		private void ViewBtn_Click(object sender, RoutedEventArgs e)
 		{
-            pagesFrame.Navigate(new ViewComponentsPage());
+           // pagesFrame.Navigate(new ViewComponentsPage());
+              pagesFrame.Navigate(new CreateBulbPage());
 		}
 	}
 }
