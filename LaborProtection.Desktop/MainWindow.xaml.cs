@@ -10,16 +10,13 @@ namespace LaborProtection.Desktop
         {
 
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             pagesFrame.Navigate(new CreateComponentPage());
         }
-
 		private void ViewBtn_Click(object sender, RoutedEventArgs e)
 		{
-           // pagesFrame.Navigate(new ViewComponentsPage());
-              pagesFrame.Navigate(new CreateBulbPage());
+            pagesFrame.Navigate(new ViewComponentsPage());
 		}
 	}
 }
