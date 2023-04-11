@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Desktop", "LaborProtection.Desktop\LaborProtection.Desktop.csproj", "{39B6372B-43E1-492D-9527-0CBD4A95BD9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Localization", "LaborProtection.Localization\LaborProtection.Localization.csproj", "{99E71C54-BBF9-497C-BF97-7FC91864C9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Localization", "LaborProtection.Localization\LaborProtection.Localization.csproj", "{0D941097-A032-4F24-86A0-0B7764FCB57C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99E71C54-BBF9-497C-BF97-7FC91864C9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D941097-A032-4F24-86A0-0B7764FCB57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D941097-A032-4F24-86A0-0B7764FCB57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D941097-A032-4F24-86A0-0B7764FCB57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D941097-A032-4F24-86A0-0B7764FCB57C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

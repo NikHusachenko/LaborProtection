@@ -72,7 +72,7 @@ namespace LaborProtection.Localization
                     throw new Exception("Culture are not registered");
                 }
 
-                return new SharedLocalizer(_resxFiles[0]);
+                return new SharedLocalizer(_defaultResx);
             }
             return new SharedLocalizer(_resxFiles[cultureIndex]);
         }

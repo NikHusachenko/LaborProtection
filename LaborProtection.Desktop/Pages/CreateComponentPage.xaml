@@ -56,7 +56,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Width="720" Height="auto" FontFamily="Arial" FontSize="20" Grid.Row="0" Margin="5, 20, 5, 25" Click="Button_Click">Load image</Button>
+            <Button Width="700" Height="auto" FontSize="20" Grid.Row="0" Margin="5, 20, 5, 25" Click="Button_Click">Load image</Button>
+
+            <Image x:Name="componentImage" Grid.Row="1" Width="auto" Height="auto" Margin="10" />
         </Grid>
 
         <Button Grid.Row="2"  FontSize="23" FontFamily="Arial" Grid.Column="0" HorizontalAlignment="Left" Margin="15,3,0,0" Width="160" Height="40" Grid.RowSpan="2">
