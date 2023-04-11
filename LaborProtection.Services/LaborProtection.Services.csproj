@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -11,6 +11,10 @@
     <ProjectReference Include="..\LaborProtection.Common\LaborProtection.Common.csproj" />
     <ProjectReference Include="..\LaborProtection.Database\LaborProtection.Database.csproj" />
     <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LampServices\Models\" />
   </ItemGroup>
 
 </Project>

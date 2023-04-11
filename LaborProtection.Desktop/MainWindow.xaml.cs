@@ -1,4 +1,5 @@
 ﻿using LaborProtection.Desktop.Pages;
+using LaborProtection.EntityFramework;
 using System.Windows;
 
 namespace LaborProtection.Desktop

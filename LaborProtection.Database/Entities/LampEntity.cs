@@ -1,4 +1,4 @@
-﻿using static LaborProtection.Common.LightSystem;
+﻿using LaborProtection.Database.Enums;
 
 namespace LaborProtection.Database.Entities
 {
@@ -6,9 +6,11 @@ namespace LaborProtection.Database.Entities
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public LightType Type { get; set; }
+        public LampType Type { get; set; }
         public float Price { get; set; }
         public ushort BulbCount { get; set; }
         public float Height { get; set; }
+
+        public ICollection<LampBulbEntity> Bulbs { get; set; }
     }
 }

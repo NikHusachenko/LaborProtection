@@ -8,6 +8,8 @@ namespace LaborProtection.EntityFramework
     public class ApplicationContext : DbContext
     {
         public DbSet<LampEntity> Lamps { get; set; }
+        public DbSet<BulbEntity> Bulbs { get; set; }
+        public DbSet<LampBulbEntity> LampBulbs { get; set; }
 
         public ApplicationContext()
         {
@@ -22,6 +24,8 @@ namespace LaborProtection.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new LampConfiguration());
+            modelBuilder.ApplyConfiguration(new BulbConfiguration());
+            modelBuilder.ApplyConfiguration(new LampBulbConfiguration());
         }
     }
 }
