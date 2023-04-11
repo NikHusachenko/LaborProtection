@@ -8,10 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LaborProtection.Common\LaborProtection.Common.csproj" />
     <ProjectReference Include="..\LaborProtection.Database\LaborProtection.Database.csproj" />
     <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />
-    <ProjectReference Include="..\LaborProtection.Localization\LaborProtection.Localization.csproj" />
     <ProjectReference Include="..\LaborProtection.Services\LaborProtection.Services.csproj" />
   </ItemGroup>
 
