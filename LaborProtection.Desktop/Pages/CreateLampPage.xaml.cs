@@ -6,9 +6,9 @@ using System.Windows.Media.Imaging;
 
 namespace LaborProtection.Desktop.Pages
 {
-    public partial class CreateComponentPage : Page
+    public partial class CreateLampPage : Page
     {
-        public CreateComponentPage()
+        public CreateLampPage()
         {
             InitializeComponent();
         }

@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.Pages
 {
-	/// <summary>
-	/// Логика взаимодействия для CreateBulbPage.xaml
-	/// </summary>
-	public partial class CreateBulbPage : Page
-	{
-		public CreateBulbPage()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Логика взаимодействия для CreateBulbPage.xaml
+    /// </summary>
+    public partial class CreateBulbPage : Page
+    {
+        public CreateBulbPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

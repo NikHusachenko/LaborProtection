@@ -1,6 +1,7 @@
 ﻿using LaborProtection.Desktop.Pages;
 using LaborProtection.EntityFramework;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace LaborProtection.Desktop
 {
@@ -12,11 +13,16 @@ namespace LaborProtection.Desktop
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            pagesFrame.Navigate(new CreateComponentPage());
+            pagesFrame.Navigate(new CreateBasePage(new CreateLampPage()));
         }
 		private void ViewBtn_Click(object sender, RoutedEventArgs e)
 		{
             pagesFrame.Navigate(new ViewComponentsPage());
 		}
+
+        public void Navigate(Page navigatePage)
+        {
+            pagesFrame.Navigate(new CreateBasePage(navigatePage));
+        }
 	}
 }
