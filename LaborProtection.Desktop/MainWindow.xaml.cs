@@ -11,10 +11,12 @@ namespace LaborProtection.Desktop
         {
 
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             pagesFrame.Navigate(new CreateBasePage(new CreateLampPage()));
         }
+        
 		private void ViewBtn_Click(object sender, RoutedEventArgs e)
 		{
             pagesFrame.Navigate(new ViewComponentsPage());
