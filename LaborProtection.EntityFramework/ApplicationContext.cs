@@ -11,7 +11,7 @@ namespace LaborProtection.EntityFramework
         public DbSet<BulbEntity> Bulbs { get; set; }
         public DbSet<LampBulbEntity> LampBulbs { get; set; }
 
-        public ApplicationContext()
+        public ApplicationContext(DbContextOptions options) : base(options)
         {
             Database.Migrate();
         }

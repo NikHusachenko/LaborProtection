@@ -5,29 +5,22 @@ namespace LaborProtection.Desktop.Pages
 {
 	public partial class CreateBasePage : Page
 	{
-		public CreateBasePage(Page renderPage)
+        private readonly CreateLampPage _createLampPage;
+
+		public CreateBasePage(CreateLampPage createLampPage)
 		{
+            _createLampPage = createLampPage;
+
 			InitializeComponent();
 		}
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*var parent = Window.GetWindow(this) as MainWindow;
-			if (parent != null)
-			{
-				parent.Navigate(new CreateBasePage(new CreateLampPage()));
-			}*/
-
-            createFrame.Navigate(new CreateLampPage());
+            createFrame.Navigate(_createLampPage);
         }
 
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            /*var parent = Window.GetWindow(this) as MainWindow;
-            if (parent != null)
-            {
-                parent.Navigate(new CreateBasePage(new CreateBulbPage()));
-            }*/
             createFrame.Navigate(new CreateBulbPage());
         }
     }

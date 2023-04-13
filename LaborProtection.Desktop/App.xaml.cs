@@ -1,4 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LaborProtection.Common;
+using LaborProtection.Desktop.Pages;
+using LaborProtection.EntityFramework;
+using LaborProtection.EntityFramework.Repository;
+using LaborProtection.Services.LampServices;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
 namespace LaborProtection.Desktop
@@ -16,7 +22,22 @@ namespace LaborProtection.Desktop
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<MainWindow>();
+            // Services
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.DEFAULT_CONNECTION));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            
+            services.AddTransient<ILampService, LampService>();
+
+            // Pages
+            services.AddTransient<CreateBasePage>();
+            services.AddTransient<MainWindow>();
+            services.AddTransient<CreateLampPage>();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var main = _serviceProvider.GetRequiredService<MainWindow>();
+            main.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using LaborProtection.Services.LampServices;
+using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,12 +9,16 @@ namespace LaborProtection.Desktop.Pages
 {
     public partial class CreateLampPage : Page
     {
-        public CreateLampPage()
+        private readonly ILampService _lampService;
+
+        public CreateLampPage(ILampService lampService)
         {
+            _lampService = lampService;
+
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = false;
@@ -28,9 +33,7 @@ namespace LaborProtection.Desktop.Pages
             {
                 return;
             }
-
-            var a1 = fileDialog.FileName;
-
+            
             BitmapImage image = new BitmapImage(new Uri(fileDialog.FileName));
             componentImage.Source = image;
         }
