@@ -27,27 +27,27 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="1" FontSize="20" FontFamily="Arial"  Margin="0,0,0,0" Grid.ColumnSpan="2">Bulb name</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Height="25" Width="auto" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
+            <Label Grid.Row="0" Grid.Column="1" FontSize="25" FontFamily="Arial"  Margin="0,-1,0,0" Grid.ColumnSpan="2">Bulb name</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Height="30" Width="auto" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
 
-            <Label Grid.Row="1"  Grid.Column="1" FontSize="20" FontFamily="Arial" Margin="0,0,0,0" Grid.ColumnSpan="2">Bulb type</Label>
-            <ComboBox Grid.Row="1" Grid.Column="1" Height="25" Width="auto" Margin="0, 30, 5, 15" Grid.ColumnSpan="2">
+            <Label Grid.Row="1"  Grid.Column="1" FontSize="25" FontFamily="Arial" Margin="0,-1,0,0" Grid.ColumnSpan="2">Bulb type</Label>
+            <ComboBox Grid.Row="1" Grid.Column="1" Height="32" Width="auto" Margin="0, 30, 5, 15" Grid.ColumnSpan="2">
                 <ComboBoxItem>LB</ComboBoxItem>
                 <ComboBoxItem>LD</ComboBoxItem>
                 <ComboBoxItem>LBU</ComboBoxItem>
             </ComboBox>
 
-            <Label Grid.Row="2" Grid.Column="1" FontSize="20" FontFamily="Arial" Margin="0,0,0,0" Grid.ColumnSpan="2">Voltage</Label>
-            <TextBox Grid.Row="2" Grid.Column="1" Height="25" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
+            <Label Grid.Row="2" Grid.Column="1" FontSize="25" FontFamily="Arial" Margin="0,-1,0,0" Grid.ColumnSpan="2">Voltage</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Height="32" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
 
-            <Label Grid.Row="3" Grid.Column="1" FontSize="20" FontFamily="Arial" Margin="0,0,0,0" Grid.ColumnSpan="2">Power</Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Height="25" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
+            <Label Grid.Row="3" Grid.Column="1" FontSize="25" FontFamily="Arial" Margin="0,-1,0,0" Grid.ColumnSpan="2">Power</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Height="32" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
 
-            <Label Grid.Row="4" Grid.Column="1" FontSize="20" FontFamily="Arial" Margin="0,0,0,0" Grid.ColumnSpan="2">Light Flux</Label>
-            <TextBox Grid.Row="4" Grid.Column="1" Height="25" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
+            <Label Grid.Row="4" Grid.Column="1" FontSize="25" FontFamily="Arial" Margin="0,-3,0,0" Grid.ColumnSpan="2">Light Flux</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Height="32" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
 
-            <Label Grid.Row="5" Grid.Column="1" FontSize="20" FontFamily="Arial" Margin="0,0,0,0" Grid.ColumnSpan="2">Price</Label>
-            <TextBox Grid.Row="5" Grid.Column="1" Height="25" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
+            <Label Grid.Row="5" Grid.Column="1" FontSize="25" FontFamily="Arial" Margin="0,-1,0,10" Grid.ColumnSpan="2">Price</Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Height="32" Width="765" Margin="0, 30, 5, 15" Grid.ColumnSpan="2" />
         </Grid>
 
         <Grid Grid.Row="1" >

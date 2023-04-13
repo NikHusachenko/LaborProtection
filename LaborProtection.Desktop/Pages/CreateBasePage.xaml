@@ -23,7 +23,7 @@
             </Button>
         </StackPanel>
 
-        <Grid Grid.Row="1" Height="auto"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Grid.Row="1" Height="auto"  >
             <Frame x:Name="createFrame" />
         </Grid>
     </Grid>
