@@ -10,5 +10,7 @@
     public class Errors
     {
         public const string CULTURE_NOT_FOUND_ERROR = "Culture not found. Maybe you have not registered selected culture";
+        public const string INVALID_LAMP_TYPE_ERROR = "Invalid lamp type";
+        public const string WAS_CREATED_ERROR = "Was created";
     }
 }

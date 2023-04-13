@@ -13,8 +13,4 @@
     <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="LampServices\Models\" />
-  </ItemGroup>
-
 </Project>
