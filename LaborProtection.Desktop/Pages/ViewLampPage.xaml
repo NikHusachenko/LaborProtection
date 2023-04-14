@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1" Name="lampViewContainer">
-            
+            <WrapPanel Orientation="Horizontal" Name="lampViewPanel" />
         </Grid>
     </Grid>
 </Page>

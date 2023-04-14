@@ -37,6 +37,7 @@ namespace LaborProtection.Services.LampServices
                 Name = vm.Name,
                 Price = vm.Price,
                 Type = (LampType)vm.Type,
+                ImagePath = vm.ImagePath,
             };
 
             try

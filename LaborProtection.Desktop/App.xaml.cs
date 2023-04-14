@@ -48,7 +48,7 @@ namespace LaborProtection.Desktop
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var main = _serviceProvider.GetRequiredService<MainWindow>();
+            var main = _serviceProvider.GetService<MainWindow>();
             main.Show();
         }
     }

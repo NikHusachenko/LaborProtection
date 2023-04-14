@@ -1,4 +1,5 @@
-﻿using LaborProtection.Common;
+﻿using FluentValidation;
+using LaborProtection.Common;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
 using Microsoft.Win32;
@@ -12,15 +13,15 @@ namespace LaborProtection.Desktop.Pages
     public partial class CreateLampPage : Page
     {
         private readonly ILampService _lampService;
-        private readonly CreateLampPostModelValidator _validator;
+        private readonly IValidator<CreateLampPostModel> _validator;
 
         public CreateLampPage(ILampService lampService, 
-            CreateLampPostModelValidator validator)
+            IValidator<CreateLampPostModel> validator)
         {
             _lampService = lampService;
+            _validator = validator;
 
             InitializeComponent();
-            _validator = validator;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

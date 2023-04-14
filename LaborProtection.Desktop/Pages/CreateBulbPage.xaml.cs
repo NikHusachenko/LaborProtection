@@ -1,4 +1,5 @@
-﻿using LaborProtection.Common;
+﻿using FluentValidation;
+using LaborProtection.Common;
 using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.BulbServices.Models;
 using System.Windows;
@@ -9,10 +10,10 @@ namespace LaborProtection.Desktop.Pages
     public partial class CreateBulbPage : Page
     {
         private readonly IBulbService _bulbService;
-        private readonly CreateBulbPostModelValidator _validator;
+        private readonly IValidator<CreateBulbPostModel> _validator;
 
         public CreateBulbPage(IBulbService bulbService,
-            CreateBulbPostModelValidator validator)
+            IValidator<CreateBulbPostModel> validator)
         {
             _bulbService = bulbService;
             _validator = validator;
