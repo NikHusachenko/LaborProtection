@@ -13,4 +13,9 @@
         public const string INVALID_LAMP_TYPE_ERROR = "Invalid lamp type";
         public const string WAS_CREATED_ERROR = "Was created";
     }
+
+    public class Messages
+    {
+        public const string CREATE_DONE_MESSAGE = "Created successfuly";
+    }
 }

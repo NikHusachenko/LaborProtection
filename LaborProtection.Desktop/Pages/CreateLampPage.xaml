@@ -44,7 +44,7 @@
             <TextBox x:Name="lampPriceTextBox" Grid.Row="2" Height="25" Width="765" Margin="13, 30, 5, 15" />
 
             <Label Grid.Row="3" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Light count</Label>
-            <TextBox x:Name="bulbCountTextBox" Grid.Row="3" Height="25" Width="765" Margin="13, 30, 5, 15" />
+            <TextBox x:Name="lampBulbCountTextBox" Grid.Row="3" Height="25" Width="765" Margin="13, 30, 5, 15" />
 
             <Label Grid.Row="4" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Height</Label>
             <TextBox x:Name="lampHeightTextBox" Grid.Row="4" Height="25" Width="765" Margin="13, 30, 5, 15" />
@@ -60,11 +60,7 @@
 
             <Image x:Name="componentImage" Grid.Row="1" Width="auto" Height="auto" Margin="10" />
         </Grid>
-
-        <Button Grid.Row="2"  FontSize="23" FontFamily="Arial" Grid.Column="0" HorizontalAlignment="Left" Margin="15,3,0,0" Width="160" Height="40" Grid.RowSpan="2">
-            Back
-        </Button>
-        <Button Grid.Row="3"  FontSize="23" FontFamily="Arial" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,15,1" Width="160" Height="40" Grid.RowSpan="2">
+        <Button x:Name="createLampButton" Grid.Row="3"  FontSize="23" FontFamily="Arial" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,15,1" Width="160" Height="40" Grid.RowSpan="2" Click="createLampButton_Click">
             Save
         </Button>
     </Grid>

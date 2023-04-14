@@ -8,15 +8,15 @@ namespace LaborProtection.Desktop
     public partial class MainWindow : Window
     {
         private readonly CreateBasePage _createBasePage;
+        private readonly ViewComponentsPage _viewComponentsPage;
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        public MainWindow(CreateBasePage createBasePage) : this()
+        public MainWindow(CreateBasePage createBasePage, 
+            ViewComponentsPage viewComponentsPage)
         {
             _createBasePage = createBasePage;
+
+            InitializeComponent();
+            _viewComponentsPage = viewComponentsPage;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -26,7 +26,7 @@ namespace LaborProtection.Desktop
         
 		private void ViewBtn_Click(object sender, RoutedEventArgs e)
 		{
-            pagesFrame.Navigate(new ViewComponentsPage());
+            pagesFrame.Navigate(_viewComponentsPage);
 		}
 
         public void Navigate(Page navigatePage)

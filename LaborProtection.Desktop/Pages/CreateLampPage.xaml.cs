@@ -1,4 +1,6 @@
-﻿using LaborProtection.Services.LampServices;
+﻿using LaborProtection.Common;
+using LaborProtection.Services.LampServices;
+using LaborProtection.Services.LampServices.Models;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -36,6 +38,33 @@ namespace LaborProtection.Desktop.Pages
             
             BitmapImage image = new BitmapImage(new Uri(fileDialog.FileName));
             componentImage.Source = image;
+        }
+
+        private async void createLampButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ushort.TryParse(lampBulbCountTextBox.Text, out ushort bulbCount)) return;
+            if (!float.TryParse(lampHeightTextBox.Text, out float height)) return;
+            if (!float.TryParse(lampPriceTextBox.Text, out float price)) return;
+
+            CreateLampPostModel vm = new CreateLampPostModel()
+            {
+                BulbCount = bulbCount,
+                Height = height,
+                Name = lampNameTextBox.Text,
+                Price = price,
+                Type = lampTypeComboBox.SelectedIndex + 1,
+            };
+
+            var validator = new CreateLampPostModelValidator();
+            var modelState = await validator.ValidateAsync(vm);
+            
+            if (!modelState.IsValid)
+            {
+                // Print errors
+                return;
+            }
+
+            MessageBox.Show(Messages.CREATE_DONE_MESSAGE); 
         }
     }
 }
