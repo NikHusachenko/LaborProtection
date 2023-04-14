@@ -4,6 +4,7 @@ using LaborProtection.Desktop.Pages;
 using LaborProtection.EntityFramework;
 using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.BulbServices;
+using LaborProtection.Services.BulbServices.Models;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace LaborProtection.Desktop
         private void ConfigureServices(IServiceCollection services)
         {
             // Configurations
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.DEFAULT_CONNECTION));
+            services.AddDbContext<ApplicationContext>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services            
@@ -35,6 +36,7 @@ namespace LaborProtection.Desktop
 
             // Validations
             services.AddTransient<IValidator<CreateLampPostModel>, CreateLampPostModelValidator>();
+            services.AddTransient<IValidator<CreateBulbPostModel>, CreateBulbPostModelValidator>();
 
             // Pages
             services.AddTransient<CreateBasePage>();

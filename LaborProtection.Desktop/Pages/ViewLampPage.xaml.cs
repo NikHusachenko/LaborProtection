@@ -13,7 +13,5 @@ namespace LaborProtection.Desktop.Pages
 
             InitializeComponent();
         }
-
-        
     }
 }

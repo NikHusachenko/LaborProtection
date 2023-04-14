@@ -11,6 +11,24 @@ namespace LaborProtection.EntityFramework.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Bulbs",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(63)", maxLength: 63, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Voltage = table.Column<short>(type: "smallint", nullable: false),
+                    Power = table.Column<short>(type: "smallint", nullable: false),
+                    LightFlux = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bulbs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Lamps",
                 columns: table => new
                 {
@@ -31,6 +49,9 @@ namespace LaborProtection.EntityFramework.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Bulbs");
+
             migrationBuilder.DropTable(
                 name: "Lamps");
         }

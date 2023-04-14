@@ -54,21 +54,6 @@ namespace LaborProtection.EntityFramework.Migrations
                     b.ToTable("Bulbs", (string)null);
                 });
 
-            modelBuilder.Entity("LaborProtection.Database.Entities.LampBulbEntity", b =>
-                {
-                    b.Property<long>("LampFK")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("BulbFK")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("LampFK", "BulbFK");
-
-                    b.HasIndex("BulbFK");
-
-                    b.ToTable("LambBulb", (string)null);
-                });
-
             modelBuilder.Entity("LaborProtection.Database.Entities.LampEntity", b =>
                 {
                     b.Property<long>("Id")
@@ -97,35 +82,6 @@ namespace LaborProtection.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lamps", (string)null);
-                });
-
-            modelBuilder.Entity("LaborProtection.Database.Entities.LampBulbEntity", b =>
-                {
-                    b.HasOne("LaborProtection.Database.Entities.BulbEntity", "Bulb")
-                        .WithMany("Lamps")
-                        .HasForeignKey("BulbFK")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LaborProtection.Database.Entities.LampEntity", "Lamp")
-                        .WithMany("Bulbs")
-                        .HasForeignKey("LampFK")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bulb");
-
-                    b.Navigation("Lamp");
-                });
-
-            modelBuilder.Entity("LaborProtection.Database.Entities.BulbEntity", b =>
-                {
-                    b.Navigation("Lamps");
-                });
-
-            modelBuilder.Entity("LaborProtection.Database.Entities.LampEntity", b =>
-                {
-                    b.Navigation("Bulbs");
                 });
 #pragma warning restore 612, 618
         }

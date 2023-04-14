@@ -11,7 +11,5 @@ namespace LaborProtection.Database.Entities
         public short Power { get; set; }
         public int LightFlux { get; set; }
         public float Price { get; set; }
-
-        public ICollection<LampBulbEntity> Lamps { get; set; }
     }
 }

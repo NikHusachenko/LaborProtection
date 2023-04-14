@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LaborProtection.Database.Enums;
 
 namespace LaborProtection.Services.LampServices.Models
 {
@@ -23,7 +24,8 @@ namespace LaborProtection.Services.LampServices.Models
             RuleFor(x => x.Type)
                 .NotEmpty()
                 .NotNull()
-                .GreaterThanOrEqualTo(1);
+                .GreaterThanOrEqualTo(1)
+                .LessThan(Enum.GetNames(typeof(LampType)).Length);
 
             RuleFor(x => x.Price)
                 .NotEmpty()

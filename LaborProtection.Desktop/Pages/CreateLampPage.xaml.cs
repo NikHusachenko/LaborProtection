@@ -12,12 +12,15 @@ namespace LaborProtection.Desktop.Pages
     public partial class CreateLampPage : Page
     {
         private readonly ILampService _lampService;
+        private readonly CreateLampPostModelValidator _validator;
 
-        public CreateLampPage(ILampService lampService)
+        public CreateLampPage(ILampService lampService, 
+            CreateLampPostModelValidator validator)
         {
             _lampService = lampService;
 
             InitializeComponent();
+            _validator = validator;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,8 +58,7 @@ namespace LaborProtection.Desktop.Pages
                 Type = lampTypeComboBox.SelectedIndex + 1,
             };
 
-            var validator = new CreateLampPostModelValidator();
-            var modelState = await validator.ValidateAsync(vm);
+            var modelState = await _validator.ValidateAsync(vm);
             
             if (!modelState.IsValid)
             {
@@ -71,9 +73,10 @@ namespace LaborProtection.Desktop.Pages
                 return;
             }
             MessageBox.Show(Messages.CREATE_DONE_MESSAGE);
+            ClearFields();
         }
 
-        private void CrearFields()
+        private void ClearFields()
         {
             lampBulbCountTextBox.Text = string.Empty;
             lampHeightTextBox.Text = string.Empty;

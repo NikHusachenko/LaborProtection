@@ -9,9 +9,8 @@ namespace LaborProtection.EntityFramework
     {
         public DbSet<LampEntity> Lamps { get; set; }
         public DbSet<BulbEntity> Bulbs { get; set; }
-        public DbSet<LampBulbEntity> LampBulbs { get; set; }
 
-        public ApplicationContext(DbContextOptions options) : base(options)
+        public ApplicationContext()
         {
             Database.Migrate();
         }
@@ -25,7 +24,6 @@ namespace LaborProtection.EntityFramework
         {
             modelBuilder.ApplyConfiguration(new LampConfiguration());
             modelBuilder.ApplyConfiguration(new BulbConfiguration());
-            modelBuilder.ApplyConfiguration(new LampBulbConfiguration());
         }
     }
 }

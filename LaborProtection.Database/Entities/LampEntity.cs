@@ -10,7 +10,5 @@ namespace LaborProtection.Database.Entities
         public float Price { get; set; }
         public ushort BulbCount { get; set; }
         public float Height { get; set; }
-
-        public ICollection<LampBulbEntity> Bulbs { get; set; }
     }
 }

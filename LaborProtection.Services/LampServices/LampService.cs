@@ -4,6 +4,7 @@ using LaborProtection.Database.Enums;
 using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.LampServices.Models;
 using LaborProtection.Services.Response;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaborProtection.Services.LampServices
 {
@@ -38,8 +39,34 @@ namespace LaborProtection.Services.LampServices
                 Type = (LampType)vm.Type,
             };
 
-            await _lampRepository.Create(newRecord);
-            return ResponseService<long>.Ok(newRecord.Id);
+            try
+            {
+                await _lampRepository.Create(newRecord);
+                return ResponseService<long>.Ok(newRecord.Id);
+            }
+            catch (Exception ex)
+            {
+                return ResponseService<long>.Error($"LOG: LampService -> Create exception: {ex.Message}");
+            }
+        }
+
+        public async Task<ICollection<LampEntity>> GetAll()
+        {
+            return await _lampRepository.GetAll()
+                .ToListAsync();
+        }
+
+        public async Task<ResponseService<LampEntity>> GetById(long id)
+        {
+            var dbRecord = await _lampRepository.GetById(id);
+            if (dbRecord == null)
+            {
+                return ResponseService<LampEntity>.Error(Errors.NOT_FOUNT_ERROR);
+            }
+            else
+            {
+                return ResponseService<LampEntity>.Ok(dbRecord);
+            }
         }
     }
 }
