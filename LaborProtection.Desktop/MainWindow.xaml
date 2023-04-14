@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:LaborProtection.Desktop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowState="Maximized"
         MinHeight="900"
         MinWidth="1600">
 

@@ -41,7 +41,7 @@ namespace LaborProtection.Desktop
             services.AddTransient<MainWindow>();
             services.AddTransient<CreateLampPage>();
             services.AddTransient<CreateBulbPage>();
-            services.AddTransient<ViewComponentsPage>();
+            services.AddTransient<ViewBasePage>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

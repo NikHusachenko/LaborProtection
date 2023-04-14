@@ -64,7 +64,22 @@ namespace LaborProtection.Desktop.Pages
                 return;
             }
 
-            MessageBox.Show(Messages.CREATE_DONE_MESSAGE); 
+            var result = await _lampService.Create(vm);
+            if (result.IsError)
+            {
+                // Print error
+                return;
+            }
+            MessageBox.Show(Messages.CREATE_DONE_MESSAGE);
+        }
+
+        private void CrearFields()
+        {
+            lampBulbCountTextBox.Text = string.Empty;
+            lampHeightTextBox.Text = string.Empty;
+            lampNameTextBox.Text = string.Empty;
+            lampPriceTextBox.Text = string.Empty;
+            lampTypeComboBox.SelectedIndex = 0;
         }
     }
 }
