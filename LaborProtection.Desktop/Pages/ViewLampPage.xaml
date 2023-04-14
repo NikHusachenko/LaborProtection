@@ -8,15 +8,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewLampPage">
 
-    <Grid>
+    <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" Name="lampViewContainer">
-            <WrapPanel Orientation="Horizontal" Name="lampViewPanel" />
+        <Grid Grid.Column="1" Name="lampViewContainer" ShowGridLines="True">
+            <WrapPanel Name="lampViewPanel"  Width="auto" Loaded="lampViewPanel_Loaded">
+                
+            </WrapPanel>
         </Grid>
     </Grid>
 </Page>

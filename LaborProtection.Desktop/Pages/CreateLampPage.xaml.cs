@@ -4,6 +4,7 @@ using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
 using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -14,6 +15,8 @@ namespace LaborProtection.Desktop.Pages
     {
         private readonly ILampService _lampService;
         private readonly IValidator<CreateLampPostModel> _validator;
+
+        private string _selectedImage = string.Empty;
 
         public CreateLampPage(ILampService lampService, 
             IValidator<CreateLampPostModel> validator)
@@ -41,6 +44,7 @@ namespace LaborProtection.Desktop.Pages
             }
             
             BitmapImage image = new BitmapImage(new Uri(fileDialog.FileName));
+            _selectedImage = fileDialog.FileName;
             componentImage.Source = image;
         }
 
@@ -57,6 +61,7 @@ namespace LaborProtection.Desktop.Pages
                 Name = lampNameTextBox.Text,
                 Price = price,
                 Type = lampTypeComboBox.SelectedIndex + 1,
+                Image = new FileInfo(_selectedImage),
             };
 
             var modelState = await _validator.ValidateAsync(vm);

@@ -5,6 +5,7 @@ using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.LampServices.Models;
 using LaborProtection.Services.Response;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace LaborProtection.Services.LampServices
 {
@@ -30,6 +31,18 @@ namespace LaborProtection.Services.LampServices
                 return ResponseService<long>.Error(Errors.INVALID_LAMP_TYPE_ERROR);
             }
 
+            string imageExtenstion = vm.Image.Name.Split('.')[vm.Image.Name.Split('.').Length - 1];
+            string pathToSave = $"{Configuration.STATIC_FOLDER}{vm.Name}.{imageExtenstion}";
+            
+            try
+            {
+                vm.Image.CopyTo(pathToSave);
+            }
+            catch (Exception ex)
+            {
+                return ResponseService<long>.Error($"LOG: LampService -> Create exception: {ex.Message}");
+            }
+
             LampEntity newRecord = new LampEntity()
             {
                 BulbCount = vm.BulbCount,
@@ -37,7 +50,7 @@ namespace LaborProtection.Services.LampServices
                 Name = vm.Name,
                 Price = vm.Price,
                 Type = (LampType)vm.Type,
-                ImagePath = vm.ImagePath,
+                ImagePath = pathToSave,
             };
 
             try

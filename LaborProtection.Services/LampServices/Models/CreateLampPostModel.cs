@@ -10,7 +10,7 @@ namespace LaborProtection.Services.LampServices.Models
         public float Price { get; set; }
         public ushort BulbCount { get; set; }
         public float Height { get; set; }
-        public string ImagePath { get; set; }
+        public FileInfo Image { get; set; }
     }
 
     public class CreateLampPostModelValidator : AbstractValidator<CreateLampPostModel>
