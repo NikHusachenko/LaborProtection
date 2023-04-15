@@ -4,6 +4,7 @@ using LaborProtection.Database.Enums;
 using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.BulbServices.Models;
 using LaborProtection.Services.Response;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaborProtection.Services.BulbServices
 {
@@ -43,6 +44,22 @@ namespace LaborProtection.Services.BulbServices
             {
                 return ResponseService<long>.Error($"LOG: BulbService -> Create exception: {ex.Message}");
             }
+        }
+
+        public async Task<ICollection<BulbEntity>> GetAll()
+        {
+            return await _bulbRepository.GetAll()
+                .ToListAsync();
+        }
+
+        public async Task<ResponseService<BulbEntity>> GetById(long id)
+        {
+            BulbEntity dbRecord = await _bulbRepository.GetById(id);
+            if (dbRecord == null)
+            {
+                return ResponseService<BulbEntity>.Error(Errors.NOT_FOUNT_ERROR);
+            }
+            return ResponseService<BulbEntity>.Ok(dbRecord);
         }
     }
 }

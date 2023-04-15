@@ -8,15 +8,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewBulbPage">
 
-    <Grid>
+    <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="8*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" Name="viewBulbContainer">
-            
+        <Grid Grid.Column="1" Name="bulbViewContainer">
+            <WrapPanel Name="bulbViewPanel"  Width="auto" Loaded="bulbViewPanel_Loaded">
+                
+            </WrapPanel>
         </Grid>
     </Grid>
 </Page>

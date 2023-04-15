@@ -16,9 +16,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1" Name="lampViewContainer" ShowGridLines="True">
-            <WrapPanel Name="lampViewPanel"  Width="auto" Loaded="lampViewPanel_Loaded">
-                
-            </WrapPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <WrapPanel Name="lampViewPanel" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Stretch" Loaded="lampViewPanel_Loaded"></WrapPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

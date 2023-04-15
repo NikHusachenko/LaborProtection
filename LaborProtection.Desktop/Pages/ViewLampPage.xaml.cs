@@ -1,8 +1,11 @@
 ﻿using LaborProtection.Database.Entities;
 using LaborProtection.Services.LampServices;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace LaborProtection.Desktop.Pages
@@ -20,14 +23,24 @@ namespace LaborProtection.Desktop.Pages
 
         private async void lampViewPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            var lamps = await _lampService.GetAll();
+            ICollection<LampEntity> lamps = await _lampService.GetAll();
             foreach (LampEntity lamp in lamps)
             {
+                StackPanel lampPanel = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal,
+                    Width = lampViewContainer.ActualWidth,
+                    Height = 200,
+                    Margin = new Thickness(0, 0, 0, 10),
+                };
+
                 Border informationBorder = new Border()
                 {
-                    Width = lampViewContainer.Width / 3 * 2,
+                    Width = lampViewContainer.ActualWidth / 3 * 2,
                     Height = 200,
                     Padding = new Thickness(10),
+                    BorderBrush = Brushes.Black,
+                    BorderThickness = new Thickness(1),
                 };
 
                 string lampInformation = $"{lamp.Id}\n{lamp.Name}\n{lamp.Type}\n{lamp.BulbCount}\n{lamp.Price}";
@@ -36,16 +49,20 @@ namespace LaborProtection.Desktop.Pages
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
                     Text = lampInformation,
+                    FontSize = 22,
                 };
 
                 informationBorder.Child = textBlock;
-                lampViewPanel.Children.Add(informationBorder);
+                lampPanel.Children.Add(informationBorder);
 
                 Border imageBorder = new Border()
                 {
-                    Width = lampViewContainer.Width / 3,
+                    Width = lampViewContainer.ActualWidth / 3,
                     Height = 200,
                     Padding = new Thickness(10),
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    BorderBrush = Brushes.Black,
+                    BorderThickness = new Thickness(1),
                 };
 
                 BitmapImage bitmap = new BitmapImage(new Uri(lamp.ImagePath));
@@ -55,7 +72,9 @@ namespace LaborProtection.Desktop.Pages
                 };
 
                 imageBorder.Child = image;
-                lampViewPanel.Children.Add(imageBorder);
+                lampPanel.Children.Add(imageBorder);
+
+                lampViewPanel.Children.Add(lampPanel);
             }
         }
     }
