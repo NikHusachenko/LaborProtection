@@ -12,10 +12,10 @@ namespace LaborProtection.Desktop.Pages
         public ViewBasePage(ILampService lampService,
             IBulbService bulbService)
         {
-            InitializeComponent();
-
             _lampService = lampService;
             _bulbService = bulbService;
+
+            InitializeComponent();
         }
 
         private void RadioButton_Checked(object sender, System.Windows.RoutedEventArgs e)

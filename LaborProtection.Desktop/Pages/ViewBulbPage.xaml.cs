@@ -31,12 +31,14 @@ namespace LaborProtection.Desktop.Pages
 
                 TextBlock informationBlock = new TextBlock()
                 {
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
                     Text = $"{bulb.Id}\n{bulb.Name}\n{bulb.Power}\n{bulb.Price}\n{bulb.LightFlux}",
-                    FontSize = 24,
+                    FontSize = 22,
                 };
 
                 bulbBorder.Child = informationBlock;
-                bulbViewContainer.Children.Add(bulbBorder);
+                bulbViewPanel.Children.Add(bulbBorder);
             }
         }
     }

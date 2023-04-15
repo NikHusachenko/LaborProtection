@@ -1,7 +1,6 @@
 ﻿using LaborProtection.Database.Entities;
 using LaborProtection.Services.LampServices;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +22,8 @@ namespace LaborProtection.Desktop.Pages
 
         private async void lampViewPanel_Loaded(object sender, RoutedEventArgs e)
         {
+            lampViewPanel.Children.Clear();
+
             ICollection<LampEntity> lamps = await _lampService.GetAll();
             foreach (LampEntity lamp in lamps)
             {
