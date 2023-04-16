@@ -7,7 +7,23 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreateComponentPage">
-
+    <Page.Resources>
+        <Style x:Key="ErrorLabelStyle">
+            <Setter Property="Control.Foreground" Value="Red"/>
+            <Setter Property="Control.FontSize" Value="15"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+            <Setter Property="Control.Margin" Value="0,0,100,0"/>
+        </Style>
+        <Style x:Key="TextBoxStyle">
+            <Setter Property="ItemsControl.Width" Value="678"/>
+            <Setter Property="ItemsControl.Height" Value="25"/>
+        </Style>
+        <Style x:Key="LabelStyle">
+            <Setter Property="ItemsControl.FontSize" Value="20"/>
+            <Setter Property="ItemsControl.FontFamily" Value="Arial"/>
+            <Setter Property="ItemsControl.Margin" Value="8,0,0,0"/>
+        </Style>
+    </Page.Resources>
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -36,9 +52,9 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" FontSize="20" FontFamily="Arial"  Margin="8,0,0,0">Lamp name</Label>
-                <TextBox Grid.Row="1" x:Name="lampNameTextBox"  Height="25" Width="678" Margin="15, 0, 74, 0" />
-                <Label Grid.Row="2" x:Name ="lampNameErrorLabel" Foreground="Red" FontSize="15" HorizontalAlignment="Center" Margin="0,0,100,0">
+                <Label Grid.Row="0" Style="{StaticResource LabelStyle}">Lamp name</Label>
+                <TextBox Grid.Row="1" x:Name="lampNameTextBox" Margin="15, 0, 74, 0" Style="{StaticResource TextBoxStyle}" />
+                <Label  x:Name ="lampNameErrorLabel" Grid.Row="2" Style="{StaticResource ErrorLabelStyle}">
                    Error label</Label>
             </Grid>
 
@@ -48,13 +64,13 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0"  Grid.Column="0" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Light type</Label>
-                <ComboBox x:Name="lampTypeComboBox" Grid.Row="1"  Grid.Column="0" Height="25" Width="678" Margin="0, 0, 58, 0">
+                <Label Grid.Row="0"  Grid.Column="0" Style="{StaticResource LabelStyle}">Light type</Label>
+                <ComboBox x:Name="lampTypeComboBox" Grid.Row="1"  Grid.Column="0" Style="{StaticResource TextBoxStyle}" Margin="0, 0, 58, 0">
                   <ComboBoxItem>ЛСП</ComboBoxItem>
                   <ComboBoxItem>ЛСО</ComboBoxItem>
                   <ComboBoxItem>ОД</ComboBoxItem>
                 </ComboBox>
-                <Label Grid.Row="2" x:Name ="lampTypeErrorLabel" Foreground="Red" FontSize="15" HorizontalAlignment="Center" Margin="0,0,100,0">
+                <Label Grid.Row="2" x:Name ="lampTypeErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label</Label>
             </Grid>
 
@@ -64,9 +80,9 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Price</Label>
-                <TextBox x:Name="lampPriceTextBox" Grid.Row="1" Height="25" Width="678" Margin="13, 0, 72, 0" />
-                <Label Grid.Row="2" x:Name ="lampPriceErrorLabel" Foreground="Red" FontSize="15" HorizontalAlignment="Center" Margin="0,0,100,0">
+                <Label Grid.Row="0" Style="{StaticResource LabelStyle}">Price</Label>
+                <TextBox x:Name="lampPriceTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Margin="13, 0, 72, 0" />
+                <Label Grid.Row="2" x:Name ="lampPriceErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label</Label>
             </Grid>
 
@@ -76,9 +92,9 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Bulbs count</Label>
-                <TextBox x:Name="lampBulbCountTextBox" Grid.Row="1" Height="25" Width="678" Margin="13, 0, 72, 0" />
-                <Label Grid.Row="2" x:Name ="lampBulbCountErrorLabel" Foreground="Red" FontSize="15" HorizontalAlignment="Center" Margin="0,0,100,0">
+                <Label Grid.Row="0" Style="{StaticResource LabelStyle}">Bulbs count</Label>
+                <TextBox x:Name="lampBulbCountTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Margin="13, 0, 72, 0" />
+                <Label Grid.Row="2" x:Name ="lampBulbCountErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label</Label>
             </Grid>
             <Grid Grid.Row="4" Grid.Column="0" >
@@ -87,9 +103,9 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" FontSize="20" FontFamily="Arial" Margin="8,0,0,0">Height</Label>
-                <TextBox x:Name="lampHeightTextBox" Grid.Row="1" Height="25"  Width="678" Margin="0, 0, 58, 0" />
-                <Label Grid.Row="2" x:Name ="lampHeightErrorLabel" Foreground="Red" FontSize="15" HorizontalAlignment="Center" Margin="0,0,100,0">
+                <Label Grid.Row="0" Style="{StaticResource LabelStyle}">Height</Label>
+                <TextBox x:Name="lampHeightTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Margin="0, 0, 58, 0" />
+                <Label Grid.Row="2" x:Name ="lampHeightErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label</Label>
             </Grid>
         </Grid>

@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions x:Uid="rowDefinitions">
             <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -26,6 +27,7 @@
                 <ComboBoxItem>ru</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <Frame Grid.Row="1" x:Name="pagesFrame" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
+        <Label Name="globalErrorLabel" Grid.Row="1" FontFamily="Arial" FontSize="10" Foreground="Red" HorizontalAlignment="Center" Margin="110,0,0,0">Global Error Label</Label>
+        <Frame Grid.Row="2" x:Name="pagesFrame" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
