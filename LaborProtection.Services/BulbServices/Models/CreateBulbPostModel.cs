@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LaborProtection.Common;
 using LaborProtection.Database.Enums;
 
 namespace LaborProtection.Services.BulbServices.Models
@@ -20,13 +21,15 @@ namespace LaborProtection.Services.BulbServices.Models
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .NotNull()
+                .MinimumLength(4)
                 .MaximumLength(63);
 
             RuleFor(x => x.Type)
                 .NotEmpty()
                 .NotNull()
                 .LessThan(Enum.GetNames(typeof(BulbType)).Length)
-                .GreaterThanOrEqualTo(1);
+                .GreaterThanOrEqualTo(1)
+                .WithMessage(Errors.VALUE_MUST_BE_SELECTED_ERROR);
 
             RuleFor(x => (int)x.Voltage)
                 .NotEmpty()

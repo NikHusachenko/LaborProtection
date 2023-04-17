@@ -65,11 +65,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0"  Grid.Column="0" Style="{StaticResource LabelStyle}">Light type</Label>
-                <ComboBox x:Name="lampTypeComboBox" Grid.Row="1"  Grid.Column="0" Style="{StaticResource TextBoxStyle}" Margin="0, 0, 58, 0">
-                  <ComboBoxItem>ЛСП</ComboBoxItem>
-                  <ComboBoxItem>ЛСО</ComboBoxItem>
-                  <ComboBoxItem>ОД</ComboBoxItem>
-                </ComboBox>
+                <ComboBox x:Name="lampTypeComboBox" Grid.Row="1"  Grid.Column="0" Style="{StaticResource TextBoxStyle}" Margin="0, 0, 58, 0"></ComboBox>
                 <Label Grid.Row="2" x:Name ="lampTypeErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label</Label>
             </Grid>
@@ -117,6 +113,7 @@
             </Grid.RowDefinitions>
 
             <Button x:Name="loadImageButton" Width="700" Height="auto" FontSize="20" Grid.Row="0" Margin="5, 20, 5, 25" Click="Button_Click">Load image</Button>
+            <Label Name="imageErrorLabel" Visibility="Hidden" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red">Image error label</Label>
 
             <Image x:Name="componentImage" Grid.Row="1" Width="auto" Height="auto" Margin="10" />
         </Grid>

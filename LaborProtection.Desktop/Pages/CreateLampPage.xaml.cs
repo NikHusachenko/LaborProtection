@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using LaborProtection.Common;
+using LaborProtection.Database.Enums;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +18,9 @@ namespace LaborProtection.Desktop.Pages
         private readonly ILampService _lampService;
         private readonly IValidator<CreateLampPostModel> _validator;
 
+        private readonly MainWindow _parent;
+        private readonly Dictionary<string, Label> _errorLabels;
+
         private string _selectedImage = string.Empty;
 
         public CreateLampPage(ILampService lampService, 
@@ -24,7 +29,22 @@ namespace LaborProtection.Desktop.Pages
             _lampService = lampService;
             _validator = validator;
 
+            _parent = Window.GetWindow(this) as MainWindow;
+
             InitializeComponent();
+
+            _errorLabels = new Dictionary<string, Label>();
+            _errorLabels.Add("Name", lampNameErrorLabel);
+            _errorLabels.Add("Type", lampTypeErrorLabel);
+            _errorLabels.Add("Price", lampPriceErrorLabel);
+            _errorLabels.Add("BulbCount", lampBulbCountErrorLabel);
+            _errorLabels.Add("Height", lampHeightErrorLabel);
+            _errorLabels.Add("Image", imageErrorLabel);
+            
+            foreach (var item in Enum.GetNames(typeof(LampType)))
+            {
+                lampTypeComboBox.Items.Add(item);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,7 +85,6 @@ namespace LaborProtection.Desktop.Pages
             };
 
             var modelState = await _validator.ValidateAsync(vm);
-            
             if (!modelState.IsValid)
             {
                 // Print errors
@@ -89,6 +108,9 @@ namespace LaborProtection.Desktop.Pages
             lampNameTextBox.Text = string.Empty;
             lampPriceTextBox.Text = string.Empty;
             lampTypeComboBox.SelectedIndex = 0;
+
+            _selectedImage = string.Empty;
+            componentImage.Source = null;
         }
     }
 }

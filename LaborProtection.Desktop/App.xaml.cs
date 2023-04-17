@@ -30,6 +30,13 @@ namespace LaborProtection.Desktop
             services.AddDbContext<ApplicationContext>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            // Pages
+            services.AddTransient<CreateBasePage>();
+            services.AddTransient<MainWindow>();
+            services.AddTransient<CreateLampPage>();
+            services.AddTransient<CreateBulbPage>();
+            services.AddTransient<ViewBasePage>();
+
             // Services            
             services.AddTransient<ILampService, LampService>();
             services.AddTransient<IBulbService, BulbService>();
@@ -37,13 +44,6 @@ namespace LaborProtection.Desktop
             // Validations
             services.AddTransient<IValidator<CreateLampPostModel>, CreateLampPostModelValidator>();
             services.AddTransient<IValidator<CreateBulbPostModel>, CreateBulbPostModelValidator>();
-
-            // Pages
-            services.AddTransient<CreateBasePage>();
-            services.AddTransient<MainWindow>();
-            services.AddTransient<CreateLampPage>();
-            services.AddTransient<CreateBulbPage>();
-            services.AddTransient<ViewBasePage>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

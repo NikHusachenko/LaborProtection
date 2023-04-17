@@ -1,5 +1,6 @@
 ﻿using LaborProtection.Desktop.Pages;
 using System.Windows;
+using System.Windows.Media;
 
 namespace LaborProtection.Desktop
 {
@@ -26,5 +27,12 @@ namespace LaborProtection.Desktop
 		{
             pagesFrame.Navigate(_viewBasePage);
 		}
+
+        public void SetGlobalErrorMessage(string message, Brush brush, Visibility isVisible = Visibility.Visible)
+        {
+            globalErrorLabel.Foreground = brush;
+            globalErrorLabel.Content = message;
+            globalErrorLabel.Visibility = isVisible;
+        }
 	}
 }

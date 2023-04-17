@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LaborProtection.Desktop"
+        xmlns:common="clr-namespace:LaborProtection.Common;assembly=LaborProtection.Common"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         MinHeight="900"
@@ -18,16 +18,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="Button_Click">Add Component</Button>
-            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="ViewBtn_Click" >View</Button>
-            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0">Calculation</Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="Button_Click" Content="{x:Static common:UILabels.ADD_COMPONENTS}"></Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="ViewBtn_Click" Content="{x:Static common:UILabels.VIEW}"></Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Content="{x:Static common:UILabels.CALCULATION}"></Button>
             <ComboBox x:Name="selectLanguage" FontFamily="Arial" Width="50" FontSize="16" HorizontalAlignment="Right">
                 <ComboBoxItem IsSelected="True">EN</ComboBoxItem>
                 <ComboBoxItem>UA</ComboBoxItem>
                 <ComboBoxItem>ru</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <Label Name="globalErrorLabel" Grid.Row="1" FontFamily="Arial" FontSize="10" Foreground="Red" HorizontalAlignment="Center" Margin="110,0,0,0">Global Error Label</Label>
+        <Label Name="globalErrorLabel" Grid.Row="1" FontFamily="Arial" FontSize="10" Foreground="Red" HorizontalAlignment="Center" Visibility="Hidden">Global Error Label</Label>
         <Frame Grid.Row="2" x:Name="pagesFrame" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
