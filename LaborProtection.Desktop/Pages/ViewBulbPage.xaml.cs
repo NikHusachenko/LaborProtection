@@ -1,8 +1,11 @@
-﻿using LaborProtection.Database.Entities;
+﻿using LaborProtection.Common;
+using LaborProtection.Database.Entities;
 using LaborProtection.Services.BulbServices;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace LaborProtection.Desktop.Pages
 {
@@ -25,20 +28,84 @@ namespace LaborProtection.Desktop.Pages
                 Border bulbBorder = new Border()
                 {
                     Width = bulbViewContainer.ActualWidth,
-                    Height = 200,
                     Margin = new Thickness(10),
                 };
 
-                TextBlock informationBlock = new TextBlock()
-                {
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Text = $"{bulb.Id}\n{bulb.Name}\n{bulb.Power}\n{bulb.Price}\n{bulb.LightFlux}",
-                    FontSize = 22,
-                };
+                Grid informationContainer = new Grid();
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
+                informationContainer.ColumnDefinitions.Add(new ColumnDefinition());
 
-                bulbBorder.Child = informationBlock;
+                Label idLabel = new Label()
+                {
+                    Content = bulb.Id,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                Grid.SetColumn(idLabel, 0);
+                informationContainer.Children.Add(idLabel);
+
+                Label nameLabel = new Label()
+                {
+                    Content = bulb.Name,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                Grid.SetColumn(nameLabel, 1);
+                informationContainer.Children.Add(nameLabel);
+
+                Label powerLabel = new Label()
+                {
+                    Content = bulb.Power,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment= VerticalAlignment.Center,
+                };
+                Grid.SetColumn(powerLabel, 2);
+                informationContainer.Children.Add(powerLabel);
+
+                Label priceLabel = new Label()
+                {
+                    Content = bulb.Price,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                Grid.SetColumn(priceLabel, 3);
+                informationContainer.Children.Add(priceLabel);
+
+                Label lightFluxLabel = new Label()
+                {
+                    Content = bulb.LightFlux,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                Grid.SetColumn(lightFluxLabel, 4);
+                informationContainer.Children.Add(lightFluxLabel);
+
+                Label removeBulbLabel = new Label()
+                {
+                    Content = "X",
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                removeBulbLabel.MouseLeftButtonDown += (object sender, MouseButtonEventArgs e) => RemoveBulb(bulb.Id);
+                Grid.SetColumn(removeBulbLabel, 5);
+                informationContainer.Children.Add(removeBulbLabel);
+
+                bulbBorder.Child = informationContainer;
                 bulbViewPanel.Children.Add(bulbBorder);
+            }
+        }
+
+        private void RemoveBulb(long id)
+        {
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(UILabels.CONFIRM_REMOVING, "Caption", button);
+            if (result == MessageBoxResult.Yes)
+            {
+
             }
         }
     }

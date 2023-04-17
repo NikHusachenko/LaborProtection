@@ -40,7 +40,8 @@ namespace LaborProtection.Desktop.Pages
                     Width = lampViewContainer.ActualWidth / 3 * 2,
                     Height = 200,
                     Padding = new Thickness(10),
-                    BorderBrush = Brushes.Black,
+                    BorderBrush = Brushes.Gray,
+                    CornerRadius = new CornerRadius(25, 0, 0, 25),
                     BorderThickness = new Thickness(1),
                 };
 
@@ -62,7 +63,8 @@ namespace LaborProtection.Desktop.Pages
                     Height = 200,
                     Padding = new Thickness(10),
                     HorizontalAlignment = HorizontalAlignment.Right,
-                    BorderBrush = Brushes.Black,
+                    BorderBrush = Brushes.Gray,
+                    CornerRadius = new CornerRadius(0, 25, 25, 0),
                     BorderThickness = new Thickness(1),
                 };
 

@@ -15,5 +15,12 @@
         public const string CREATE_BULB = "Create Bulb";
         public const string VIEW_LAMPS = "View lamps";
         public const string VIEW_BUBLS = "View bulbs";
+        public const string ID = "Id";
+        public const string NAME = "Name";
+        public const string POWER = "Power";
+        public const string PRICE = "Price";
+        public const string LIGHT_FLUX = "Light flux";
+        public const string ACTION = "Action";
+        public const string CONFIRM_REMOVING = "Confirm removing";
     }
 }

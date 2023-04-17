@@ -25,7 +25,7 @@
         </Style>
     </Page.Resources>
     
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*" />
             <RowDefinition Height="1*" />

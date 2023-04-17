@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using LaborProtection.Common;
 using LaborProtection.Database.Enums;
 using LaborProtection.Services.LampServices;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace LaborProtection.Desktop.Pages
@@ -51,15 +53,14 @@ namespace LaborProtection.Desktop.Pages
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = false;
+            fileDialog.Filter = "Images|*.png;*.jpg";
+            fileDialog.ShowDialog();
 
-            if (fileDialog.ShowDialog() == true)
-            {
-                MessageBox.Show(fileDialog.FileName);
-            }
 
             if (!fileDialog.CheckFileExists || 
                 string.IsNullOrEmpty(fileDialog.FileName))
             {
+                SetSpecificError(imageErrorLabel, Errors.IMAGE_NOT_SELECTED, Brushes.Red, Visibility.Visible); 
                 return;
             }
             
@@ -70,9 +71,19 @@ namespace LaborProtection.Desktop.Pages
 
         private async void createLampButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!ushort.TryParse(lampBulbCountTextBox.Text, out ushort bulbCount)) return;
-            if (!float.TryParse(lampHeightTextBox.Text, out float height)) return;
-            if (!float.TryParse(lampPriceTextBox.Text, out float price)) return;
+            if (!ushort.TryParse(lampBulbCountTextBox.Text, out ushort bulbCount))
+            {
+                SetSpecificError(lampBulbCountErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                return;
+            }
+            if (!float.TryParse(lampHeightTextBox.Text, out float height))
+            {
+                SetSpecificError(lampHeightErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+            }
+            if (!float.TryParse(lampPriceTextBox.Text, out float price))
+            {
+                SetSpecificError(lampPriceErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+            }
 
             CreateLampPostModel vm = new CreateLampPostModel()
             {
@@ -87,18 +98,29 @@ namespace LaborProtection.Desktop.Pages
             var modelState = await _validator.ValidateAsync(vm);
             if (!modelState.IsValid)
             {
-                // Print errors
+                ICollection<ValidationFailure> errors = modelState.Errors;
+                foreach (ValidationFailure error in errors)
+                {
+                    SetSpecificError(_errorLabels[error.PropertyName], error.ErrorMessage, Brushes.Red, Visibility.Visible);
+                }
                 return;
             }
 
             var result = await _lampService.Create(vm);
             if (result.IsError)
             {
-                // Print error
+                _parent.SetGlobalErrorMessage(result.ErrorMessage, Brushes.Red, Visibility.Visible);
                 return;
             }
             MessageBox.Show(Messages.CREATE_DONE_MESSAGE);
             ClearFields();
+        }
+
+        private void SetSpecificError(Label target, string errorMessage, Brush messageColor, Visibility visibility)
+        {
+            target.Content = errorMessage;
+            target.Foreground = messageColor;
+            target.Visibility = visibility;
         }
 
         private void ClearFields()

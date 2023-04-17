@@ -3,21 +3,62 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:LaborProtection.Desktop.Pages"
+      xmlns:common="clr-namespace:LaborProtection.Common;assembly=LaborProtection.Common"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewBulbPage">
 
     <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="8*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" Name="bulbViewContainer" ShowGridLines="True">
+        <Grid Grid.Row="0" Grid.Column="1" ShowGridLines="True">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10, 10, 0, 0">
+                <Grid ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10, 0, 0, 0">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.ID}"></Label>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.NAME}"></Label>
+                    </Border>
+                    <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.POWER}"></Label>
+                    </Border>
+                    <Border Grid.Column="3" BorderBrush="LightGray" BorderThickness="1">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.LIGHT_FLUX}"></Label>
+                    </Border>
+                    <Border Grid.Column="4" BorderBrush="LightGray" BorderThickness="1" CornerRadius="0, 10, 0, 0">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.PRICE}"></Label>
+                    </Border>
+                    <Border Grid.Column="5" BorderBrush="LightGray" BorderThickness="1" CornerRadius="0, 10, 0, 0">
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static common:UILabels.ACTION}"></Label>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <Grid Grid.Row="1" Grid.Column="1" Name="bulbViewContainer">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel Name="bulbViewPanel" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Stretch" Loaded="bulbViewPanel_Loaded"></WrapPanel>
+                <WrapPanel Name="bulbViewPanel" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Stretch" Loaded="bulbViewPanel_Loaded">
+                    
+                </WrapPanel>
             </ScrollViewer>
         </Grid>
     </Grid>
