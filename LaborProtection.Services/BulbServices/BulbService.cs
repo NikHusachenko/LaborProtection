@@ -26,6 +26,11 @@ namespace LaborProtection.Services.BulbServices
                 return ResponseService<long>.Error(Errors.WAS_CREATED_ERROR);
             }
 
+            if (!Directory.Exists(Configuration.STATIC_FOLDER))
+            {
+                Directory.CreateDirectory(Configuration.STATIC_FOLDER);
+            }
+
             dbRecord = new BulbEntity()
             {
                 LightFlux = vm.LightFlux,

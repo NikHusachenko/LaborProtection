@@ -1,6 +1,10 @@
 ﻿using LaborProtection.Desktop.Pages;
+using System;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using static LaborProtection.Common.Localization;
 
 namespace LaborProtection.Desktop
 {
@@ -16,6 +20,17 @@ namespace LaborProtection.Desktop
             _viewBasePage = viewBasePage;
 
             InitializeComponent();
+
+            var languages = Enum.GetNames(typeof(LocalizationLanguage)).Reverse();
+            foreach (var language in languages)
+            {
+                ComboBoxItem item = new ComboBoxItem()
+                {
+                    Content = language,
+                    IsSelected = true,
+                };
+                selectLanguage.Items.Add(item);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

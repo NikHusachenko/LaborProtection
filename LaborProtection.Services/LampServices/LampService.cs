@@ -5,7 +5,6 @@ using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.LampServices.Models;
 using LaborProtection.Services.Response;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace LaborProtection.Services.LampServices
 {
@@ -24,11 +23,6 @@ namespace LaborProtection.Services.LampServices
             if (dbRecord != null)
             {
                 return ResponseService<long>.Error(Errors.WAS_CREATED_ERROR);
-            }
-
-            if (!Enum.IsDefined(typeof(LampType), vm.Type))
-            {
-                return ResponseService<long>.Error(Errors.INVALID_LAMP_TYPE_ERROR);
             }
 
             if (!Directory.Exists(Configuration.STATIC_FOLDER))
@@ -69,9 +63,21 @@ namespace LaborProtection.Services.LampServices
             }
         }
 
+        public async Task<ResponseService> Delete(long id)
+        {
+            LampEntity dbRecord = await _lampRepository.GetById(id);
+            if (dbRecord == null)
+            {
+                return ResponseService.Error(Errors.NOT_FOUNT_ERROR);
+            }
+
+            dbRecord.DeletedOn = DateTime.Now;
+            return await Update(dbRecord);
+        }
+
         public async Task<ICollection<LampEntity>> GetAll()
         {
-            return await _lampRepository.GetAll()
+            return await _lampRepository.GetAll(lamp => !lamp.DeletedOn.HasValue)
                 .ToListAsync();
         }
 
@@ -85,6 +91,19 @@ namespace LaborProtection.Services.LampServices
             else
             {
                 return ResponseService<LampEntity>.Ok(dbRecord);
+            }
+        }
+
+        public async Task<ResponseService> Update(LampEntity lampEntity)
+        {
+            try
+            {
+                await _lampRepository.Update(lampEntity);
+                return ResponseService.Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseService.Error($"LOG: LampService -> Update exception: {ex.Message}");
             }
         }
     }

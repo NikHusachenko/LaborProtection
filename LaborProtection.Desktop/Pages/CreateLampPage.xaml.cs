@@ -20,7 +20,6 @@ namespace LaborProtection.Desktop.Pages
         private readonly ILampService _lampService;
         private readonly IValidator<CreateLampPostModel> _validator;
 
-        private readonly MainWindow _parent;
         private readonly Dictionary<string, Label> _errorLabels;
 
         private string _selectedImage = string.Empty;
@@ -30,8 +29,6 @@ namespace LaborProtection.Desktop.Pages
         {
             _lampService = lampService;
             _validator = validator;
-
-            _parent = Window.GetWindow(this) as MainWindow;
 
             InitializeComponent();
 
@@ -109,7 +106,9 @@ namespace LaborProtection.Desktop.Pages
             var result = await _lampService.Create(vm);
             if (result.IsError)
             {
-                _parent.SetGlobalErrorMessage(result.ErrorMessage, Brushes.Red, Visibility.Visible);
+                MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+
+                mainWindow.SetGlobalErrorMessage(result.ErrorMessage, Brushes.Red, Visibility.Visible);
                 return;
             }
             MessageBox.Show(Messages.CREATED_SUCCESSFULY_MESSAGE);

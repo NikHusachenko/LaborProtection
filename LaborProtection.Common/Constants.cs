@@ -2,9 +2,11 @@
 {
     public class Localization
     {
-        public const string EN = "en";
-        public const string UA = "ua";
-        public const string RU = "ru";
+        public enum LocalizationLanguage
+        {
+            UA,
+            EN,
+        }
     }
 
     public class Errors

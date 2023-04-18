@@ -7,7 +7,6 @@ using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.BulbServices.Models;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
