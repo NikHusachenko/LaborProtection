@@ -99,7 +99,7 @@ namespace LaborProtection.Desktop.Pages
                 _parent.SetGlobalErrorMessage(response.ErrorMessage, Brushes.Red, Visibility.Visible);
                 return;
             }
-            MessageBox.Show(Messages.CREATE_DONE_MESSAGE);
+            MessageBox.Show(Messages.CREATED_SUCCESSFULY_MESSAGE);
             ClearFields();
         }
         

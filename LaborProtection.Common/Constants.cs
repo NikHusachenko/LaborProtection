@@ -21,6 +21,7 @@
 
     public class Messages
     {
-        public const string CREATE_DONE_MESSAGE = "Created successfuly";
+        public const string CREATED_SUCCESSFULY_MESSAGE = "Created successfuly";
+        public const string DELETED_SUCCESSFULT_MESSAGE = "Deleted successfuly";
     }
 }

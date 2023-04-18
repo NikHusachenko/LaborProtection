@@ -27,7 +27,7 @@ namespace LaborProtection.Services.BulbServices.Models
             RuleFor(x => x.Type)
                 .NotEmpty()
                 .NotNull()
-                .LessThan(Enum.GetNames(typeof(BulbType)).Length)
+                .LessThanOrEqualTo(Enum.GetNames(typeof(BulbType)).Length)
                 .GreaterThanOrEqualTo(1)
                 .WithMessage(Errors.VALUE_MUST_BE_SELECTED_ERROR);
 

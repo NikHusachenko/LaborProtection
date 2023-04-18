@@ -19,7 +19,8 @@ namespace LaborProtection.Services.BulbServices
 
         public async Task<ResponseService<long>> Create(CreateBulbPostModel vm)
         {
-            BulbEntity dbRecord = await _bulbRepository.GetBy(bulb => bulb.Name == vm.Name);
+            BulbEntity dbRecord = await _bulbRepository.GetBy(bulb => !bulb.DeletedOn.HasValue &&
+                bulb.Name == vm.Name);
             if (dbRecord != null)
             {
                 return ResponseService<long>.Error(Errors.WAS_CREATED_ERROR);
@@ -46,9 +47,21 @@ namespace LaborProtection.Services.BulbServices
             }
         }
 
+        public async Task<ResponseService> Delete(long id)
+        {
+            BulbEntity dbRecord = await _bulbRepository.GetById(id);
+            if (dbRecord == null)
+            {
+                return ResponseService.Error(Errors.NOT_FOUNT_ERROR);
+            }
+
+            dbRecord.DeletedOn = DateTime.Now;
+            return await Update(dbRecord);
+        }
+
         public async Task<ICollection<BulbEntity>> GetAll()
         {
-            return await _bulbRepository.GetAll()
+            return await _bulbRepository.GetAll(bulb => !bulb.DeletedOn.HasValue)
                 .ToListAsync();
         }
 
@@ -60,6 +73,19 @@ namespace LaborProtection.Services.BulbServices
                 return ResponseService<BulbEntity>.Error(Errors.NOT_FOUNT_ERROR);
             }
             return ResponseService<BulbEntity>.Ok(dbRecord);
+        }
+
+        public async Task<ResponseService> Update(BulbEntity bulbEntity)
+        {
+            try
+            {
+                await _bulbRepository.Update(bulbEntity);
+                return ResponseService.Ok();
+            }
+            catch (Exception ex)
+            {
+                return ResponseService.Error($"LOG: BulbService -> Update exception: {ex.Message}");
+            }
         }
     }
 }

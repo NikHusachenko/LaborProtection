@@ -11,5 +11,8 @@ namespace LaborProtection.Database.Entities
         public short Power { get; set; }
         public int LightFlux { get; set; }
         public float Price { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public DateTime? DeletedOn { get; set; }
     }
 }

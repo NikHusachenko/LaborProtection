@@ -31,6 +31,11 @@ namespace LaborProtection.Services.LampServices
                 return ResponseService<long>.Error(Errors.INVALID_LAMP_TYPE_ERROR);
             }
 
+            if (!Directory.Exists(Configuration.STATIC_FOLDER))
+            {
+                Directory.CreateDirectory(Configuration.STATIC_FOLDER);
+            }
+
             string imageExtenstion = vm.Image.Name.Split('.')[vm.Image.Name.Split('.').Length - 1];
             string pathToSave = $"{Configuration.STATIC_FOLDER}{vm.Name}.{imageExtenstion}";
             

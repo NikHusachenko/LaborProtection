@@ -2,6 +2,7 @@
 using LaborProtection.Database.Entities;
 using LaborProtection.Services.BulbServices;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,6 +23,8 @@ namespace LaborProtection.Desktop.Pages
 
         private async void bulbViewPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            bulbViewPanel.Children.Clear();
+
             ICollection<BulbEntity> bulbs = await _bulbService.GetAll();
             foreach (BulbEntity bulb in bulbs)
             {
@@ -29,6 +32,7 @@ namespace LaborProtection.Desktop.Pages
                 {
                     Width = bulbViewContainer.ActualWidth,
                     Margin = new Thickness(10),
+                    Name = $"container_{bulb.Id}"
                 };
 
                 Grid informationContainer = new Grid();
@@ -99,13 +103,23 @@ namespace LaborProtection.Desktop.Pages
             }
         }
 
-        private void RemoveBulb(long id)
+        private async void RemoveBulb(long id)
         {
             MessageBoxButton button = MessageBoxButton.YesNo;
-            MessageBoxResult result = MessageBox.Show(UILabels.CONFIRM_REMOVING, "Caption", button);
+            MessageBoxResult result = MessageBox.Show(UILabels.CONFIRM_REMOVING, "Caption qwerty", button);
             if (result == MessageBoxResult.Yes)
             {
+                var response = await _bulbService.Delete(id);
+                if (response.IsError)
+                {
+                    MessageBox.Show(response.ErrorMessage);
+                    return;
+                }
 
+                MessageBox.Show(Messages.DELETED_SUCCESSFULT_MESSAGE);
+                var borders = bulbViewPanel.Children.OfType<Border>();
+                var borderToDelete = borders.FirstOrDefault(grid => grid.Name == $"container_{id}");
+                bulbViewPanel.Children.Remove(borderToDelete);
             }
         }
     }

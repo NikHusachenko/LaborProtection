@@ -11,5 +11,8 @@ namespace LaborProtection.Database.Entities
         public ushort BulbCount { get; set; }
         public float Height { get; set; }
         public string ImagePath { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public DateTime? DeletedOn { get; set; }
     }
 }
