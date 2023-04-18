@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
 using LaborProtection.Common;
 using LaborProtection.Desktop.Pages;
+using LaborProtection.Desktop.Pages.Calculations;
 using LaborProtection.EntityFramework;
 using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.BulbServices.Models;
+using LaborProtection.Services.CalculationServices;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,15 +32,21 @@ namespace LaborProtection.Desktop
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Pages
-            services.AddTransient<CreateBasePage>();
             services.AddTransient<MainWindow>();
+            services.AddTransient<CreateBasePage>();
             services.AddTransient<CreateLampPage>();
             services.AddTransient<CreateBulbPage>();
             services.AddTransient<ViewBasePage>();
+            services.AddTransient<ViewLampPage>();
+            services.AddTransient<ViewBulbPage>();
+            services.AddTransient<CalculationBasePage>();
+            services.AddTransient<CalculationAreaPage>();
+            services.AddTransient<DrawingPage>();
 
             // Services            
             services.AddTransient<ILampService, LampService>();
             services.AddTransient<IBulbService, BulbService>();
+            services.AddTransient<ICalculationService, CalculationService>();
 
             // Validations
             services.AddTransient<IValidator<CreateLampPostModel>, CreateLampPostModelValidator>();

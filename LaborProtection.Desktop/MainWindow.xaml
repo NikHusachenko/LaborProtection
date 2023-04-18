@@ -20,7 +20,7 @@
         <StackPanel Margin="5" x:Name="navigationPanel" Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="Button_Click" Content="{x:Static common:UILabels.ADD_COMPONENTS}"></Button>
             <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="ViewBtn_Click" Content="{x:Static common:UILabels.VIEW}"></Button>
-            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Content="{x:Static common:UILabels.CALCULATION}"></Button>
+            <Button Width="150" FontSize="18" FontFamily="Arial" Height="35" Margin="5, 0, 5, 0" Click="Button_Click_1"  Content="{x:Static common:UILabels.CALCULATION}"></Button>
             <ComboBox x:Name="selectLanguage" FontFamily="Arial" Width="50" FontSize="16" HorizontalAlignment="Right"></ComboBox>
         </StackPanel>
         <Label Name="globalErrorLabel" Grid.Row="1" FontFamily="Arial" FontSize="10" Foreground="Red" HorizontalAlignment="Center" Visibility="Hidden">Global Error Label</Label>

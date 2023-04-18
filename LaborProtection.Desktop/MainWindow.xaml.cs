@@ -1,4 +1,5 @@
 ﻿using LaborProtection.Desktop.Pages;
+using LaborProtection.Desktop.Pages.Calculations;
 using System;
 using System.Linq;
 using System.Windows;
@@ -12,12 +13,15 @@ namespace LaborProtection.Desktop
     {
         private readonly CreateBasePage _createBasePage;
         private readonly ViewBasePage _viewBasePage;
+        private readonly CalculationBasePage _calculationBasePage;
 
         public MainWindow(CreateBasePage createBasePage, 
-            ViewBasePage viewBasePage)
+            ViewBasePage viewBasePage,
+            CalculationBasePage calculationBasePage)
         {
             _createBasePage = createBasePage;
             _viewBasePage = viewBasePage;
+            _calculationBasePage = calculationBasePage;
 
             InitializeComponent();
 
@@ -43,11 +47,16 @@ namespace LaborProtection.Desktop
             pagesFrame.Navigate(_viewBasePage);
 		}
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            pagesFrame.Navigate(_calculationBasePage);
+        }
+
         public void SetGlobalErrorMessage(string message, Brush brush, Visibility isVisible = Visibility.Visible)
         {
             globalErrorLabel.Foreground = brush;
             globalErrorLabel.Content = message;
             globalErrorLabel.Visibility = isVisible;
         }
-	}
+    }
 }

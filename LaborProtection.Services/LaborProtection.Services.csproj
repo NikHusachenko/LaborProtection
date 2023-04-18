@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LaborProtection.Calculation\LaborProtection.Calculation.csproj" />
     <ProjectReference Include="..\LaborProtection.Common\LaborProtection.Common.csproj" />
     <ProjectReference Include="..\LaborProtection.Database\LaborProtection.Database.csproj" />
     <ProjectReference Include="..\LaborProtection.EntityFramework\LaborProtection.EntityFramework.csproj" />

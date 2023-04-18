@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaborProtection.Desktop", "LaborProtection.Desktop\LaborProtection.Desktop.csproj", "{39B6372B-43E1-492D-9527-0CBD4A95BD9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaborProtection.Calculation", "LaborProtection.Calculation\LaborProtection.Calculation.csproj", "{C6C55FB6-8143-4437-932B-D7AD01BF5F72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B6372B-43E1-492D-9527-0CBD4A95BD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C55FB6-8143-4437-932B-D7AD01BF5F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C55FB6-8143-4437-932B-D7AD01BF5F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C55FB6-8143-4437-932B-D7AD01BF5F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C55FB6-8143-4437-932B-D7AD01BF5F72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
