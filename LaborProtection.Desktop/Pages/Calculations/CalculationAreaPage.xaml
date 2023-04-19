@@ -68,18 +68,36 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0">Table width (Santimetters)</Label>
-                    <Slider Grid.Row="1" Margin="10, 0, 10, 0" 
+                    <Grid Grid.Row="1" ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Slider Grid.Column="0" Margin="10, 0, 10, 0" 
                             Minimum="{x:Static limitations:Limitations.MINIMUM_TABLE_WIDTH}" 
                             Maximum="{x:Static limitations:Limitations.MAXIMUM_TABLE_WIDTH}"
                             AutoToolTipPlacement="TopLeft"
                             TickPlacement="Both"/>
 
+                        <Label Grid.Column="1">140</Label>
+                    </Grid>
+
                     <Label Grid.Row="2">Table length  (Santimetters)</Label>
-                    <Slider Grid.Row="1" Margin="10, 0, 10, 0" 
+                    <Grid Grid.Row="3" ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Slider Grid.Column="0" Margin="10, 0, 10, 0" 
                             Minimum="{x:Static limitations:Limitations.MINIMUM_TABLE_LENGTH}" 
                             Maximum="{x:Static limitations:Limitations.MAXIMUM_TABLE_LENGTH}"
                             AutoToolTipPlacement="TopLeft"
                             TickPlacement="Both"/>
+
+                        <Label Grid.Column="1">140</Label>
+                    </Grid>
                 </Grid>
 
                 <Grid Grid.Row="2" ShowGridLines="True">
