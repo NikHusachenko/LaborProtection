@@ -46,5 +46,13 @@
                 IsError = true,
             };
         }
+
+        public static ResponseService<T> Error()
+        {
+            return new ResponseService<T>()
+            {
+                IsError = true,
+            };
+        }
     }
 }

@@ -19,6 +19,7 @@
         public const string INVALIDA_VALUE_ERROR = "Invalida value";
         public const string VALUE_MUST_BE_SELECTED_ERROR = "This value must be selected";
         public const string IMAGE_NOT_SELECTED = "Image not selected";
+        public const string TABLE_IS_SMALL = "Table's sizes must be greater than work space sizes";
     }
 
     public class Messages

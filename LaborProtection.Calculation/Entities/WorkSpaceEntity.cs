@@ -1,11 +1,11 @@
 ﻿namespace LaborProtection.Calculation.Entities
 {
-    public class RoomEntity
+    public class WorkSpaceEntity
     {
-        public double Length { get; set; }
         public double Width { get; set; }
+        public double Length { get; set; }
         public double Height { get; set; }
 
-        public ICollection<WorkSpaceEntity> WorkSpaces { get; set; }
+        public TableEntity Table { get; set; }
     }
 }
