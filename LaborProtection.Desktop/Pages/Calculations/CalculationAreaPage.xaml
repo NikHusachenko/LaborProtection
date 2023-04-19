@@ -4,11 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:limitations="clr-namespace:LaborProtection.Calculation.Constants;assembly=LaborProtection.Calculation"
+      xmlns:common="clr-namespace:LaborProtection.Common;assembly=LaborProtection.Common"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CalculationAreaPage">
 
-    <Grid ShowGridLines="True">
+    <Grid Background="White" ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -20,7 +21,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
-            <Grid Background="White" Grid.Row="0" ShowGridLines="True">
+            <Grid Grid.Row="0" ShowGridLines="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -52,7 +53,7 @@
                 <ComboBox Grid.Row="3" Grid.Column="2" Margin="5"></ComboBox>
             </Grid>
 
-            <Grid Background="white" Grid.Row="1" ShowGridLines="True">
+            <Grid Grid.Row="1" ShowGridLines="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
@@ -81,14 +82,14 @@
                             TickPlacement="Both"/>
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" ShowGridLines="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
+                    <Grid Grid.Column="0" ShowGridLines="True">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
@@ -110,6 +111,140 @@
 
                     <Image Grid.Column="1" Grid.ColumnSpan="2" Margin="5" />
                 </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" ShowGridLines="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" ShowGridLines="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel Grid.Row="0">
+                            <Label>Work area:</Label>
+                            <Label Name="workAreaValueLabel">6</Label>
+                            <Label>metters</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="1">
+                            <Label>Work volume:</Label>
+                            <Label Name="workVolumeValueLabel">20</Label>
+                            <Label>metters</Label>
+                        </WrapPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid Grid.Column="0" ShowGridLines="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <WrapPanel Grid.Row="0">
+                                <Label>Table in width:</Label>
+                                <Label Name="tableInWidthValueLabel">10</Label>
+                            </WrapPanel>
+
+                            <WrapPanel Grid.Row="1">
+                                <Label>Table in length:</Label>
+                                <Label Name="tablesInLengthValueLabel">5</Label>
+                            </WrapPanel>
+
+                            <WrapPanel Grid.Row="2">
+                                <Label>Total table count:</Label>
+                                <Label Name="totalTablesCountValueLabel">50</Label>
+                            </WrapPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1" ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" ShowGridLines="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel Grid.Row="0">
+                            <Label>Lamps in width:</Label>
+                            <Label Name="lampsInWidthValueLabel">10</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="1">
+                            <Label>Lamps in length:</Label>
+                            <Label Name="lampsInLengthValueLabel">5</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="2">
+                            <Label>Total lamps count:</Label>
+                            <Label Name="totalLampsCountValueLabel">50</Label>
+                        </WrapPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="1" ShowGridLines="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel Grid.Row="0">
+                            <Label>Bulbs in one lamp:</Label>
+                            <Label Name="bulbsInLampValueLabel">10</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="1">
+                            <Label>Total bulbs count:</Label>
+                            <Label Name="totalBulbsCountValueLabel">5</Label>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2" ShowGridLines="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Row="0">
+                        <Label>One lamp costs:</Label>
+                        <Label Name="bulbsInLampCostValueLabel">120</Label>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="1">
+                        <Label>Total price:</Label>
+                        <Label Name="totalPriceValueLabel">120</Label>
+                    </WrapPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" ShowGridLines="True">
+                <Button Content="{x:Static common:UILabels.VIEW}" Margin="5" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
             </Grid>
         </Grid>
     </Grid>
