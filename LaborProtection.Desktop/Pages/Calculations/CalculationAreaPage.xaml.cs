@@ -98,6 +98,12 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private void viewDrawingButton_Click(object sender, RoutedEventArgs e)
         {
             CalculationWorkArea();
+
+          RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(int.Parse(roomWidthTextBox.Text) * 100, int.Parse(roomLengthTextBox.Text) * 100);
+           roomWorkSpacesWindow.ShowDialog();
+
+           //RoomLampsWindow roomLampsWindow = new RoomLampsWindow();
+           //roomLampsWindow.ShowDialog();
         }
 
         private async void CalculationWorkArea()
