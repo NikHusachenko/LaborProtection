@@ -150,7 +150,7 @@ namespace LaborProtection.Services.WorkSpaceServices
             double spaceLength = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
             double spaceWidth = LengthConverter.SantimettersToMetters(tableWidth) + Limitations.BETWEEB_MONITORS;
 
-            return ResponseService<double>.Ok(spaceLength * spaceWidth);
+            return ResponseService<double>.Ok(Math.Round(spaceLength * spaceWidth, 3));
         }
 
         public async Task<ResponseService<double>> GetWorkSpaceVolume(double roomLength, double roomWidth, double roomHeight, double tableLength, double tableWidth)
@@ -167,7 +167,7 @@ namespace LaborProtection.Services.WorkSpaceServices
             double spaceLength = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
             double spaceWidth = LengthConverter.SantimettersToMetters(tableWidth) + Limitations.BETWEEB_MONITORS;
 
-            return ResponseService<double>.Ok(spaceLength * spaceWidth * roomHeight);
+            return ResponseService<double>.Ok(Math.Round(spaceLength * spaceWidth * roomHeight, 3));
         }
 
         public async Task<ResponseService<double>> ValidateAndGetVolume(WorkSpaceEntity workSpaceEntity)

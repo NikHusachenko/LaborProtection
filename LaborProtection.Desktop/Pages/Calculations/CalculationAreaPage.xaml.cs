@@ -41,17 +41,17 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
         private void roomWidthTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void roomLengthTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void roomHeightTextBox_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void floorReflectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
