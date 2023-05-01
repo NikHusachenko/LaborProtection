@@ -1,4 +1,5 @@
 ﻿using LaborProtection.Calculation.Constants;
+using LaborProtection.Desktop.GraphicElements.Converter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,16 @@ namespace LaborProtection.Desktop.GraphicElements
 		{
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Height = 250,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Height = LenghtConverter.GetConditionalUnit(250,roomCanvas.Height),
+				Width = LenghtConverter.GetConditionalUnit(Limitations.MINIMUM_TABLE_WIDTH,roomCanvas.Width),
 			};
 			Canvas.SetLeft(WorkSpaceCanvas, SetLeft());
 			Canvas.SetTop(WorkSpaceCanvas, SetTop());
 
 			MonitorElement = new Rectangle()
 			{
-				Height = 16,
-				Width = 35,
+				Height = LenghtConverter.GetConditionalUnit(16,WorkSpaceCanvas.Height),
+				Width = LenghtConverter.GetConditionalUnit(35,WorkSpaceCanvas.Width),
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
@@ -37,16 +38,16 @@ namespace LaborProtection.Desktop.GraphicElements
 
 			TableElement = new Rectangle()
 			{
-				Height = Limitations.MINIMUM_TABLE_LENGTH,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Height = LenghtConverter.GetConditionalUnit(Limitations.MINIMUM_TABLE_LENGTH, WorkSpaceCanvas.Height),
+				Width = LenghtConverter.GetConditionalUnit(Limitations.MINIMUM_TABLE_WIDTH, WorkSpaceCanvas.Height),
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
 
 			WorkAreaElement = new Rectangle()
 			{
-				Height = Limitations.BETWEEB_MONITORS,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Height = LenghtConverter.GetConditionalUnit(Limitations.BETWEEB_MONITORS, WorkSpaceCanvas.Height),
+				Width = LenghtConverter.GetConditionalUnit(Limitations.MINIMUM_TABLE_WIDTH, WorkSpaceCanvas.Height),
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};
