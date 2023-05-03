@@ -52,8 +52,8 @@ namespace LaborProtection.Desktop.GraphicElements
 
 			WorkAreaElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS,
-				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
+				Height = Limitations.BETWEEB_MONITORS,
+				Width = Limitations.MINIMUM_TABLE_WIDTH,
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};

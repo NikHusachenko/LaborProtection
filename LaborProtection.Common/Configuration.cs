@@ -8,19 +8,19 @@
 
     public class UILabels
     {
-        public const string ADD_COMPONENTS = "Add components";
-        public const string VIEW = "View";
-        public const string CALCULATION = "Calculations";
-        public const string CREATE_LAMP = "Create Lamp";
-        public const string CREATE_BULB = "Create Bulb";
-        public const string VIEW_LAMPS = "View lamps";
-        public const string VIEW_BUBLS = "View bulbs";
+        public const string ADD_COMPONENTS = "Додати компонент";
+        public const string VIEW = "Переглянути";
+        public const string CALCULATION = "Обрахунки";
+        public const string CREATE_LAMP = "Додати світильник";
+        public const string CREATE_BULB = "Додати лампочку";
+        public const string VIEW_LAMPS = "Переглянути світильники";
+        public const string VIEW_BUBLS = "Переглянути лампочки";
         public const string ID = "Id";
-        public const string NAME = "Name";
-        public const string POWER = "Power";
-        public const string PRICE = "Price";
-        public const string LIGHT_FLUX = "Light flux";
-        public const string ACTION = "Action";
-        public const string CONFIRM_REMOVING = "Confirm removing";
+        public const string NAME = "Назва";
+        public const string POWER = "Потужність";
+        public const string PRICE = "Ціна";
+        public const string LIGHT_FLUX = "Світловий потік";
+        public const string ACTION = "Дія";
+        public const string CONFIRM_REMOVING = "Підтвердіть видалення";
     }
 }

@@ -1,9 +1,10 @@
 ﻿namespace LaborProtection.Calculation.Constants
 {
-    public class Limitations
+    public static class Limitations
     {
         public const double MINIMAL_AREA = 6.0; // Metters
         public const double MINIMAL_VOLUME = 20.0; // Metters
+        public const double MINIMAL_WIDTH = 2.5; // Metters
 
         public const double MINIMUM_TABLE_WIDTH = 80.0; // Santimetters
         public const double MAXIMUM_TABLE_WIDTH = 100.0; // Santimetters
@@ -11,10 +12,9 @@
         public const double MAXIMUM_TABLE_LENGTH = 140.0; // Santimetters
 
         public const double BETWEEN_TABLES = 1.2; // Metters
-        public const double BETWEEB_MONITORS = 2.5; // Metters
     }
 
-    public class LightReflection
+    public static class LightReflection
     {
         public enum FloorReflection
         {

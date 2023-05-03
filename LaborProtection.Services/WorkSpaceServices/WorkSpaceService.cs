@@ -13,174 +13,86 @@ namespace LaborProtection.Services.WorkSpaceServices
 
                                    LENGTH
                      _____________________________________
-                     |                                   |
-                     |    __________________________     |
-                     |    |                        |     |
-                     |    |         TABLE          |     |       
-                    W|    |                        |     |
-                    I|    |________________________|     |
-                    D|                                   |
-                    T|                                   |
-                    H|                                   |
-                     |              WORK                 |
-                     |              SPACE                |
-                     |                                   |
-                     |                                   |       VOLUME >= 20(^3)
-                     |___________________________________|       AREA >= 6(^2)
+                     |  |                                |
+                     |  |  __________________________    |      1.2m
+                     |  |  |                        |    |  ------------>
+                     |  |  |         TABLE          |    |       
+                   W |  |  |                        |    |
+                   I |  |  |________________________|    |
+                   D |  |                                |
+                   T |  | 2.5m                           |
+                   H |  |                                |
+                     |  |            WORK                |
+                     |  |            SPACE               |
+                     |  |                                |
+                     |  |                                |       VOLUME >= 20(^3)
+                     |__V________________________________|       AREA >= 6(^2)
 
+                                        
 
-
+                        WINDTH >= 2.5m
+                        LENGTH >= TABLE LENGTH
 
 
         */
-        public async Task<ResponseService<WorkSpaceEntity>> AddTable(WorkSpaceEntity workSpaceEntity, double tableWidth, double tableLength)
+        public async Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomLength, double roomWidth, double roomHeight, double tableLength, double tableWidth)
         {
-            if (tableLength < Limitations.MINIMUM_TABLE_LENGTH ||
-                tableWidth < Limitations.MINIMUM_TABLE_WIDTH)
+            if (roomLength < 0 || 
+                roomWidth < 0 ||
+                LengthConverter.SantimettersToMetters(tableLength) > roomLength ||
+                LengthConverter.SantimettersToMetters(tableWidth) > roomWidth)
             {
                 return ResponseService<WorkSpaceEntity>.Error();
             }
 
-            if (workSpaceEntity.Width -  LengthConverter.SantimettersToMetters(tableWidth) < Limitations.BETWEEB_MONITORS)
-            {
-                return ResponseService<WorkSpaceEntity>.Error();
-            }
+            double minimalArea = Limitations.MINIMAL_VOLUME / roomHeight;
+            double spaceWidth = Limitations.MINIMAL_WIDTH;
+            double spaceLength = minimalArea / spaceWidth;
 
-            if (workSpaceEntity.Length - LengthConverter.SantimettersToMetters(tableLength) < Limitations.BETWEEN_TABLES)
+            if (spaceWidth < LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES)
             {
-                return ResponseService<WorkSpaceEntity>.Error();
-            }
-
-            TableEntity tableEntity = new TableEntity()
-            {
-                Length = tableLength,
-                Width = tableWidth,
-            };
-
-            workSpaceEntity.Table = tableEntity;
-            return ResponseService<WorkSpaceEntity>.Ok(workSpaceEntity);
-        }
-
-        public async Task<ResponseService<WorkSpaceEntity>> CalculateWorkSpace(double length, double width, double roomHeight)
-        {
-            double area = length * width;
-            if (area < Limitations.MINIMAL_AREA)
-            {
-                return ResponseService<WorkSpaceEntity>.Error();
-            }
-
-            double volume = length * width * roomHeight;
-            if (volume < Limitations.MINIMAL_VOLUME)
-            {
-                return ResponseService<WorkSpaceEntity>.Error();
+                spaceWidth = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
             }
 
             return ResponseService<WorkSpaceEntity>.Ok(new WorkSpaceEntity()
             {
                 Height = roomHeight,
-                Length = length,
-                Width = width,
+                Length = spaceLength,
+                Width = spaceWidth,
+                Table = new TableEntity()
+                {
+                    Length = tableLength,
+                    Width = tableWidth,
+                },
             });
         }
 
-        public async Task<ResponseService<int>> GetMinimaumSpacesInLength(double roomLength)
+        public int GetWorkSpacesInLegth(double workspaceLength, double roomLength)
         {
-            if (roomLength <= (LengthConverter.SantimettersToMetters(Limitations.MAXIMUM_TABLE_LENGTH) + Limitations.BETWEEN_TABLES))
-            {
-                return ResponseService<int>.Error();
-            }
-
-            double minimalWorkSpaceLength = LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH) + Limitations.BETWEEN_TABLES;
-            int minimumWorkSpaceCount = (int)(roomLength / minimalWorkSpaceLength);
-
-            return ResponseService<int>.Ok(minimumWorkSpaceCount);
+            int value = (int)Math.Floor(roomLength / workspaceLength);
+            return value;
         }
 
-        public async Task<ResponseService<int>> GetMinimumSpacesInWidth(double roomWidth)
+        public int GetWorkSpacesInWidth(double workspaceWidth, double roomWidth)
         {
-            if (roomWidth <= (LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + Limitations.BETWEEB_MONITORS))
-            {
-                return ResponseService<int>.Error();
-            }
-
-            double minimalWorkSpaceWidth = LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + Limitations.BETWEEB_MONITORS;
-            int minimumWorkSpaceCount = (int)(roomWidth / minimalWorkSpaceWidth);
-
-            return ResponseService<int>.Ok(minimumWorkSpaceCount);
+            int value = (int)Math.Floor(roomWidth / workspaceWidth);
+            return value;
         }
 
-        public async Task<ResponseService<int>> GetSpacesInLength(double roomLength, double tableLength)
+        public async Task<ResponseService<double>> ValidateArea(double length, double width)
         {
-            if (roomLength <= (LengthConverter.SantimettersToMetters(Limitations.MAXIMUM_TABLE_LENGTH) + Limitations.BETWEEN_TABLES) || 
-                tableLength < LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH))
-            {
-                return ResponseService<int>.Error();
-            }
+            double area = length * width;
 
-            var spaceLength = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
-            var spacesCount = (int)(roomLength / spaceLength);
-
-            return ResponseService<int>.Ok(spacesCount);
-        }
-
-        public async Task<ResponseService<int>> GetSpacesInWidth(double roomWidth, double tableWidth)
-        {
-            if (roomWidth <= (LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + Limitations.BETWEEB_MONITORS) ||
-                tableWidth < Limitations.MINIMUM_TABLE_WIDTH)
-            {
-                return ResponseService<int>.Error();
-            }
-
-            var spaceWidth = LengthConverter.SantimettersToMetters(tableWidth) + Limitations.BETWEEB_MONITORS;
-            var spacesCount = (int)(roomWidth / spaceWidth);
-
-            return ResponseService<int>.Ok(spacesCount);
-        }
-
-        public async Task<ResponseService<double>> GetWorkSpaceArea(double roomLength, double roomWidth, double tableLength, double tableWidth)
-        {
-            if (roomLength <= 0 ||
-                roomWidth <= 0 ||
-                tableLength < Limitations.MINIMUM_TABLE_LENGTH ||
-                tableWidth < Limitations.MINIMUM_TABLE_WIDTH)
+            if (area < Limitations.MINIMAL_AREA)
             {
                 return ResponseService<double>.Error();
             }
-
-            double spaceLength = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
-            double spaceWidth = LengthConverter.SantimettersToMetters(tableWidth) + Limitations.BETWEEB_MONITORS;
-
-            return ResponseService<double>.Ok(Math.Round(spaceLength * spaceWidth, 3));
+            return ResponseService<double>.Ok(area);
         }
 
-        public async Task<ResponseService<double>> GetWorkSpaceVolume(double roomLength, double roomWidth, double roomHeight, double tableLength, double tableWidth)
+        public async Task<ResponseService<double>> ValidateVolume(double length, double width, double height)
         {
-            if (roomLength <= 0 ||
-                roomWidth <= 0 ||
-                roomHeight <= 0 ||
-                tableLength < Limitations.MINIMUM_TABLE_LENGTH ||
-                tableWidth < Limitations.MINIMUM_TABLE_WIDTH)
-            {
-                return ResponseService<double>.Error();
-            }
-
-            double spaceLength = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
-            double spaceWidth = LengthConverter.SantimettersToMetters(tableWidth) + Limitations.BETWEEB_MONITORS;
-
-            return ResponseService<double>.Ok(Math.Round(spaceLength * spaceWidth * roomHeight, 3));
-        }
-
-        public async Task<ResponseService<double>> ValidateAndGetVolume(WorkSpaceEntity workSpaceEntity)
-        {
-            // Refactoring
-
-            if (workSpaceEntity.Width <= workSpaceEntity.Table.Width ||
-                workSpaceEntity.Length <= workSpaceEntity.Table.Length)
-            {
-                return ResponseService<double>.Error();
-            }
-
-            double volume = workSpaceEntity.Length * workSpaceEntity.Width * workSpaceEntity.Height;
+            double volume = length * width * height;
 
             if (volume < Limitations.MINIMAL_VOLUME)
             {

@@ -34,22 +34,22 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="roomWidthLabel" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Width</Label>
+                <Label x:Name="roomWidthLabel" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Ширина</Label>
                 <TextBox x:Name="roomWidthTextBox" Grid.Row="1" Grid.Column="0" Margin="5" TextChanged="roomWidthTextBox_TextChanged"></TextBox>
 
-                <Label x:Name="roomLengthLabel" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">Length</Label>
+                <Label x:Name="roomLengthLabel" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">Довжина</Label>
                 <TextBox x:Name="roomLengthTextBox" Grid.Row="1" Grid.Column="1" Margin="5" TextChanged="roomLengthTextBox_TextChanged"></TextBox>
 
-                <Label x:Name="roomHeightLabel" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Height</Label>
+                <Label x:Name="roomHeightLabel" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Висота</Label>
                 <TextBox x:Name="roomHeightTextBox" Grid.Row="1" Grid.Column="2" Margin="5" TargetUpdated="roomHeightTextBox_TargetUpdated"></TextBox>
 
-                <Label x:Name="floorReflectionLabel" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Floor reflection</Label>
+                <Label x:Name="floorReflectionLabel" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Відбиття підлоги</Label>
                 <ComboBox x:Name="floorReflectionComboBox" Grid.Row="3" Grid.Column="0" Margin="5" SelectionChanged="floorReflectionComboBox_SelectionChanged" />
 
-                <Label x:Name="wallReflectionLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">Wall reflection</Label>
+                <Label x:Name="wallReflectionLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">Відбиття стін</Label>
                 <ComboBox x:Name="wallReflectionComboBox" Grid.Row="3" Grid.Column="1" Margin="5" SelectionChanged="wallReflectionComboBox_SelectionChanged"></ComboBox>
 
-                <Label x:Name="ceillingReflectionLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Ceilling reflection</Label>
+                <Label x:Name="ceillingReflectionLabel" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Відбиття стелі</Label>
                 <ComboBox x:Name="cellingReflectionComboBox" Grid.Row="3" Grid.Column="2" Margin="5" SelectionChanged="ceillingReflectionComboBox_SelectionChanged"></ComboBox>
             </Grid>
 
@@ -67,7 +67,7 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Label x:Name="tableWidthLabel" Grid.Row="0">Table width (Santimetters)</Label>
+                    <Label x:Name="tableWidthLabel" Grid.Row="0">Ширина стола (В сантиметрах)</Label>
                     <Grid Grid.Row="1" ShowGridLines="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -83,7 +83,7 @@
                         <Label x:Name="tableWidthSliderValueLabel" Grid.Column="1" Content="{x:Static limitations:Limitations.MINIMUM_TABLE_WIDTH}"></Label>
                     </Grid>
 
-                    <Label x:Name="tableLengthLabel" Grid.Row="2">Table length  (Santimetters)</Label>
+                    <Label x:Name="tableLengthLabel" Grid.Row="2">Довжина стола (В сантиметрах)</Label>
                     <Grid Grid.Row="3" ShowGridLines="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -118,13 +118,13 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
-                        <Label x:Name="lampTypeLabel" Grid.Row="0">Lamp</Label>
+                        <Label x:Name="lampTypeLabel" Grid.Row="0">Світильник</Label>
                         <ComboBox x:Name="lampSelectorComboBox" Grid.Row="1" Margin="5" SelectionChanged="lampSelectorComboBox_SelectionChanged"></ComboBox>
-                        <Button x:Name="lampInformationButton" Grid.Row="2" Margin="5" IsEnabled="False" >More information</Button>
+                        <Button x:Name="lampInformationButton" Grid.Row="2" Margin="5" IsEnabled="False" >Більше</Button>
 
-                        <Label x:Name="lampBulbLabel" Grid.Row="3">Bulb</Label>
+                        <Label x:Name="lampBulbLabel" Grid.Row="3">Лампочка</Label>
                         <ComboBox x:Name="bulbSelectorComboBox" Grid.Row="4" Margin="5" SelectionChanged="bulbSelectorComboBox_SelectionChanged"></ComboBox>
-                        <Button x:Name="bulbInformationButton" Grid.Row="5" Margin="5" IsEnabled="False">More information</Button>
+                        <Button x:Name="bulbInformationButton" Grid.Row="5" Margin="5" IsEnabled="False">Більше</Button>
                     </Grid>
 
                     <Image x:Name="selectedLampImage" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" />
@@ -155,18 +155,32 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
                         <WrapPanel Grid.Row="0">
-                            <Label x:Name="workAreaLabel">Work area:</Label>
-                            <Label Name="workAreaValueLabel">0</Label>
+                            <Label x:Name="workLengthLabel">Work length:</Label>
+                            <Label Name="workLengthValueLabel">0</Label>
                             <Label>metters</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="1">
-                            <Label x:Name="workVolumeLabel">Work volume:</Label>
-                            <Label Name="workVolumeValueLabel">0</Label>
+                            <Label x:Name="workWidthLabel">Work width:</Label>
+                            <Label Name="workWidthValueLabel">0</Label>
                             <Label>metters</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="2">
+                            <Label x:Name="workAreaLabel">Робоча площа:</Label>
+                            <Label Name="workAreaValueLabel">0</Label>
+                            <Label>метрів</Label>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="3">
+                            <Label x:Name="workVolumeLabel">Робочив об'єм:</Label>
+                            <Label Name="workVolumeValueLabel">0</Label>
+                            <Label>метрів</Label>
                         </WrapPanel>
                     </Grid>
 
@@ -179,17 +193,17 @@
                             </Grid.RowDefinitions>
 
                             <WrapPanel Grid.Row="0">
-                                <Label x:Name="tablesInWidthLabel">Tables in width:</Label>
+                                <Label x:Name="tablesInWidthLabel">Кількість в ширину:</Label>
                                 <Label Name="tablesInWidthValueLabel">0</Label>
                             </WrapPanel>
 
                             <WrapPanel Grid.Row="1">
-                                <Label x:Name="tablesInLengthLabel">Tables in length:</Label>
+                                <Label x:Name="tablesInLengthLabel">Кількість в довжину:</Label>
                                 <Label Name="tablesInLengthValueLabel">0</Label>
                             </WrapPanel>
 
                             <WrapPanel Grid.Row="2">
-                                <Label x:Name="totalTablesCountLabel">Total table count:</Label>
+                                <Label x:Name="totalTablesCountLabel">Загальна кількість:</Label>
                                 <Label Name="totalTablesCountValueLabel">0</Label>
                             </WrapPanel>
                         </Grid>
@@ -210,17 +224,17 @@
                         </Grid.RowDefinitions>
 
                         <WrapPanel Grid.Row="0">
-                            <Label x:Name="lampsInWidthLabel">Lamps in width:</Label>
+                            <Label x:Name="lampsInWidthLabel">Світильників в ширину:</Label>
                             <Label Name="lampsInWidthValueLabel">0</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="1">
-                            <Label x:Name="lampsInLengthLabel">Lamps in length:</Label>
+                            <Label x:Name="lampsInLengthLabel">Світильників в довжину:</Label>
                             <Label Name="lampsInLengthValueLabel">0</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="2">
-                            <Label>Total lamps count:</Label>
+                            <Label>Загальна кількість світильників</Label>
                             <Label Name="totalLampsCountValueLabel">0</Label>
                         </WrapPanel>
                     </Grid>
@@ -232,12 +246,12 @@
                         </Grid.RowDefinitions>
 
                         <WrapPanel Grid.Row="0">
-                            <Label x:Name="bulbsInLampLabel">Bulbs in one lamp:</Label>
+                            <Label x:Name="bulbsInLampLabel">Лампочок в одному світильнику:</Label>
                             <Label Name="bulbsInLampValueLabel">0</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="1">
-                            <Label x:Name="totalBulbsCountLabel">Total bulbs count:</Label>
+                            <Label x:Name="totalBulbsCountLabel">Загальна кількість лампочок:</Label>
                             <Label Name="totalBulbsCountValueLabel">0</Label>
                         </WrapPanel>
                     </Grid>
@@ -250,12 +264,12 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <Label x:Name="lampCostLabel">One lamp costs:</Label>
+                        <Label x:Name="lampCostLabel">Ціна одного світильника:</Label>
                         <Label Name="bulbsInLampCostValueLabel">0</Label>
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="1">
-                        <Label x:Name="totalPriceLabel">Total price:</Label>
+                        <Label x:Name="totalPriceLabel">Загальна вартість:</Label>
                         <Label Name="totalPriceValueLabel">0</Label>
                     </WrapPanel>
                 </Grid>

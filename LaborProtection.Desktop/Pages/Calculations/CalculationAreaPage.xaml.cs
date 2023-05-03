@@ -201,7 +201,7 @@ new WorkSpaceEntity()
                 return;
             }
 
-            var spaceArea = await _workSpaceService.GetWorkSpaceArea(roomLength, roomWidth, tableLengthSlider.Value, tableWidthSlider.Value);
+            var spaceArea = await _workSpaceService.GetWorkSpace(roomLength, roomWidth, roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
             if (spaceArea.IsError)
             {
                 roomLengthLabel.Foreground = Brushes.Red;
@@ -211,9 +211,17 @@ new WorkSpaceEntity()
                 workAreaLabel.Foreground = Brushes.Red;
                 return;
             }
-            workAreaValueLabel.Content = spaceArea.Value;
+            workAreaValueLabel.Content = spaceArea.Value.Width * spaceArea.Value.Length;
+            workVolumeValueLabel.Content = spaceArea.Value.Width * spaceArea.Value.Length * spaceArea.Value.Height;
+            workLengthValueLabel.Content = spaceArea.Value.Length;
+            workWidthValueLabel.Content = spaceArea.Value.Width;
 
-            var spaceVolume = await _workSpaceService.GetWorkSpaceVolume(roomLength, roomWidth, roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
+            int inLength = _workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
+            tablesInLengthValueLabel.Content = inLength;
+            int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
+            tablesInWidthValueLabel.Content = inWidth;
+
+            /*var spaceVolume = await _workSpaceService.GetWorkSpaceVolume(roomLength, roomWidth, roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
             if (spaceVolume.IsError)
             {
                 roomLengthLabel.Foreground = Brushes.Red;
@@ -248,7 +256,7 @@ new WorkSpaceEntity()
                 return;
             }
             tablesInWidthValueLabel.Content = tablesInWidthResponse.Value;
-            totalTablesCountValueLabel.Content = tablesInLengthResponse.Value * tablesInWidthResponse.Value;
+            totalTablesCountValueLabel.Content = tablesInLengthResponse.Value * tablesInWidthResponse.Value;*/
         }
 
         private void ClearAllError()
