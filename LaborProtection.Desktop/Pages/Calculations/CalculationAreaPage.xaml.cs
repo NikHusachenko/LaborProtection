@@ -1,4 +1,5 @@
-﻿using LaborProtection.Calculation.Entities;
+﻿using LaborProtection.Calculation.Constants;
+using LaborProtection.Calculation.Entities;
 using LaborProtection.Services.WorkSpaceServices;
 using System;
 using System.Collections.Generic;
@@ -99,11 +100,77 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             CalculationWorkArea();
 
-          RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(int.Parse(roomWidthTextBox.Text) * 100, int.Parse(roomLengthTextBox.Text) * 100);
-           roomWorkSpacesWindow.ShowDialog();
+            RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
+            {
+                Height = 3,
+                Length = 5,
+                Width = 7,
+                WorkSpaces = new List<WorkSpaceEntity>
+                {
+                    new WorkSpaceEntity()
+                    {
+                        Length = 3.2,
+                        Width = 2.5,
+                        Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+                    },
+					new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
+new WorkSpaceEntity()
+					{
+						Length = 3.2,
+						Width = 2.5,
+						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
+					},
 
-           //RoomLampsWindow roomLampsWindow = new RoomLampsWindow();
-           //roomLampsWindow.ShowDialog();
+				}
+			});
+            roomWorkSpacesWindow.ShowDialog();
         }
 
         private async void CalculationWorkArea()

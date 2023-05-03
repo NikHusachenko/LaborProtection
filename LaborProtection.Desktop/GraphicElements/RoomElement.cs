@@ -1,7 +1,8 @@
 ﻿using LaborProtection.Calculation.Constants;
-using System.Windows;
+using LaborProtection.Services.TransponeServices;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.GraphicElements
@@ -10,45 +11,38 @@ namespace LaborProtection.Desktop.GraphicElements
 	{
 		public WorkSpaceElement[,] tables { get; set; }
 		public Rectangle RoomRectangle { get; set; }
-		
+		private TransponeService TransponeServiceWidth { get; set; }
+		private TransponeService TransponeServiceHeight { get; set; }
+
 		public RoomElement(int roomWidth, int roomHeight, int tableNumberWidth, int tableNumberHeight, Canvas canvas)
 		{
+			TransponeServiceWidth = new TransponeService(roomWidth, canvas.ActualWidth);
+			TransponeServiceHeight = new TransponeService(roomHeight, canvas.ActualHeight);
+
 			tables = new WorkSpaceElement[tableNumberWidth, tableNumberHeight];
 			CreateRoom(roomWidth, roomHeight, tableNumberWidth, tableNumberHeight, canvas);
 		}
 
 		private void CreateRoom(int roomWidth, int roomHeight, int tableNumberWidth, int tableNumberHeight, Canvas canvas)
 		{
-			Canvas roomCanvas = new Canvas()
-			{
-				Width = roomWidth,
-				Height = roomHeight,
-				//HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
-			};
-	    	Canvas.SetLeft(roomCanvas, (canvas.Width - roomWidth) / 2);
-			Canvas.SetTop(roomCanvas, (canvas.Height - roomHeight) / 2);
 			RoomRectangle = new Rectangle
 			{
-				Width = roomWidth,
-				Height = roomHeight,
+				Width = TransponeServiceWidth.ConditionalUnit * roomWidth,
+				Height = TransponeServiceHeight.ConditionalUnit * roomHeight,
 				Stroke = Brushes.Black,
 			};
-			StackPanel tablesPanel = new StackPanel();
 
-			for (int i = 0; i < tables.GetLength(0); i++)
+			for (int i = 0; i < tableNumberWidth; i++)
 			{
-				for (int j = 0; j < tables.GetLength(1); j++)
+				for (int j = 0; j < tableNumberHeight; j++)
 				{
-
-					WorkSpaceElement.CreateTable(roomCanvas, () => i * (Limitations.BETWEEN_TABLES * 100), () => j * (Limitations.BETWEEB_MONITORS * 100));
+					new WorkSpaceElement(TransponeServiceWidth, TransponeServiceHeight, canvas,
+						() => i * TransponeServiceWidth.ConditionalUnit * (Limitations.BETWEEN_TABLES), // SetLeft
+						() => j * TransponeServiceHeight.ConditionalUnit * (Limitations.BETWEEB_MONITORS)); // SetTop
 				}
 			}
-
-			roomCanvas.Children.Add(RoomRectangle);
-
-			canvas.Children.Clear();
-			canvas.Children.Add(roomCanvas);
+			canvas.Children.Add(RoomRectangle);
+			
 		}
-
 	}
 }

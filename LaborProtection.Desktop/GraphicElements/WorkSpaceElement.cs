@@ -1,11 +1,9 @@
 ﻿using LaborProtection.Calculation.Constants;
+using LaborProtection.Services.TransponeServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.GraphicElements
@@ -15,42 +13,50 @@ namespace LaborProtection.Desktop.GraphicElements
 		public static Rectangle MonitorElement { get; set; }
 		public static Rectangle TableElement { get; set; }
 		public static Rectangle WorkAreaElement { get; set; }
-
-		public static void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		private static TransponeService TransponeServiceWeight { get; set; }
+		private static TransponeService TransponeServiceHeight { get; set; }
+		public WorkSpaceElement(TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
 		{
+			TransponeServiceWeight = transponeServiceWidth;
+			TransponeServiceHeight = transponeServiceHeight;
+			CreateTable(roomCanvas, SetLeft, SetTop);
+		}
+		public void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		{
+			double r = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS;
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Height = 250,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
+				Height = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS,
 			};
+
 			Canvas.SetLeft(WorkSpaceCanvas, SetLeft());
 			Canvas.SetTop(WorkSpaceCanvas, SetTop());
 
 			MonitorElement = new Rectangle()
 			{
-				Height = 16,
-				Width = 35,
+				Height = TransponeServiceHeight.ConditionalUnit * 0.1,
+				Width = TransponeServiceWeight.ConditionalUnit * 0.2,
 				Stroke = Brushes.Black,
-				Fill = Brushes.White
+				Fill = Brushes.White,
+
 			};
-
-
+			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width);
 			TableElement = new Rectangle()
 			{
-				Height = Limitations.MINIMUM_TABLE_LENGTH,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMUM_TABLE_LENGTH / 100,/////////////////////////////////////////
+				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
 
 			WorkAreaElement = new Rectangle()
 			{
-				Height = Limitations.BETWEEB_MONITORS,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Height = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS,
+				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};
-
 
 			WorkSpaceCanvas.Children.Add(WorkAreaElement);
 			WorkSpaceCanvas.Children.Add(TableElement);
