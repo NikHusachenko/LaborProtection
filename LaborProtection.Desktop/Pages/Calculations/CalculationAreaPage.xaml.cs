@@ -1,15 +1,19 @@
 ﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Database.Entities;
+using LaborProtection.Desktop.Windows.Views;
 using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.WorkSpaceServices;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using static LaborProtection.Calculation.Constants.LightReflection;
 
 namespace LaborProtection.Desktop.Pages.Calculations
@@ -21,8 +25,11 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private readonly IBulbService _bulbService;
         private readonly SemaphoreSlim _semaphoreSlim;
 
-        private string _selectedLampName;
-        private string _selectedBulbName;
+        private LampEntity _selectedLamp;
+        private BulbEntity _selectedBulb;
+
+        private ViewLampInformationWindow _viewLampWindow;
+        private ViewBulbInformationWindow _viewBulbWindow;
 
         public CalculationAreaPage(IWorkSpaceService workSpaceService,
             ILampService lampService,
@@ -100,13 +107,22 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
         }
 
-        private void lampSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void lampSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string lampName = lampSelectorComboBox.SelectedItem as string;
             if (lampName != null)
             {
+                var response = await _lampService.GetByName(lampName);
+                if (response.IsError)
+                {
+                    return;
+                }
+
+                _selectedLamp = response.Value;
                 lampInformationButton.IsEnabled = true;
-                _selectedLampName = lampName;
+
+                BitmapImage bitmap = new BitmapImage(new Uri(Path.GetFullPath(_selectedLamp.ImagePath)));
+                selectedLampImage.Source = bitmap;
             }
             else
             {
@@ -114,13 +130,19 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
         }
 
-        private void bulbSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void bulbSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string bulbName = bulbSelectorComboBox.SelectedItem as string;
             if (bulbName != null)
             {
+                var response = await _bulbService.GetByName(bulbName);
+                if (response.IsError)
+                {
+                    return;
+                }
+
+                _selectedBulb = response.Value;
                 bulbInformationButton.IsEnabled = true;
-                _selectedBulbName = bulbName;
             }
             else
             {
@@ -271,6 +293,46 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
 
             _semaphoreSlim.Release();
+        }
+
+        private async void lampInformationButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (!lampInformationButton.IsEnabled)
+            {
+                return;
+            }
+
+            Point mousePosition = (Window.GetWindow(this) as MainWindow).PointToScreen(Mouse.GetPosition(this));
+
+            _viewLampWindow = new ViewLampInformationWindow(_selectedLamp);
+            _viewLampWindow.Top = mousePosition.Y + 20;
+            _viewLampWindow.Left = mousePosition.X + 10;
+            _viewLampWindow.Show();
+        }
+
+        private void lampInformationButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            _viewLampWindow.Close();
+        }
+
+        private async void bulbInformationButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!bulbInformationButton.IsEnabled)
+            {
+                return;
+            }
+
+            Point mousePosition = (Window.GetWindow(this) as MainWindow).PointToScreen(Mouse.GetPosition(this));
+
+            _viewBulbWindow = new ViewBulbInformationWindow(_selectedBulb);
+            _viewBulbWindow.Top = mousePosition.Y + 20;
+            _viewBulbWindow.Left = mousePosition.X + 10;
+            _viewBulbWindow.Show();
+        }
+
+        private void bulbInformationButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            _viewBulbWindow.Close();
         }
     }
 }

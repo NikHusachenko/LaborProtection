@@ -80,6 +80,16 @@ namespace LaborProtection.Services.BulbServices
             return ResponseService<BulbEntity>.Ok(dbRecord);
         }
 
+        public async Task<ResponseService<BulbEntity>> GetByName(string name)
+        {
+            BulbEntity dbRecord = await _bulbRepository.GetBy(bulb => bulb.Name == name);
+            if (dbRecord == null)
+            {
+                return ResponseService<BulbEntity>.Error(Errors.NOT_FOUNT_ERROR);
+            }
+            return ResponseService<BulbEntity>.Ok(dbRecord);
+        }
+
         public async Task<ResponseService> Update(BulbEntity bulbEntity)
         {
             try

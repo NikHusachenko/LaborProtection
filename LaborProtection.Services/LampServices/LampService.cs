@@ -94,6 +94,16 @@ namespace LaborProtection.Services.LampServices
             }
         }
 
+        public async Task<ResponseService<LampEntity>> GetByName(string name)
+        {
+            LampEntity dbRecord = await _lampRepository.GetBy(lamp => lamp.Name == name);
+            if (dbRecord == null)
+            {
+                return ResponseService<LampEntity>.Error(Errors.NOT_FOUNT_ERROR);
+            }
+            return ResponseService<LampEntity>.Ok(dbRecord);
+        }
+
         public async Task<ResponseService> Update(LampEntity lampEntity)
         {
             try

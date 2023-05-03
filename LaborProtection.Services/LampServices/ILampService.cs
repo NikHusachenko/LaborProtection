@@ -11,6 +11,7 @@ namespace LaborProtection.Services.LampServices
         Task<ResponseService> Update(LampEntity lampEntity);
 
         Task<ResponseService<LampEntity>> GetById(long id);
+        Task<ResponseService<LampEntity>> GetByName(string name);
 
         Task<ICollection<LampEntity>> GetAll();
     }

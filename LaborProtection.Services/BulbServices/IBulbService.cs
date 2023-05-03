@@ -11,6 +11,7 @@ namespace LaborProtection.Services.BulbServices
         Task<ResponseService> Update(BulbEntity bulbEntity);
 
         Task<ResponseService<BulbEntity>> GetById(long id);
+        Task<ResponseService<BulbEntity>> GetByName(string name);
 
         Task<ICollection<BulbEntity>> GetAll();
     }
