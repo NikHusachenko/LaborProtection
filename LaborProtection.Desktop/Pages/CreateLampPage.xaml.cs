@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace LaborProtection.Desktop.Pages
 {
@@ -109,6 +110,14 @@ namespace LaborProtection.Desktop.Pages
                 MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 
                 mainWindow.SetGlobalErrorMessage(result.ErrorMessage, Brushes.Red, Visibility.Visible);
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(5);
+                timer.Tick += (sender, args) =>
+                {
+                    mainWindow.SetGlobalErrorMessage(result.ErrorMessage, Brushes.White, Visibility.Hidden);
+                };
+
                 return;
             }
             MessageBox.Show(Messages.CREATED_SUCCESSFULY_MESSAGE);

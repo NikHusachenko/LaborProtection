@@ -7,6 +7,7 @@ using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.BulbServices.Models;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LampServices.Models;
+using LaborProtection.Services.LightServices;
 using LaborProtection.Services.WorkSpaceServices;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -34,6 +35,7 @@ namespace LaborProtection.Desktop
             services.AddTransient<ILampService, LampService>();
             services.AddTransient<IBulbService, BulbService>();
             services.AddTransient<IWorkSpaceService, WorkSpaceService>();
+            services.AddTransient<ILightService, LightService>();
 
             // Validations
             services.AddTransient<IValidator<CreateLampPostModel>, CreateLampPostModelValidator>();

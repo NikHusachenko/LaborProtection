@@ -1,9 +1,12 @@
-﻿using LaborProtection.Calculation.Constants;
-using LaborProtection.Calculation.Entities;
+﻿using LaborProtection.Calculation.Entities;
+using LaborProtection.Database.Entities;
+using LaborProtection.Services.BulbServices;
+using LaborProtection.Services.LampServices;
 using LaborProtection.Services.WorkSpaceServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,10 +17,21 @@ namespace LaborProtection.Desktop.Pages.Calculations
     public partial class CalculationAreaPage : Page
     {
         private readonly IWorkSpaceService _workSpaceService;
+        private readonly ILampService _lampService;
+        private readonly IBulbService _bulbService;
+        private readonly SemaphoreSlim _semaphoreSlim;
 
-        public CalculationAreaPage(IWorkSpaceService workSpaceService)
+        private string _selectedLampName;
+        private string _selectedBulbName;
+
+        public CalculationAreaPage(IWorkSpaceService workSpaceService,
+            ILampService lampService,
+            IBulbService bulbService)
         {
             _workSpaceService = workSpaceService;
+            _lampService = lampService;
+            _bulbService = bulbService;
+            _semaphoreSlim = new SemaphoreSlim(1);
 
             InitializeComponent();
             
@@ -88,12 +102,30 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
         private void lampSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string lampName = lampSelectorComboBox.SelectedItem as string;
+            if (lampName != null)
+            {
+                lampInformationButton.IsEnabled = true;
+                _selectedLampName = lampName;
+            }
+            else
+            {
+                lampInformationButton.IsEnabled = false;
+            }
         }
 
         private void bulbSelectorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string bulbName = bulbSelectorComboBox.SelectedItem as string;
+            if (bulbName != null)
+            {
+                bulbInformationButton.IsEnabled = true;
+                _selectedBulbName = bulbName;
+            }
+            else
+            {
+                bulbInformationButton.IsEnabled = false;
+            }
         }
 
         private void viewDrawingButton_Click(object sender, RoutedEventArgs e)
@@ -213,6 +245,32 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
 
             return labels;
+        }
+
+        private async void lampSelectorComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _semaphoreSlim.WaitAsync();
+
+            ICollection<LampEntity> lamps = await _lampService.GetAll();
+            foreach (LampEntity lamp in lamps)
+            {
+                lampSelectorComboBox.Items.Add(lamp.Name);
+            }
+
+            _semaphoreSlim.Release();
+        }
+
+        private async void bulbSelectorComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _semaphoreSlim.WaitAsync();
+
+            ICollection<BulbEntity> bulbs = await _bulbService.GetAll();
+            foreach (BulbEntity bulb in bulbs)
+            {
+                bulbSelectorComboBox.Items.Add(bulb.Name);
+            }
+
+            _semaphoreSlim.Release();
         }
     }
 }
