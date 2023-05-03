@@ -1,7 +1,6 @@
 ﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Desktop.GraphicElements;
 using LaborProtection.Services.TransponeServices;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace LaborProtection.Desktop
@@ -9,7 +8,7 @@ namespace LaborProtection.Desktop
 	public partial class RoomWorkSpacesWindow : Window
 	{
 		private readonly RoomEntity _roomEntity;
-		private readonly ICollection<WorkSpaceEntity> _spaces;
+		private readonly WorkSpaceEntity[,] _spaces;
 		private readonly TransponeService _transponeService;
 
 		public RoomWorkSpacesWindow(RoomEntity room)

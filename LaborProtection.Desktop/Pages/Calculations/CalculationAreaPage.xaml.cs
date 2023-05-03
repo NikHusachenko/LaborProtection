@@ -50,7 +50,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
             CalculationWorkArea();
         }
 
-        private void roomHeightTextBox_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        private void roomHeightTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CalculationWorkArea();
         }
@@ -105,70 +105,10 @@ namespace LaborProtection.Desktop.Pages.Calculations
                 Height = 3,
                 Length = 5,
                 Width = 7,
-                WorkSpaces = new List<WorkSpaceEntity>
+                WorkSpaces = new WorkSpaceEntity[,]
                 {
-                    new WorkSpaceEntity()
-                    {
-                        Length = 3.2,
-                        Width = 2.5,
-                        Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-                    },
-					new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
-new WorkSpaceEntity()
-					{
-						Length = 3.2,
-						Width = 2.5,
-						Height = Limitations.MINIMAL_VOLUME / (3.2 * 2.5),
-					},
 
-				}
+                }
 			});
             roomWorkSpacesWindow.ShowDialog();
         }
@@ -177,6 +117,7 @@ new WorkSpaceEntity()
         {
             ClearAllError();
 
+            // Value parsing
             if (!double.TryParse(roomWidthTextBox.Text, out double roomWidth))
             {
                 roomWidthLabel.Foreground = Brushes.Red;
@@ -201,7 +142,8 @@ new WorkSpaceEntity()
                 return;
             }
 
-            var spaceArea = await _workSpaceService.GetWorkSpace(roomLength, roomWidth, roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
+            // Calculations
+            var spaceArea = await _workSpaceService.GetWorkSpace(roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
             if (spaceArea.IsError)
             {
                 roomLengthLabel.Foreground = Brushes.Red;
@@ -211,6 +153,27 @@ new WorkSpaceEntity()
                 workAreaLabel.Foreground = Brushes.Red;
                 return;
             }
+
+            var workSpaceResult = await _workSpaceService.GetWorkSpace(roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
+            if (workSpaceResult.IsError)
+            {
+                roomHeightLabel.Foreground = Brushes.Red;
+                tableLengthLabel.Foreground = Brushes.Red;
+                tableWidthLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            var getRoomResult = _workSpaceService.GetRoom(roomLength, roomWidth, roomHeight, workSpaceResult.Value);
+            if (getRoomResult.IsError)
+            {
+                roomHeightLabel.Foreground = Brushes.Red;
+                tableLengthLabel.Foreground = Brushes.Red;
+                tableWidthLabel.Foreground = Brushes.Red;
+                workAreaLabel.Foreground = Brushes.Red;
+                workVolumeLabel.Foreground = Brushes.Red;
+                return;
+            }
+
             workAreaValueLabel.Content = spaceArea.Value.Width * spaceArea.Value.Length;
             workVolumeValueLabel.Content = spaceArea.Value.Width * spaceArea.Value.Length * spaceArea.Value.Height;
             workLengthValueLabel.Content = spaceArea.Value.Length;
@@ -220,43 +183,6 @@ new WorkSpaceEntity()
             tablesInLengthValueLabel.Content = inLength;
             int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
             tablesInWidthValueLabel.Content = inWidth;
-
-            /*var spaceVolume = await _workSpaceService.GetWorkSpaceVolume(roomLength, roomWidth, roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
-            if (spaceVolume.IsError)
-            {
-                roomLengthLabel.Foreground = Brushes.Red;
-                roomWidthLabel.Foreground = Brushes.Red;
-                roomHeightLabel.Foreground = Brushes.Red;
-                tableLengthLabel.Foreground = Brushes.Red;
-                tableWidthLabel.Foreground = Brushes.Red;
-                workVolumeLabel.Foreground = Brushes.Red;
-            }
-            workVolumeValueLabel.Content = spaceVolume.Value;
-
-            var tablesInLengthResponse = await _workSpaceService.GetSpacesInLength(roomLength, tableLengthSlider.Value);
-            if (tablesInLengthResponse.IsError)
-            {
-                roomLengthLabel.Foreground = Brushes.Red;
-                tableLengthLabel.Foreground = Brushes.Red;
-                tablesInWidthLabel.Foreground = Brushes.Red;
-                tablesInLengthLabel.Foreground = Brushes.Red;
-                totalTablesCountLabel.Foreground = Brushes.Red;
-                return;
-            }
-            tablesInLengthValueLabel.Content = tablesInLengthResponse.Value;
-
-            var tablesInWidthResponse = await _workSpaceService.GetSpacesInWidth(roomWidth, tableWidthSlider.Value);
-            if (tablesInWidthResponse.IsError)
-            {
-                roomWidthLabel.Foreground = Brushes.Red;
-                tableWidthLabel.Foreground = Brushes.Red;
-                tablesInWidthLabel.Foreground = Brushes.Red;
-                tablesInLengthLabel.Foreground = Brushes.Red;
-                totalTablesCountLabel.Foreground = Brushes.Red;
-                return;
-            }
-            tablesInWidthValueLabel.Content = tablesInWidthResponse.Value;
-            totalTablesCountValueLabel.Content = tablesInLengthResponse.Value * tablesInWidthResponse.Value;*/
         }
 
         private void ClearAllError()

@@ -41,7 +41,7 @@
                 <TextBox x:Name="roomLengthTextBox" Grid.Row="1" Grid.Column="1" Margin="5" TextChanged="roomLengthTextBox_TextChanged"></TextBox>
 
                 <Label x:Name="roomHeightLabel" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">Висота</Label>
-                <TextBox x:Name="roomHeightTextBox" Grid.Row="1" Grid.Column="2" Margin="5" TargetUpdated="roomHeightTextBox_TargetUpdated"></TextBox>
+                <TextBox x:Name="roomHeightTextBox" Grid.Row="1" Grid.Column="2" Margin="5" TextChanged="roomHeightTextBox_TextChanged" />
 
                 <Label x:Name="floorReflectionLabel" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Відбиття підлоги</Label>
                 <ComboBox x:Name="floorReflectionComboBox" Grid.Row="3" Grid.Column="0" Margin="5" SelectionChanged="floorReflectionComboBox_SelectionChanged" />

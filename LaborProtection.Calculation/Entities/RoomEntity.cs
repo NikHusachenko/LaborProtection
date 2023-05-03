@@ -6,6 +6,6 @@
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public ICollection<WorkSpaceEntity> WorkSpaces { get; set; }
+        public WorkSpaceEntity[,] WorkSpaces { get; set; }
     }
 }
