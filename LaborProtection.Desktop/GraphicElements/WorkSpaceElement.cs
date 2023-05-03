@@ -23,11 +23,11 @@ namespace LaborProtection.Desktop.GraphicElements
 		}
 		public void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
 		{
-			double r = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS;
+			double r = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH;
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
 				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.BETWEEB_MONITORS,
+				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH,
 			};
 
 			Canvas.SetLeft(WorkSpaceCanvas, SetLeft());
@@ -52,7 +52,7 @@ namespace LaborProtection.Desktop.GraphicElements
 
 			WorkAreaElement = new Rectangle()
 			{
-				Height = Limitations.BETWEEB_MONITORS,
+				Height = Limitations.MINIMAL_WIDTH,
 				Width = Limitations.MINIMUM_TABLE_WIDTH,
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White

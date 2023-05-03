@@ -38,7 +38,7 @@ namespace LaborProtection.Desktop.GraphicElements
 				{
 					new WorkSpaceElement(TransponeServiceWidth, TransponeServiceHeight, canvas,
 						() => i * TransponeServiceWidth.ConditionalUnit * (Limitations.BETWEEN_TABLES), // SetLeft
-						() => j * TransponeServiceHeight.ConditionalUnit * (Limitations.BETWEEB_MONITORS)); // SetTop
+						() => j * TransponeServiceHeight.ConditionalUnit * (Limitations.MINIMAL_WIDTH)); // SetTop
 				}
 			}
 			canvas.Children.Add(RoomRectangle);
