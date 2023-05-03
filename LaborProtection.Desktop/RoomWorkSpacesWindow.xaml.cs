@@ -1,46 +1,30 @@
-﻿using LaborProtection.Desktop.GraphicElements;
-using System;
+﻿using LaborProtection.Calculation.Entities;
+using LaborProtection.Desktop.GraphicElements;
+using LaborProtection.Services.TransponeServices;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop
 {
-	/// <summary>
-	/// Логика взаимодействия для RoomWorkSpacesWindow.xaml
-	/// </summary>
 	public partial class RoomWorkSpacesWindow : Window
 	{
-		private static double currentScale = 1;
-		private readonly RoomElement room;
-		public RoomWorkSpacesWindow(int Width,int Height)
+		private readonly RoomEntity _roomEntity;
+		private readonly ICollection<WorkSpaceEntity> _spaces;
+		private readonly TransponeService _transponeService;
+
+		public RoomWorkSpacesWindow(RoomEntity room)
 		{
+			_roomEntity = room;
+			_spaces = _roomEntity.WorkSpaces;
+			_transponeService = new TransponeService(1, 1);
+
 			InitializeComponent();
-		    room = new RoomElement(Width, Height, 4, 3, CanvasGrid);
-
-			CanvasGrid.LayoutTransform = new ScaleTransform(currentScale, currentScale);
 		}
 
-		private void DecreaseSizeButton_Click(object sender, RoutedEventArgs e)
+		private void canvasGrid_Loaded(object sender, RoutedEventArgs e)
 		{
-			currentScale += 0.025;
-			CanvasGrid.LayoutTransform = new ScaleTransform(currentScale, currentScale);
-		}
-
-		private void IncreaseSizeButton_Click(object sender, RoutedEventArgs e)
-		{
-			currentScale -= 0.025;
-			CanvasGrid.LayoutTransform = new ScaleTransform(currentScale, currentScale);
-
+			canvasGrid.Visibility = Visibility.Visible;
+			RoomElement roomElement = new RoomElement(17,5,6,1,canvasGrid);
 		}
 	}
 }
