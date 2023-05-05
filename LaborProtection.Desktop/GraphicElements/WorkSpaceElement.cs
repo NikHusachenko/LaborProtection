@@ -15,29 +15,30 @@ namespace LaborProtection.Desktop.GraphicElements
 		public static Rectangle MonitorElement { get; set; }
 		public static Rectangle TableElement { get; set; }
 		public static Rectangle WorkAreaElement { get; set; }
-		private static TransponeService TransponeServiceWeight { get; set; }
-		private static TransponeService TransponeServiceHeight { get; set; }
-		public WorkSpaceElement(TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		private static TransponeService TransponeServiceWidth { get; set; }
+		private static TransponeService TransponeServiceLength { get; set; }
+		public WorkSpaceElement(TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas,double  SetLeft, double SetTop)
 		{
-			TransponeServiceWeight = transponeServiceWidth;
-			TransponeServiceHeight = transponeServiceHeight;
+			TransponeServiceWidth = transponeServiceWidth;
+			TransponeServiceLength = transponeServiceLength;
 			CreateTable(roomCanvas, SetLeft, SetTop);
 		}
-		public void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		public void CreateTable(Canvas roomCanvas, double SetLeft, double SetTop)
 		{
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH,
+				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
+				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH ,
+				Background = Brushes.Black
 			};
 
-			Canvas.SetLeft(WorkSpaceCanvas, SetLeft());
-			Canvas.SetTop(WorkSpaceCanvas, SetTop());
+			Canvas.SetLeft(WorkSpaceCanvas, SetLeft);
+			Canvas.SetTop(WorkSpaceCanvas, SetTop);
 
 			MonitorElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * 0.1,
-				Width = TransponeServiceWeight.ConditionalUnit * 0.2,
+				Height = TransponeServiceLength.ConditionalUnit * 0.1,
+				Width = TransponeServiceWidth.ConditionalUnit * 0.2,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White,
 
@@ -45,16 +46,16 @@ namespace LaborProtection.Desktop.GraphicElements
 			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width);
 			TableElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
-				Width = TransponeServiceWeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
+				Height = TransponeServiceLength.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
+				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
 
 			WorkAreaElement = new Rectangle()
 			{
-				Height = Limitations.MINIMAL_WIDTH,
-				Width = LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
+				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH,
+				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};
