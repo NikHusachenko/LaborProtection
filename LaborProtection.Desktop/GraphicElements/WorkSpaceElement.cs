@@ -25,9 +25,10 @@ namespace LaborProtection.Desktop.GraphicElements
 		}
 		public void CreateTable(Canvas roomCanvas, double SetLeft, double SetTop)
 		{
+			
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
+				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + TransponeServiceWidth.ConditionalUnit * Limitations.BETWEEN_TABLES,
 				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH ,
 				Background = Brushes.Black
 			};
@@ -37,25 +38,26 @@ namespace LaborProtection.Desktop.GraphicElements
 
 			MonitorElement = new Rectangle()
 			{
-				Height = TransponeServiceLength.ConditionalUnit * 0.1,
 				Width = TransponeServiceWidth.ConditionalUnit * 0.2,
+				Height = TransponeServiceLength.ConditionalUnit * 0.1,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White,
 
 			};
-			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width);
+			
+			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width/2);
 			TableElement = new Rectangle()
 			{
-				Height = TransponeServiceLength.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
 				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
+				Height = TransponeServiceLength.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
-
+			Canvas.SetLeft(TableElement, WorkSpaceCanvas.Width / 2 - TableElement.Width/2);
 			WorkAreaElement = new Rectangle()
 			{
+				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + TransponeServiceWidth.ConditionalUnit * Limitations.BETWEEN_TABLES,
 				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH,
-				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};

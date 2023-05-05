@@ -1,6 +1,7 @@
 ﻿using LaborProtection.Calculation.Constants;
 using LaborProtection.Calculation.Entities;
 using LaborProtection.Services.TransponeServices;
+using LaborProtection.Services.WorkSpaceServices.Helpers;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -40,7 +41,7 @@ namespace LaborProtection.Desktop.GraphicElements
 				for (int j = 0; j < tableNumberHeight; j++)
 				{
 					new WorkSpaceElement(transponeServiceWidth, transponeServiceHeight, canvas,
-						 i * transponeServiceWidth.ConditionalUnit * (Limitations.BETWEEN_TABLES), // SetLeft
+						 i * (transponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + transponeServiceWidth.ConditionalUnit * Limitations.BETWEEN_TABLES), // SetLeft
 						 j * transponeServiceHeight.ConditionalUnit * (Limitations.MINIMAL_WIDTH)); // SetTop
 				}
 			}
