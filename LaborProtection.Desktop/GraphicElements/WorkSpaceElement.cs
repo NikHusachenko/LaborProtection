@@ -1,5 +1,7 @@
 ﻿using LaborProtection.Calculation.Constants;
 using LaborProtection.Services.TransponeServices;
+using LaborProtection.Services.WorkSpaceServices;
+using LaborProtection.Services.WorkSpaceServices.Helpers;
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -23,10 +25,9 @@ namespace LaborProtection.Desktop.GraphicElements
 		}
 		public void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
 		{
-			double r = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH;
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
+				Width = TransponeServiceWeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH,
 			};
 
@@ -44,8 +45,8 @@ namespace LaborProtection.Desktop.GraphicElements
 			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width);
 			TableElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMUM_TABLE_LENGTH / 100,/////////////////////////////////////////
-				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
+				Height = TransponeServiceHeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
+				Width = TransponeServiceWeight.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
@@ -53,7 +54,7 @@ namespace LaborProtection.Desktop.GraphicElements
 			WorkAreaElement = new Rectangle()
 			{
 				Height = Limitations.MINIMAL_WIDTH,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Width = LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};

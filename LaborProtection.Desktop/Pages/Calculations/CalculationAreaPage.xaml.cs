@@ -31,6 +31,8 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private ViewLampInformationWindow _viewLampWindow;
         private ViewBulbInformationWindow _viewBulbWindow;
 
+        private static int tablesInLength;
+        private static int tablesInWidth;
         public CalculationAreaPage(IWorkSpaceService workSpaceService,
             ILampService lampService,
             IBulbService bulbService)
@@ -153,17 +155,14 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private void viewDrawingButton_Click(object sender, RoutedEventArgs e)
         {
             CalculationWorkArea();
-
-            RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
+		
+			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
             {
-                Height = 3,
-                Length = 5,
-                Width = 7,
-                WorkSpaces = new WorkSpaceEntity[,]
-                {
-
-                }
-			});
+                Width = Convert.ToDouble(roomWidthTextBox.Text),
+                Length = Convert.ToDouble(roomLengthTextBox.Text),
+                Height = Convert.ToDouble(roomHeightTextBox.Text),
+            
+			}, tablesInWidth, tablesInLength);
             roomWorkSpacesWindow.ShowDialog();
         }
 
@@ -235,10 +234,12 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
             int inLength = _workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
             tablesInLengthValueLabel.Content = inLength;
+            tablesInLength = inLength;
             int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
             tablesInWidthValueLabel.Content = inWidth;
+            tablesInWidth = inWidth;
         }
-
+       
         private void ClearAllError()
         {
             ICollection<Label> labels = FindLabels(MyName);
