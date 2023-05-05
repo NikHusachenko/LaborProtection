@@ -70,7 +70,7 @@ namespace LaborProtection.Services.LightServices
 
         public double RoomIndex(RoomEntity roomEntity, LampEntity lampEntity)
         {
-            double lampHeightSuspension = LampHeightSuspension(roomEntity.Height, lampEntity.Height, roomEntity.WorkSpaces[0, 0].Table.Height);
+            double lampHeightSuspension = LampHeightSuspension(roomEntity.Height, lampEntity.Height, roomEntity.WorkSpace.Table.Height);
             double roomArea = GetRoomArea(roomEntity);
 
             return roomArea / (lampHeightSuspension * (roomEntity.Width + roomEntity.Length));

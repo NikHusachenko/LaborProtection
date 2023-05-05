@@ -164,7 +164,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
                 Height = 3,
                 Length = 5,
                 Width = 7,
-                WorkSpaces = new WorkSpaceEntity[,]
+                WorkSpace = new WorkSpaceEntity()
                 {
 
                 }

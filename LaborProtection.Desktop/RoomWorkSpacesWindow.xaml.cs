@@ -8,13 +8,13 @@ namespace LaborProtection.Desktop
 	public partial class RoomWorkSpacesWindow : Window
 	{
 		private readonly RoomEntity _roomEntity;
-		private readonly WorkSpaceEntity[,] _spaces;
+		private readonly WorkSpaceEntity _space;
 		private readonly TransponeService _transponeService;
 
 		public RoomWorkSpacesWindow(RoomEntity room)
 		{
 			_roomEntity = room;
-			_spaces = _roomEntity.WorkSpaces;
+			_space = _roomEntity.WorkSpace;
 			_transponeService = new TransponeService(1, 1);
 
 			InitializeComponent();
