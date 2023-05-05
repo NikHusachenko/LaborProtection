@@ -31,5 +31,10 @@
         {
             return millimetres / 1000.0;
         }
+
+        public static int NumbersOfElements(double roomParameter,double elementParameter)
+        {
+            return (int)Math.Floor(roomParameter / elementParameter);
+		}
     }
 }

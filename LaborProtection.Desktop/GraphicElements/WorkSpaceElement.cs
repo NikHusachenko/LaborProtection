@@ -1,11 +1,7 @@
-﻿using LaborProtection.Calculation.Constants;
+﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Services.TransponeServices;
-using LaborProtection.Services.WorkSpaceServices;
-using LaborProtection.Services.WorkSpaceServices.Helpers;
-using System;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.GraphicElements
@@ -17,19 +13,18 @@ namespace LaborProtection.Desktop.GraphicElements
 		public static Rectangle WorkAreaElement { get; set; }
 		private static TransponeService TransponeServiceWidth { get; set; }
 		private static TransponeService TransponeServiceLength { get; set; }
-		public WorkSpaceElement(TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas,double  SetLeft, double SetTop)
+		public WorkSpaceElement(WorkSpaceEntity workSpace, TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas, double SetLeft, double SetTop)
 		{
 			TransponeServiceWidth = transponeServiceWidth;
 			TransponeServiceLength = transponeServiceLength;
-			CreateTable(roomCanvas, SetLeft, SetTop);
+			CreateTable(workSpace, roomCanvas, SetLeft, SetTop);
 		}
-		public void CreateTable(Canvas roomCanvas, double SetLeft, double SetTop)
+		public void CreateTable(WorkSpaceEntity workSpace, Canvas roomCanvas, double SetLeft, double SetTop)
 		{
-			
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + TransponeServiceWidth.ConditionalUnit * Limitations.BETWEEN_TABLES,
-				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH ,
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Length,
 				Background = Brushes.Black
 			};
 
@@ -44,20 +39,20 @@ namespace LaborProtection.Desktop.GraphicElements
 				Fill = Brushes.White,
 
 			};
-			
-			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width/2);
+
+			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width / 2);
 			TableElement = new Rectangle()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH),
-				Height = TransponeServiceLength.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_LENGTH),
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Table.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Table.Length,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
-			Canvas.SetLeft(TableElement, WorkSpaceCanvas.Width / 2 - TableElement.Width/2);
+			Canvas.SetLeft(TableElement, WorkSpaceCanvas.Width / 2 - TableElement.Width / 2);
 			WorkAreaElement = new Rectangle()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * LengthConverter.SantimettersToMetters(Limitations.MINIMUM_TABLE_WIDTH) + TransponeServiceWidth.ConditionalUnit * Limitations.BETWEEN_TABLES,
-				Height = TransponeServiceLength.ConditionalUnit * Limitations.MINIMAL_WIDTH,
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Length,
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};
