@@ -85,8 +85,8 @@ namespace LaborProtection.Services.WorkSpaceServices
 
         public async Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth)
         {
-            if (LengthConverter.SantimettersToMetters(tableLength) < 0 ||
-                LengthConverter.SantimettersToMetters(tableWidth) < 0)
+            if (LengthConverter.SantimettersToMetters(tableLength) <= 0 ||
+                LengthConverter.SantimettersToMetters(tableWidth) <= 0)
             {
                 return ResponseService<WorkSpaceEntity>.Error();
             }

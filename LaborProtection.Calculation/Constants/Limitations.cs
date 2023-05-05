@@ -10,6 +10,8 @@
         public const double MAXIMUM_TABLE_WIDTH = 100.0; // Santimetters
         public const double MINIMUM_TABLE_LENGTH = 60.0; // Santimetters
         public const double MAXIMUM_TABLE_LENGTH = 140.0; // Santimetters
+        public const double MINIMUM_TABLE_HEIGHT = 68.0; // Santimetters
+        public const double MAXIMUM_TABLE_HEIGHT = 80.0; // Santimetters
 
         public const double BETWEEN_TABLES = 1.2; // Metters
     }

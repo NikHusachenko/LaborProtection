@@ -1,8 +1,10 @@
 ﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Database.Entities;
+using LaborProtection.Database.Enums;
 using LaborProtection.Desktop.Windows.Views;
 using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.LampServices;
+using LaborProtection.Services.LightServices;
 using LaborProtection.Services.WorkSpaceServices;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private readonly IWorkSpaceService _workSpaceService;
         private readonly ILampService _lampService;
         private readonly IBulbService _bulbService;
+        private readonly ILightService _lightService;
         private readonly SemaphoreSlim _semaphoreSlim;
 
         private LampEntity _selectedLamp;
@@ -33,11 +36,13 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
         public CalculationAreaPage(IWorkSpaceService workSpaceService,
             ILampService lampService,
-            IBulbService bulbService)
+            IBulbService bulbService,
+            ILightService lightService)
         {
             _workSpaceService = workSpaceService;
             _lampService = lampService;
             _bulbService = bulbService;
+            _lightService = lightService;
             _semaphoreSlim = new SemaphoreSlim(1);
 
             InitializeComponent();
@@ -237,6 +242,8 @@ namespace LaborProtection.Desktop.Pages.Calculations
             tablesInLengthValueLabel.Content = inLength;
             int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
             tablesInWidthValueLabel.Content = inWidth;
+
+
         }
 
         private void ClearAllError()

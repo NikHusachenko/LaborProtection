@@ -1,5 +1,13 @@
-﻿using LaborProtection.Services.BulbServices;
+﻿using LaborProtection.Calculation;
+using LaborProtection.Calculation.Constants;
+using LaborProtection.Calculation.Entities;
+using LaborProtection.Calculation.Enums;
+using LaborProtection.Common;
+using LaborProtection.Database.Entities;
+using LaborProtection.Database.Enums;
+using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.LampServices;
+using LaborProtection.Services.Response;
 
 namespace LaborProtection.Services.LightServices
 {
@@ -13,6 +21,64 @@ namespace LaborProtection.Services.LightServices
         {
             _lampService = lampService;
             _bulbService = bulbService;
+        }
+
+        public double GetLampCount(RoomEntity roomEntity, LampEntity lampEntity, BulbEntity bulbEntity, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
+        {
+            double flux = LightFlux(roomEntity, lampEntity, floorReflection, wallReflection, ceillingReflection, lampType);
+            return flux / bulbEntity.LightFlux;
+        }
+
+        public ResponseService<int> GetUseCoefficient(double roomIndex, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
+        {
+            JsonSource jsonSource = 0;
+
+            switch (lampType)
+            {
+                case LampType.LPO:
+                case LampType.OD:
+                    {
+                        jsonSource = JsonSource.LPO;
+                        break;
+                    }
+                case LampType.LSP:
+                case LampType.LSO:
+                    {
+                        jsonSource = JsonSource.LSP;
+                        break;
+                    }
+                default:
+                    {
+                        return ResponseService<int>.Error(Errors.UNKNOWN_LAMP_TYPE_ERROR);
+                    }
+            }
+
+            return ResponseService<int>.Ok(GetJsonSection.GetValue($"{ceillingReflection}:{wallReflection}:{floorReflection}:{roomIndex}", jsonSource));
+        }
+
+        public double LampHeightSuspension(double roomHeight, double lampHeight, double tableHeight)
+        {
+            return roomHeight - tableHeight - lampHeight;
+        }
+
+        public double LightFlux(RoomEntity roomEntity, LampEntity lampEntity, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
+        {
+            double roomIndex = RoomIndex(roomEntity, lampEntity);
+            double nuy = GetUseCoefficient(roomIndex, floorReflection, wallReflection, ceillingReflection, lampType).Value;
+            return (Light.E * Light.K * Light.Z * GetRoomArea(roomEntity)) / nuy;
+        }
+
+        public double RoomIndex(RoomEntity roomEntity, LampEntity lampEntity)
+        {
+            double lampHeightSuspension = LampHeightSuspension(roomEntity.Height, lampEntity.Height, roomEntity.WorkSpaces[0, 0].Table.Height);
+            double roomArea = GetRoomArea(roomEntity);
+
+            return roomArea / (lampHeightSuspension * (roomEntity.Width + roomEntity.Length));
+        }
+
+        private double GetRoomArea(RoomEntity roomEntity)
+        {
+            return roomEntity.Length * roomEntity.Height * roomEntity.Width;
         }
     }
 }
