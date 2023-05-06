@@ -65,6 +65,8 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Label x:Name="tableWidthLabel" Grid.Row="0">Ширина стола (В сантиметрах)</Label>
@@ -97,6 +99,22 @@
                             TickPlacement="Both" ValueChanged="tableLengthSlider_ValueChanged"/>
 
                         <Label x:Name="tableLengthSliderValueLabel" Grid.Column="1" Content="{x:Static limitations:Limitations.MINIMUM_TABLE_LENGTH}"></Label>
+                    </Grid>
+
+                    <Label x:Name="tableHeightLabel" Grid.Row="4">Висота стола (В сантиметрах)</Label>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Slider x:Name="tableHeightSlider" Grid.Column="0" Margin="10, 0, 10, 0" 
+                            Minimum="{x:Static limitations:Limitations.MINIMUM_TABLE_HEIGHT}" 
+                            Maximum="{x:Static limitations:Limitations.MAXIMUM_TABLE_HEIGHT}"
+                            AutoToolTipPlacement="TopLeft"
+                            TickPlacement="Both" ValueChanged="tableHeightSlider_ValueChanged"/>
+
+                        <Label x:Name="tableHeightSliderValueLabel" Grid.Column="1" Content="{x:Static limitations:Limitations.MINIMUM_TABLE_HEIGHT}"></Label>
                     </Grid>
                 </Grid>
 
@@ -162,13 +180,13 @@
                         <WrapPanel Grid.Row="0">
                             <Label x:Name="workLengthLabel">Довжина робочого простору:</Label>
                             <Label Name="workLengthValueLabel">0</Label>
-                            <Label>metters</Label>
+                            <Label>метрів</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="1">
                             <Label x:Name="workWidthLabel">Ширина робочого простору:</Label>
                             <Label Name="workWidthValueLabel">0</Label>
-                            <Label>metters</Label>
+                            <Label>метрів</Label>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="2">
@@ -217,22 +235,6 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" ShowGridLines="True">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-
-                        <WrapPanel Grid.Row="0">
-                            <Label x:Name="lampsInWidthLabel">Світильників в ширину:</Label>
-                            <Label Name="lampsInWidthValueLabel">0</Label>
-                        </WrapPanel>
-
-                        <WrapPanel Grid.Row="1">
-                            <Label x:Name="lampsInLengthLabel">Світильників в довжину:</Label>
-                            <Label Name="lampsInLengthValueLabel">0</Label>
-                        </WrapPanel>
-
                         <WrapPanel Grid.Row="2">
                             <Label>Загальна кількість світильників</Label>
                             <Label Name="totalLampsCountValueLabel">0</Label>

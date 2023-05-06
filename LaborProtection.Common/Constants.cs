@@ -18,8 +18,10 @@
         public const string CAN_NOT_GET_PARENT_ERROR = "Can't to get the parent. Something went wrong";
         public const string INVALIDA_VALUE_ERROR = "Invalida value";
         public const string VALUE_MUST_BE_SELECTED_ERROR = "This value must be selected";
-        public const string IMAGE_NOT_SELECTED = "Image not selected";
-        public const string TABLE_IS_SMALL = "Table's sizes must be greater than work space sizes";
+        public const string IMAGE_NOT_SELECTED_ERROR = "Image not selected";
+        public const string TABLE_IS_SMALL_ERROR = "Table's sizes must be greater than work space sizes";
+        public const string UNKNOWN_LAMP_TYPE_ERROR = "Unknown lamp type";
+        public const string CAN_NOT_GET_VALUE_ERROR = "Can't get value";
     }
 
     public class Messages

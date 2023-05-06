@@ -22,6 +22,7 @@ namespace LaborProtection.Desktop
 			_spaces = _roomEntity.WorkSpaces;
 			_tablesInHeight = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Length, workSpace.Length);
 			_tablesInWidth = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Width, workSpace.Width);
+
 			InitializeComponent();
 		}
 

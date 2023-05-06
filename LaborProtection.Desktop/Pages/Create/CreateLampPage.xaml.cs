@@ -58,7 +58,7 @@ namespace LaborProtection.Desktop.Pages
             if (!fileDialog.CheckFileExists || 
                 string.IsNullOrEmpty(fileDialog.FileName))
             {
-                SetSpecificError(imageErrorLabel, Errors.IMAGE_NOT_SELECTED, Brushes.Red, Visibility.Visible); 
+                SetSpecificError(imageErrorLabel, Errors.IMAGE_NOT_SELECTED_ERROR, Brushes.Red, Visibility.Visible); 
                 return;
             }
             

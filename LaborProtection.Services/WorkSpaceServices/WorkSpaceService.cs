@@ -50,43 +50,28 @@ namespace LaborProtection.Services.WorkSpaceServices
                 Width = roomWidth,
             };
 
-            int spacesInLength = GetWorkSpacesInLegth(workSpace.Length, roomLength);
-            int spacesInWidth = GetWorkSpacesInWidth(workSpace.Width, roomWidth);
+            // int spacesInLength = GetWorkSpacesInLegth(workSpace.Length, roomLength);
+            // int spacesInWidth = GetWorkSpacesInWidth(workSpace.Width, roomWidth);
 
-            try
+            roomEntity.WorkSpace = new WorkSpaceEntity()
             {
-                roomEntity.WorkSpaces = new WorkSpaceEntity[spacesInLength, spacesInWidth];
-            }
-            catch (Exception ex)
-            {
-                return ResponseService<RoomEntity>.Error();
-            }
-
-            for (int i = 0; i < spacesInLength; i++)
-            {
-                for (int j = 0; j < spacesInWidth; j++)
+                Height = workSpace.Height,
+                Length = workSpace.Length,
+                Width = workSpace.Width,
+                Table = new TableEntity()
                 {
-                    roomEntity.WorkSpaces[i, j] = new WorkSpaceEntity()
-                    {
-                        Height = workSpace.Height,
-                        Length = workSpace.Length,
-                        Width = workSpace.Width,
-                        Table = new TableEntity()
-                        {
-                            Length = workSpace.Table.Length,
-                            Width = workSpace.Table.Width,
-                        },
-                    };
-                }
-            }
+                    Length = workSpace.Table.Length,
+                    Width = workSpace.Table.Width,
+                },
+            };
 
             return ResponseService<RoomEntity>.Ok(roomEntity);
         }
 
         public async Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth)
         {
-            if (LengthConverter.SantimettersToMetters(tableLength) < 0 ||
-                LengthConverter.SantimettersToMetters(tableWidth) < 0)
+            if (LengthConverter.SantimettersToMetters(tableLength) <= 0 ||
+                LengthConverter.SantimettersToMetters(tableWidth) <= 0)
             {
                 return ResponseService<WorkSpaceEntity>.Error();
             }
