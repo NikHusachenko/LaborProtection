@@ -175,8 +175,9 @@ namespace LaborProtection.Desktop.Pages.Calculations
 				Length = Convert.ToDouble(roomLengthTextBox.Text),
 				Height = Convert.ToDouble(roomHeightTextBox.Text),
 			}, workSpace);
-
 			roomWorkSpacesWindow.ShowDialog();
+
+
 		}
 
 		private async void CalculationWorkArea()

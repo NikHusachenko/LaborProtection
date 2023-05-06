@@ -38,7 +38,6 @@ namespace LaborProtection.Desktop.GraphicElements
 				}
 			}
 			canvas.Children.Add(RoomRectangle);
-			
 		}
 	}
 }
