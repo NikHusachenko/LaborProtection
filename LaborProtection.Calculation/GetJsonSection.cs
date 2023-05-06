@@ -5,8 +5,8 @@ namespace LaborProtection.Calculation
 {
     public static class GetJsonSection
     {
-        private const string LSPPath = "LSPReflection.json";
-        private const string LPOPath = "LPOReflection.json";
+        private const string LSPPath = @"C:\GAmes\Курси\LabProjectDevelopment\Task10\LaborProtection\LaborProtection.Calculation\LSPReflection.json";//"LSPReflection.json";
+        private const string LPOPath = @"C:\GAmes\Курси\LabProjectDevelopment\Task10\LaborProtection\LaborProtection.Calculation\LPOReflection.json";//"LPOReflection.json";
 
         public static int GetValue(string section, JsonSource source)
         {

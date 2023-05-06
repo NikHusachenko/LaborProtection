@@ -15,7 +15,12 @@
 
         public const double BETWEEN_TABLES = 1.2; // Metters
         public const double BETWEEN_MONITORS = 2.5; // Metters
-    }
+
+        public const double DEFAULT_LAMP_SPACE_HEIGHT = 3; // Metters
+        public const double DEFAULT_LAMP_SPACE_WIDTH = 1.5; // Metters
+		public const double DEFAULT_LAMP_LENGHT = 0.5; // Metters
+		public const double DEFAULT_LAMP_WIDTH = 1.5; // Metters
+	}
 
     public static class LightReflection
     {

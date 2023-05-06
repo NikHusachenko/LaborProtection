@@ -9,15 +9,17 @@ using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.GraphicElements
 {
-	public class RoomElement
+	public class RoomElement<T> 
+		where T : class
 	{
 		public Rectangle RoomRectangle { get; set; }
-		public RoomElement(RoomEntity room, TransponeService transponeServiceWidth,TransponeService transponeServiceHeight,int tableNumberLenght,int tableNumberWidth,Canvas canvas)//int roomWidth, int roomHeight, int tableNumberWidth, int tableNumberHeight, Canvas canvas)
+		public RoomElement(RoomEntity room, TransponeService transponeServiceWidth,TransponeService transponeServiceHeight,int elementNumberLenght,int elementNumberWidth,Canvas canvas)
 		{
-			CreateRoom(room, transponeServiceWidth,transponeServiceHeight, tableNumberLenght,tableNumberWidth, canvas);
+
+			CreateRoom(room, transponeServiceWidth,transponeServiceHeight, elementNumberLenght,elementNumberWidth, canvas);
 		}
 
-		private void CreateRoom(RoomEntity roomEntity, TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, int tableNumberWidth, int tableNumberHeight, Canvas canvas)
+		private void CreateRoom(RoomEntity roomEntity, TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, int elementNumberLenght, int elementNumberWidth,Canvas canvas)
 		{
 			RoomRectangle = new Rectangle
 			{
@@ -25,17 +27,54 @@ namespace LaborProtection.Desktop.GraphicElements
 				Height = transponeServiceHeight.ConditionalUnit * roomEntity.Length,
 				Stroke = Brushes.Black,
 			};
-
-			for (int i = 0; i < tableNumberWidth; i++)
+			
+			for (int i = 0; i < elementNumberLenght; i++)
 			{
-				for (int j = 0; j < tableNumberHeight; j++)
+				for (int j = 0; j < elementNumberWidth; j++)
 				{
-					new WorkSpaceElement(roomEntity.WorkSpace,transponeServiceWidth, transponeServiceHeight, canvas,
-						 i * transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width, // SetLeft
-						 j * transponeServiceHeight.ConditionalUnit * roomEntity.WorkSpace.Length); // SetTop
-				}
+					if(typeof(T) == typeof(WorkSpaceElement))
+			        {
+						new WorkSpaceElement(roomEntity.WorkSpace, transponeServiceWidth, transponeServiceHeight, canvas,
+							 i * transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width, // SetLeft
+							 j * transponeServiceHeight.ConditionalUnit * roomEntity.WorkSpace.Length); // SetTop
+				    }
+					else if(typeof(T) == typeof(LampElement))
+					{
+						new LampElement(transponeServiceWidth, transponeServiceHeight, canvas,
+							i * transponeServiceWidth.ConditionalUnit * Limitations.DEFAULT_LAMP_SPACE_WIDTH,
+							j * transponeServiceHeight.ConditionalUnit * Limitations.DEFAULT_LAMP_SPACE_HEIGHT);
+
+					}
+			    }
 			}
 			canvas.Children.Add(RoomRectangle);
 		}
+		//private void CreateRoom(RoomEntity roomEntity, TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, int elementNumberLenght, int elementNumberWidth, Canvas canvas)
+		//{
+		//	RoomRectangle = new Rectangle
+		//	{
+		//		Width = transponeServiceWidth.ConditionalUnit * roomEntity.Width,
+		//		Height = transponeServiceHeight.ConditionalUnit * roomEntity.Length,
+		//		Stroke = Brushes.Black,
+		//	};
+
+		//	for (int i = 0; i < elementNumberLenght; i++)
+		//	{
+		//		for (int j = 0; j < elementNumberWidth; j++)
+		//		{
+		//			if (typeof(T) == typeof(WorkSpaceElement))
+		//			{
+		//				new WorkSpaceElement(roomEntity.WorkSpace, transponeServiceWidth, transponeServiceHeight, canvas,
+		//					 i * transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width, // SetLeft
+		//					 j * transponeServiceHeight.ConditionalUnit * roomEntity.WorkSpace.Length); // SetTop
+		//			}
+		//			else if (typeof(T) == typeof(LampElement))
+		//			{
+		//				//new LampElement()
+		//			}
+		//		}
+		//	}
+		//	canvas.Children.Add(RoomRectangle);
+		//}
 	}
 }

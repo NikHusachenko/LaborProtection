@@ -28,7 +28,7 @@ namespace LaborProtection.Desktop
 			_transponeServiceWidth =  new TransponeService(_roomEntity.Width, canvasGrid.ActualWidth);
 			_transponseSerivceHeight = new TransponeService(_roomEntity.Length, canvasGrid.ActualHeight);
 
-			RoomElement roomElement = new RoomElement(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, _tablesInWidth,_tablesInHeight,canvasGrid);
+			RoomElement<WorkSpaceElement> roomElement = new RoomElement<WorkSpaceElement>(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, _tablesInWidth,_tablesInHeight,canvasGrid);
 		}
 	}
 }
