@@ -23,10 +23,10 @@ namespace LaborProtection.Services.LightServices
             _bulbService = bulbService;
         }
 
-        public double GetLampCount(RoomEntity roomEntity, LampEntity lampEntity, BulbEntity bulbEntity, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
+        public int GetLampCount(RoomEntity roomEntity, LampEntity lampEntity, BulbEntity bulbEntity, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
         {
             double flux = LightFlux(roomEntity, lampEntity, floorReflection, wallReflection, ceillingReflection, lampType);
-            return flux / bulbEntity.LightFlux;
+            return (int)Math.Round(flux / bulbEntity.LightFlux);
         }
 
         public ResponseService<int> GetUseCoefficient(double roomIndex, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)

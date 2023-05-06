@@ -50,8 +50,8 @@ namespace LaborProtection.Services.WorkSpaceServices
                 Width = roomWidth,
             };
 
-            int spacesInLength = GetWorkSpacesInLegth(workSpace.Length, roomLength);
-            int spacesInWidth = GetWorkSpacesInWidth(workSpace.Width, roomWidth);
+            // int spacesInLength = GetWorkSpacesInLegth(workSpace.Length, roomLength);
+            // int spacesInWidth = GetWorkSpacesInWidth(workSpace.Width, roomWidth);
 
             roomEntity.WorkSpace = new WorkSpaceEntity()
             {

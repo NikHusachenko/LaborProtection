@@ -9,8 +9,8 @@ using LaborProtection.Services.WorkSpaceServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,6 +26,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private readonly ILampService _lampService;
         private readonly IBulbService _bulbService;
         private readonly ILightService _lightService;
+
         private readonly SemaphoreSlim _semaphoreSlim;
 
         private LampEntity _selectedLamp;
@@ -33,6 +34,10 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
         private ViewLampInformationWindow _viewLampWindow;
         private ViewBulbInformationWindow _viewBulbWindow;
+
+        private bool _lengthSliderIsLoaded = false;
+        private bool _widthSliderIsLoaded = false;
+        private bool _heightSliderIsLoaded = false;
 
         public CalculationAreaPage(IWorkSpaceService workSpaceService,
             ILampService lampService,
@@ -83,32 +88,46 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
         private void floorReflectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void wallReflectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void ceillingReflectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CalculationWorkArea();
         }
 
         private void tableWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (!_widthSliderIsLoaded)
+            {
+                _widthSliderIsLoaded = true;
+                return;
+            }
+
             if (tableWidthSliderValueLabel != null)
             {
                 tableWidthSliderValueLabel.Content = (int)tableWidthSlider.Value;
+                CalculationWorkArea();
             }
         }
 
         private void tableLengthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (!_lengthSliderIsLoaded)
+            {
+                _lengthSliderIsLoaded = true;
+                return;
+            }
+
             if (tableLengthSliderValueLabel != null)
             {
                 tableLengthSliderValueLabel.Content = (int)tableLengthSlider.Value;
+                CalculationWorkArea();
             }
         }
 
@@ -128,6 +147,8 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
                 BitmapImage bitmap = new BitmapImage(new Uri(Path.GetFullPath(_selectedLamp.ImagePath)));
                 selectedLampImage.Source = bitmap;
+
+                CalculationWorkArea();
             }
             else
             {
@@ -148,6 +169,8 @@ namespace LaborProtection.Desktop.Pages.Calculations
 
                 _selectedBulb = response.Value;
                 bulbInformationButton.IsEnabled = true;
+
+                CalculationWorkArea();
             }
             else
             {
@@ -213,16 +236,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
                 return;
             }
 
-            var workSpaceResult = await _workSpaceService.GetWorkSpace(roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
-            if (workSpaceResult.IsError)
-            {
-                roomHeightLabel.Foreground = Brushes.Red;
-                tableLengthLabel.Foreground = Brushes.Red;
-                tableWidthLabel.Foreground = Brushes.Red;
-                return;
-            }
-
-            var getRoomResult = _workSpaceService.GetRoom(roomLength, roomWidth, roomHeight, workSpaceResult.Value);
+            var getRoomResult = _workSpaceService.GetRoom(roomLength, roomWidth, roomHeight, spaceArea.Value);
             if (getRoomResult.IsError)
             {
                 roomHeightLabel.Foreground = Brushes.Red;
@@ -239,11 +253,67 @@ namespace LaborProtection.Desktop.Pages.Calculations
             workWidthValueLabel.Content = spaceArea.Value.Width;
 
             int inLength = _workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
-            tablesInLengthValueLabel.Content = inLength;
             int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
+            tablesInLengthValueLabel.Content = inLength;
             tablesInWidthValueLabel.Content = inWidth;
+            totalTablesCountValueLabel.Content = inLength * inWidth;
 
 
+            // Light calculations
+            if (floorReflectionComboBox.SelectedValue == null)
+            {
+                floorReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+            string floorReflectionValue = floorReflectionComboBox.SelectedValue.ToString();
+            if (!int.TryParse(floorReflectionValue, out int floorReflection))
+            {
+                floorReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            if (wallReflectionComboBox.SelectedValue == null)
+            {
+                wallReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+            string wallReflectionValue = wallReflectionComboBox.SelectedValue.ToString();
+            if (!int.TryParse(wallReflectionValue, out int wallReflection))
+            {
+                wallReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            if (cellingReflectionComboBox.SelectedValue == null)
+            {
+                ceillingReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+            string ceillingReflectionValue = cellingReflectionComboBox.SelectedValue.ToString();
+            if (!int.TryParse(ceillingReflectionValue, out int ceillingreflection))
+            {
+                ceillingReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            if (_selectedLamp == null)
+            {
+                lampTypeLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            if (_selectedBulb == null)
+            {
+                lampBulbLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            int lamps = _lightService.GetLampCount(getRoomResult.Value, _selectedLamp, _selectedBulb, floorReflection, wallReflection, ceillingreflection, _selectedLamp.Type);
+            totalLampsCountValueLabel.Content = lamps;
+            bulbsInLampValueLabel.Content = _selectedLamp.BulbCount;
+            totalBulbsCountValueLabel.Content = lamps * _selectedLamp.BulbCount;
+            bulbsInLampCostValueLabel.Content = _selectedLamp.BulbCount * _selectedBulb.Price;
+            totalPriceValueLabel.Content = _selectedLamp.BulbCount * _selectedBulb.Price * lamps;
         }
 
         private void ClearAllError()
@@ -340,6 +410,21 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private void bulbInformationButton_MouseLeave(object sender, MouseEventArgs e)
         {
             _viewBulbWindow.Close();
+        }
+
+        private void tableHeightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!_heightSliderIsLoaded)
+            {
+                _heightSliderIsLoaded = true;
+                return;
+            }
+
+            if (tableHeightSliderValueLabel != null)
+            {
+                tableHeightSliderValueLabel.Content = (int)tableHeightSlider.Value;
+                CalculationWorkArea();
+            }
         }
     }
 }
