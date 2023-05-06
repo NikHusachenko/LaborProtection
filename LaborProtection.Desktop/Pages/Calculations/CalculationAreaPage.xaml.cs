@@ -184,20 +184,30 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             CalculationWorkArea();
 
-            RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
-            {
-                Height = 3,
-                Length = 5,
-                Width = 7,
-                WorkSpace = new WorkSpaceEntity()
-                {
-
-                }
+			TableEntity tableEntity = new TableEntity()
+			{
+				Length = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableWidthSlider.Value),
+				Width = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableLengthSlider.Value),
+			};
+			WorkSpaceEntity workSpace = new WorkSpaceEntity()
+			{
+				Length = Limitations.BETWEEN_MONITORS,
+				Width = tableEntity.Width + Limitations.BETWEEN_TABLES,
+				Height = Convert.ToDouble(roomHeightTextBox.Text),
+				Table = tableEntity,
+			};
+			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
+			{
+				Width = Convert.ToDouble(roomWidthTextBox.Text),
+				Length = Convert.ToDouble(roomLengthTextBox.Text),
+				Height = Convert.ToDouble(roomHeightTextBox.Text),
+                WorkSpace = workSpace,
 			});
-            roomWorkSpacesWindow.ShowDialog();
-        }
+			roomWorkSpacesWindow.ShowDialog();
 
-        private async void CalculationWorkArea()
+		}
+
+		private async void CalculationWorkArea()
         {
             ClearAllError();
 
