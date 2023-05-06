@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LaborProtection.Desktop"
         mc:Ignorable="d"
         Title="RoomLampsWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Canvas x:Name="canvasGrid" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="canvasGrid_Loaded"></Canvas>
     </Grid>
 </Window>

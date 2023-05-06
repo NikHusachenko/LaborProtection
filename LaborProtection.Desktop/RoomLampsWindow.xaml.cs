@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LaborProtection.Calculation.Entities;
+using LaborProtection.Database.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,17 @@ namespace LaborProtection.Desktop
 	/// </summary>
 	public partial class RoomLampsWindow : Window
 	{
+		private readonly RoomEntity _roomEntity;
+		private readonly LampEntity _lampEntity;
 		public RoomLampsWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void canvasGrid_Loaded(object sender, RoutedEventArgs e)
+		{
+			canvasGrid.Visibility = Visibility.Visible;
+
 		}
 	}
 }

@@ -14,6 +14,7 @@
         public const double MAXIMUM_TABLE_HEIGHT = 80.0; // Santimetters
 
         public const double BETWEEN_TABLES = 1.2; // Metters
+        public const double BETWEEN_MONITORS = 2.5; // Metters
     }
 
     public static class LightReflection

@@ -1,4 +1,5 @@
-﻿using LaborProtection.Calculation.Entities;
+﻿using LaborProtection.Calculation.Constants;
+using LaborProtection.Calculation.Entities;
 using LaborProtection.Database.Entities;
 using LaborProtection.Database.Enums;
 using LaborProtection.Desktop.Windows.Views;
@@ -6,6 +7,7 @@ using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.LightServices;
 using LaborProtection.Services.WorkSpaceServices;
+using LaborProtection.Services.WorkSpaceServices.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -1,9 +1,7 @@
-﻿using LaborProtection.Calculation.Constants;
+﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Services.TransponeServices;
-using System;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace LaborProtection.Desktop.GraphicElements
@@ -13,47 +11,48 @@ namespace LaborProtection.Desktop.GraphicElements
 		public static Rectangle MonitorElement { get; set; }
 		public static Rectangle TableElement { get; set; }
 		public static Rectangle WorkAreaElement { get; set; }
-		private static TransponeService TransponeServiceWeight { get; set; }
-		private static TransponeService TransponeServiceHeight { get; set; }
-		public WorkSpaceElement(TransponeService transponeServiceWidth, TransponeService transponeServiceHeight, Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		private static TransponeService TransponeServiceWidth { get; set; }
+		private static TransponeService TransponeServiceLength { get; set; }
+		public WorkSpaceElement(WorkSpaceEntity workSpace, TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas, double SetLeft, double SetTop)
 		{
-			TransponeServiceWeight = transponeServiceWidth;
-			TransponeServiceHeight = transponeServiceHeight;
-			CreateTable(roomCanvas, SetLeft, SetTop);
+			TransponeServiceWidth = transponeServiceWidth;
+			TransponeServiceLength = transponeServiceLength;
+			CreateTable(workSpace, roomCanvas, SetLeft, SetTop);
 		}
-		public void CreateTable(Canvas roomCanvas, Func<double> SetLeft, Func<double> SetTop)
+		public void CreateTable(WorkSpaceEntity workSpace, Canvas roomCanvas, double SetLeft, double SetTop)
 		{
-			double r = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH;
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMAL_WIDTH,
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Length,
+				Background = Brushes.Black
 			};
 
-			Canvas.SetLeft(WorkSpaceCanvas, SetLeft());
-			Canvas.SetTop(WorkSpaceCanvas, SetTop());
+			Canvas.SetLeft(WorkSpaceCanvas, SetLeft);
+			Canvas.SetTop(WorkSpaceCanvas, SetTop);
 
 			MonitorElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * 0.1,
-				Width = TransponeServiceWeight.ConditionalUnit * 0.2,
+				Width = TransponeServiceWidth.ConditionalUnit * 0.2,
+				Height = TransponeServiceLength.ConditionalUnit * 0.1,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White,
 
 			};
-			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width);
+
+			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width / 2);
 			TableElement = new Rectangle()
 			{
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.MINIMUM_TABLE_LENGTH / 100,/////////////////////////////////////////
-				Width = TransponeServiceWeight.ConditionalUnit * Limitations.MINIMUM_TABLE_WIDTH / 100,/////////////////////////////////////////
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Table.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Table.Length,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
-
+			Canvas.SetLeft(TableElement, WorkSpaceCanvas.Width / 2 - TableElement.Width / 2);
 			WorkAreaElement = new Rectangle()
 			{
-				Height = Limitations.MINIMAL_WIDTH,
-				Width = Limitations.MINIMUM_TABLE_WIDTH,
+				Width = TransponeServiceWidth.ConditionalUnit * workSpace.Width,
+				Height = TransponeServiceLength.ConditionalUnit * workSpace.Length,
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};
