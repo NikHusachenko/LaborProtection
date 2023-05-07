@@ -372,6 +372,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             await _semaphoreSlim.WaitAsync();
 
+            lampSelectorComboBox.Items.Clear();
             ICollection<LampEntity> lamps = await _lampService.GetAll();
             foreach (LampEntity lamp in lamps)
             {
@@ -385,6 +386,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             await _semaphoreSlim.WaitAsync();
 
+            bulbSelectorComboBox.Items.Clear();
             ICollection<BulbEntity> bulbs = await _bulbService.GetAll();
             foreach (BulbEntity bulb in bulbs)
             {
