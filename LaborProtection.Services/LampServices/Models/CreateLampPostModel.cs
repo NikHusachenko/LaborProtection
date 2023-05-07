@@ -26,7 +26,7 @@ namespace LaborProtection.Services.LampServices.Models
                 .NotEmpty()
                 .NotNull()
                 .GreaterThanOrEqualTo(1)
-                .LessThan(Enum.GetNames(typeof(LampType)).Length);
+                .LessThan(Enum.GetNames(typeof(LampType)).Length + 1);
 
             RuleFor(x => x.Price)
                 .NotEmpty()

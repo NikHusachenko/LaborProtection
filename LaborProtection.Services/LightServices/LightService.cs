@@ -9,6 +9,7 @@ using LaborProtection.EntityFramework.Repository;
 using LaborProtection.Services.BulbServices;
 using LaborProtection.Services.LampServices;
 using LaborProtection.Services.Response;
+using LaborProtection.Services.WorkSpaceServices.Helpers;
 
 namespace LaborProtection.Services.LightServices
 {
@@ -32,8 +33,10 @@ namespace LaborProtection.Services.LightServices
                 return ResponseService<int>.Error(response.ErrorMessage);
             }
 
-            int count = (int)Math.Round(response.Value / bulbEntity.LightFlux);
-            return ResponseService<int>.Ok(count);
+            int bulbCount = (int)Math.Ceiling(response.Value / bulbEntity.LightFlux);
+            int lampCount = (int)(bulbCount / lampEntity.BulbCount);
+
+            return ResponseService<int>.Ok(lampCount);
         }
 
         public ResponseService<int> GetUseCoefficient(double roomIndex, double floorReflection, double wallReflection, double ceillingReflection, LampType lampType)
@@ -84,12 +87,19 @@ namespace LaborProtection.Services.LightServices
                 return ResponseService<double>.Error(response.ErrorMessage);
             }
 
-            return ResponseService<double>.Ok(Light.E * Light.K * Light.Z * GetRoomArea(roomEntity) / response.Value);
+            double top = Light.E * Light.K * Light.Z * GetRoomArea(roomEntity);
+            double bottom = (response.Value / 100.0);
+
+            double lightFlux = top / bottom;
+            return ResponseService<double>.Ok(lightFlux);
         }
 
         public double RoomIndex(RoomEntity roomEntity, LampEntity lampEntity)
         {
-            double lampHeightSuspension = LampHeightSuspension(roomEntity.Height, lampEntity.Height, roomEntity.WorkSpace.Table.Height);
+            double lampHeightSuspension = LampHeightSuspension(roomEntity.Height, 
+                LengthConverter.MillimetreToMetters(lampEntity.Height), 
+                LengthConverter.SantimettersToMetters(roomEntity.WorkSpace.Table.Height));
+
             double roomArea = GetRoomArea(roomEntity);
 
             return roomArea / (lampHeightSuspension * (roomEntity.Width + roomEntity.Length));
@@ -97,7 +107,7 @@ namespace LaborProtection.Services.LightServices
 
         private double GetRoomArea(RoomEntity roomEntity)
         {
-            return roomEntity.Length * roomEntity.Height * roomEntity.Width;
+            return roomEntity.Length * roomEntity.Width;
         }
     }
 }

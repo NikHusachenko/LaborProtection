@@ -62,13 +62,14 @@ namespace LaborProtection.Services.WorkSpaceServices
                 {
                     Length = workSpace.Table.Length,
                     Width = workSpace.Table.Width,
+                    Height = workSpace.Table.Height,
                 },
             };
 
             return ResponseService<RoomEntity>.Ok(roomEntity);
         }
 
-        public async Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth)
+        public async Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth, double tableHeight)
         {
             if (LengthConverter.SantimettersToMetters(tableLength) <= 0 ||
                 LengthConverter.SantimettersToMetters(tableWidth) <= 0)
@@ -100,6 +101,7 @@ namespace LaborProtection.Services.WorkSpaceServices
                 {
                     Length = tableLength,
                     Width = tableWidth,
+                    Height = tableHeight,
                 },
             });
         }

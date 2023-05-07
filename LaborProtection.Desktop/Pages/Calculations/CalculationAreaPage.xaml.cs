@@ -237,7 +237,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
 
             // Calculations
-            var spaceArea = await _workSpaceService.GetWorkSpace(roomHeight, tableLengthSlider.Value, tableWidthSlider.Value);
+            var spaceArea = await _workSpaceService.GetWorkSpace(roomHeight, tableLengthSlider.Value, tableWidthSlider.Value, tableHeightSlider.Value);
             if (spaceArea.IsError)
             {
                 roomLengthLabel.Foreground = Brushes.Red;
@@ -330,11 +330,12 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
 
             int lamps = lampResponse.Value;
+
             totalLampsCountValueLabel.Content = lamps;
             bulbsInLampValueLabel.Content = _selectedLamp.BulbCount;
             totalBulbsCountValueLabel.Content = lamps * _selectedLamp.BulbCount;
-            bulbsInLampCostValueLabel.Content = _selectedLamp.BulbCount * _selectedBulb.Price;
-            totalPriceValueLabel.Content = _selectedLamp.BulbCount * _selectedBulb.Price * lamps;
+            bulbsInLampCostValueLabel.Content = _selectedLamp.BulbCount * _selectedBulb.Price + _selectedLamp.Price;
+            totalPriceValueLabel.Content = lamps * _selectedLamp.Price + lamps * _selectedLamp.BulbCount * _selectedBulb.Price;
         }
 
         private void ClearAllError()

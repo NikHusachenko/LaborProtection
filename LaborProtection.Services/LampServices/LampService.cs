@@ -19,7 +19,7 @@ namespace LaborProtection.Services.LampServices
 
         public async Task<ResponseService<long>> Create(CreateLampPostModel vm)
         {
-            LampEntity dbRecord = await _lampRepository.GetBy(lamp => lamp.Name == vm.Name);
+            LampEntity dbRecord = await _lampRepository.GetBy(lamp => lamp.Name == vm.Name && !lamp.DeletedOn.HasValue);
             if (dbRecord != null)
             {
                 return ResponseService<long>.Error(Errors.WAS_CREATED_ERROR);

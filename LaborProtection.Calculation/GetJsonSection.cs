@@ -43,6 +43,11 @@ namespace LaborProtection.Calculation
 
             double lastAsDouble = double.Parse(last);
 
+            if (lastAsDouble <= 0)
+            {
+                return -1;
+            }
+
             try
             {
                 lastAsDouble = RoundToNearest(lastAsDouble, dict.Select(x => double.Parse(x.Key)).ToList());

@@ -5,7 +5,7 @@ namespace LaborProtection.Services.WorkSpaceServices
 {
     public interface IWorkSpaceService
     {
-        Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth);
+        Task<ResponseService<WorkSpaceEntity>> GetWorkSpace(double roomHeight, double tableLength, double tableWidth, double tableHeight);
         ResponseService<RoomEntity> GetRoom(double roomLength, double roomWidth, double roomHeight, WorkSpaceEntity workSpace);
 
         int GetWorkSpacesInLegth(double workspaceLength, double roomLength);
