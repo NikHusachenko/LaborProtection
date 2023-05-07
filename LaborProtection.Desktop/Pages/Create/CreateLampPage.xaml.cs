@@ -71,16 +71,16 @@ namespace LaborProtection.Desktop.Pages
         {
             if (!ushort.TryParse(lampBulbCountTextBox.Text, out ushort bulbCount))
             {
-                SetSpecificError(lampBulbCountErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(lampBulbCountErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
                 return;
             }
             if (!float.TryParse(lampHeightTextBox.Text, out float height))
             {
-                SetSpecificError(lampHeightErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(lampHeightErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
             }
             if (!float.TryParse(lampPriceTextBox.Text, out float price))
             {
-                SetSpecificError(lampPriceErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(lampPriceErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
             }
 
             CreateLampPostModel vm = new CreateLampPostModel()

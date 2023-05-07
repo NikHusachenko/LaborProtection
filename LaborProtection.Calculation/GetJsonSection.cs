@@ -42,9 +42,23 @@ namespace LaborProtection.Calculation
             }
 
             double lastAsDouble = double.Parse(last);
-            lastAsDouble = RoundToNearest(lastAsDouble, dict.Select(x => double.Parse(x.Key)).ToList());
 
-            string fixedQuery = $"{queryWithoutLastSection}:{lastAsDouble}";
+            try
+            {
+                lastAsDouble = RoundToNearest(lastAsDouble, dict.Select(x => double.Parse(x.Key)).ToList());
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+            last = lastAsDouble.ToString();
+            if (!last.Contains(','))
+            {
+                last += ",0";
+            }
+
+            string fixedQuery = $"{queryWithoutLastSection}:{last}";
             string value = configuration.GetSection(fixedQuery).Value;
 
             return int.Parse(value);

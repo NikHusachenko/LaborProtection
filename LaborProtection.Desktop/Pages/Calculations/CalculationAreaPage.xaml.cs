@@ -320,7 +320,16 @@ namespace LaborProtection.Desktop.Pages.Calculations
                 return;
             }
 
-            int lamps = _lightService.GetLampCount(getRoomResult.Value, _selectedLamp, _selectedBulb, floorReflection, wallReflection, ceillingreflection, _selectedLamp.Type);
+            var lampResponse = await _lightService.GetLampCount(getRoomResult.Value, _selectedLamp, _selectedBulb, floorReflection, wallReflection, ceillingreflection, _selectedLamp.Type);
+            if (lampResponse.IsError)
+            {
+                floorReflectionLabel.Foreground = Brushes.Red;
+                wallReflectionLabel.Foreground = Brushes.Red;
+                ceillingReflectionLabel.Foreground = Brushes.Red;
+                return;
+            }
+
+            int lamps = lampResponse.Value;
             totalLampsCountValueLabel.Content = lamps;
             bulbsInLampValueLabel.Content = _selectedLamp.BulbCount;
             totalBulbsCountValueLabel.Content = lamps * _selectedLamp.BulbCount;

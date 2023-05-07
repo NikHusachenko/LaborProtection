@@ -49,22 +49,22 @@ namespace LaborProtection.Desktop.Pages
 
             if (!int.TryParse(bulbLightFluxTextBox.Text, out int lightFlux))
             {
-                SetSpecificError(bulbLightFluxErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(bulbLightFluxErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
                 return;
             }
             if (!short.TryParse(bulbPowerTextBox.Text, out short power))
             {
-                SetSpecificError(bulbPowerErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(bulbPowerErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
                 return;
             }
             if (!float.TryParse(bulbPriceTextBox.Text, out float price))
             {
-                SetSpecificError(bulbPriceErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(bulbPriceErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
                 return;
             }
             if (!short.TryParse(bulbVoltageTextBox.Text, out short voltage))
             {
-                SetSpecificError(bulbVoltageErrorLabel, Errors.INVALIDA_VALUE_ERROR, Brushes.Red, Visibility.Visible);
+                SetSpecificError(bulbVoltageErrorLabel, Errors.INVALID_VALUE_ERROR, Brushes.Red, Visibility.Visible);
                 return;
             }
 
