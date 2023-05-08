@@ -51,7 +51,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Column="1"  >
+        <Grid Grid.Column="1">
             <Frame x:Name="createFrame" />
         </Grid>
     </Grid>

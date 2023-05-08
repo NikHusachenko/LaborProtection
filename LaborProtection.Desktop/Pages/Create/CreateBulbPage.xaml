@@ -115,9 +115,9 @@
                     Error label
                 </Label>
             </Grid>
-            <Grid Grid.Row="5" Grid.Column="1">
+            
+            <Grid Grid.Row="5" Grid.Column="1" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -127,18 +127,19 @@
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbPriceErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
                 </Label>
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="bulbPriceTextBox2" Grid.Column="0" Style="{StaticResource TextBoxStyle}" />
-                    <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Click="Button_Click">
-                        Зберегти
-                    </Button>
-                </Grid>
             </Grid>
 
+            <Grid Grid.Row="6" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" Grid.RowSpan="2" Click="Button_Click">
+                    Зберегти
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
