@@ -83,13 +83,13 @@ namespace LaborProtection.Services.WorkSpaceServices
                 minimalArea = Limitations.MINIMAL_AREA;
             }
 
-            double spaceWidth = Limitations.MINIMAL_WIDTH;
-            double spaceLength = Math.Round(minimalArea / spaceWidth, 2);
+            double spaceLength = Limitations.MINIMAL_WIDTH;
+            double spaceWidth = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
 
-            if (spaceWidth < LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES)
-            {
-                spaceWidth = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
-            }
+          
+           // double spaceLength = Limitations.BETWEEN_MONITORS;
+           // double spaceWidth = LengthConverter.SantimettersToMetters(tableLength) + Limitations.BETWEEN_TABLES;
+
 
             return ResponseService<WorkSpaceEntity>.Ok(new WorkSpaceEntity()
             {

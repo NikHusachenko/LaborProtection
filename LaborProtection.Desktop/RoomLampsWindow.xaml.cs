@@ -33,8 +33,6 @@ namespace LaborProtection.Desktop
 		private readonly ILightService _lightService;
 		private readonly int lampsNumber;
 
-		private static int _lampsInWidth;
-		private static int _lampsInHeight;
 		public RoomLampsWindow(RoomEntity room, ILightService lightService, LampEntity lampEntity, BulbEntity bulbEntity,
 			double floorReflection,double wallReflection, double ceillingReflection,LampType lampType)
 		{
@@ -42,7 +40,6 @@ namespace LaborProtection.Desktop
 			_lightService = lightService;
 
 			lampsNumber = _lightService.GetLampCount(room,lampEntity,bulbEntity,floorReflection,wallReflection,ceillingReflection,lampType);
-			MessageBox.Show(lampsNumber.ToString());
 			InitializeComponent();
 		}
 
@@ -52,7 +49,7 @@ namespace LaborProtection.Desktop
 			_transponeServiceWidth = new TransponeService(_roomEntity.Width, canvasGrid.ActualWidth);
 			_transponseSerivceHeight = new TransponeService(_roomEntity.Length, canvasGrid.ActualHeight);
 
-			RoomElement<LampElement> roomElement = new RoomElement<LampElement>(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, lampsNumber,null, canvasGrid);
+			RoomElement roomElement = new RoomElement(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, lampsNumber, canvasGrid);
 		}
 	}
 }

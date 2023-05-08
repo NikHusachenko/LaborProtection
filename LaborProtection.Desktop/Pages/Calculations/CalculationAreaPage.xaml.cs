@@ -19,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static LaborProtection.Calculation.Constants.LightReflection;
+using LengthConverter = LaborProtection.Services.WorkSpaceServices.Helpers.LengthConverter;
 
 namespace LaborProtection.Desktop.Pages.Calculations
 {
@@ -271,9 +272,12 @@ namespace LaborProtection.Desktop.Pages.Calculations
             workLengthValueLabel.Content = spaceArea.Value.Length;
             workWidthValueLabel.Content = spaceArea.Value.Width;
 
-            int inLength = _workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
-            int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
-            tablesInLengthValueLabel.Content = inLength;
+			//_tablesInHeight = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Length, room.WorkSpace.Length);
+			//_tablesInWidth = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Width, room.WorkSpace.Width);
+
+			int inLength = LengthConverter.NumbersOfElements(roomWidth,spaceArea.Value.Width);//_workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
+            int inWidth = LengthConverter.NumbersOfElements(roomLength, spaceArea.Value.Length);//_workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
+			tablesInLengthValueLabel.Content = inLength;
             tablesInWidthValueLabel.Content = inWidth;
             totalTablesCountValueLabel.Content = inLength * inWidth;
 
