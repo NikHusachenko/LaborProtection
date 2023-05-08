@@ -8,20 +8,50 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="CreateBulbPage">
 
+    <Page.Resources>
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Label" x:Key="radioLabel">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Width="auto" Height="auto">
-            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                <RadioButton Margin="10" Checked="RadioButton_Checked_1" Content="{x:Static common:UILabels.CREATE_LAMP}"></RadioButton>
-                <RadioButton Margin="10" Checked="RadioButton_Checked" Content="{x:Static common:UILabels.CREATE_BULB}"></RadioButton>
-            </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <RadioButton Grid.Column="0" Style="{StaticResource RadioButtonStyle}" Checked="RadioButton_Checked_1" GroupName="RadioGroup"></RadioButton>
+                <Label Grid.Column="1" Style="{StaticResource radioLabel}" Content="{x:Static common:UILabels.CREATE_LAMP}"></Label>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <RadioButton Grid.Column="0" Style="{StaticResource RadioButtonStyle}" Checked="RadioButton_Checked" GroupName="RadioGroup"></RadioButton>
+                <Label Grid.Column="1" Style="{StaticResource radioLabel}" Content="{x:Static common:UILabels.CREATE_BULB}"></Label>
+            </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Height="auto"  >
+        <Grid Grid.Column="1"  >
             <Frame x:Name="createFrame" />
         </Grid>
     </Grid>

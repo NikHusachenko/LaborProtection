@@ -8,30 +8,41 @@
       d:DesignHeight="500" d:DesignWidth="800"
       Title="CreateBulbPage">
     <Page.Resources>
-        <Style x:Key="ErrorLabelStyle">
-            <Setter Property="Control.Foreground" Value="Red"/>
-            <Setter Property="Control.FontSize" Value="13"/>
-            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+        <Style x:Key="ErrorLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="TextBoxStyle">
-            <Setter Property="ItemsControl.Width" Value="765"/>
-            <Setter Property="ItemsControl.Height" Value="25"/>
-            <Setter Property="ItemsControl.Margin" Value="5,0,5,0"/>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="765"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
-        <Style x:Key="LabelStyle">
-            <Setter Property="ItemsControl.FontSize" Value="20"/>
-            <Setter Property="ItemsControl.FontFamily" Value="Arial"/>
-            <Setter Property="ItemsControl.Margin" Value="0,-1,0,0"/>
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="765"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="23" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="50" />
         </Style>
     </Page.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Height="auto"  HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid Background="White" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -39,10 +50,8 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.Column="1" >
                 <Grid.RowDefinitions>
@@ -50,20 +59,20 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Bulb name</Label>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Назва лампочки</Label>
                 <TextBox Grid.Row="1" x:Name="bulbNameTextBox"  Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" />
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbNameErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
                 </Label>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid Grid.Row="1" Grid.Column="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0"  Grid.Column="1" Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Bulb type</Label>
-                <ComboBox x:Name="bulbTypeComboBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2"></ComboBox>
+                <Label Grid.Row="0"  Grid.Column="1" Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Тип лампочки</Label>
+                <ComboBox x:Name="bulbTypeComboBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" Grid.ColumnSpan="2"></ComboBox>
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbTypeErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
                 </Label>
@@ -75,7 +84,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Voltage</Label>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Напруга</Label>
                 <TextBox Grid.Row="1" x:Name="bulbVoltageTextBox"  Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" />
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbVoltageErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
@@ -88,7 +97,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Power</Label>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Потужність</Label>
                 <TextBox x:Name="bulbPowerTextBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" />
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbPowerErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
@@ -100,29 +109,36 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Light Flux</Label>
+                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Світловий потік</Label>
                 <TextBox x:Name="bulbLightFluxTextBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" />
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbLightFluxErrorLabel" Style="{StaticResource ErrorLabelStyle}" >
                     Error label
                 </Label>
             </Grid>
-             <Grid Grid.Row="5" Grid.Column="1" >
+            <Grid Grid.Row="5" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Price</Label>
+                <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2">Ціна</Label>
                 <TextBox x:Name="bulbPriceTextBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Grid.ColumnSpan="2" />
                 <Label Grid.Row="2" Visibility="Hidden" x:Name ="bulbPriceErrorLabel" Style="{StaticResource ErrorLabelStyle}">
                     Error label
                 </Label>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="bulbPriceTextBox2" Grid.Column="0" Style="{StaticResource TextBoxStyle}" />
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Click="Button_Click">
+                        Зберегти
+                    </Button>
+                </Grid>
             </Grid>
-        </Grid>
-        <Grid Grid.Row="1" >
-            <Button Grid.Row="3"  FontSize="23" FontFamily="Arial" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,15,1" Width="160" Height="40" Grid.RowSpan="2" Click="Button_Click">
-                Save
-            </Button>
+
         </Grid>
     </Grid>
 </Page>

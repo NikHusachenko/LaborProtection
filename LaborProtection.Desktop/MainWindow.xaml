@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         MinHeight="900"
-        MinWidth="1600">
+        MinWidth="1800">
 
 
     <Grid>
