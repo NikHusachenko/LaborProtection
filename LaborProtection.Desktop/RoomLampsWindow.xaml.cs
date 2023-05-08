@@ -43,12 +43,6 @@ namespace LaborProtection.Desktop
 
 			lampsNumber = _lightService.GetLampCount(room,lampEntity,bulbEntity,floorReflection,wallReflection,ceillingReflection,lampType);
 			MessageBox.Show(lampsNumber.ToString());
-
-			
-			//int lampsNumber = _lightService.GetLampCount(room, lampEntity, bulbEntity, floorReflection, wallReflection, ceillingReflection, lampEntity.Type);
-			//_lampsInHeight = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Length, room);
-			//_lampsInWidth = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Width, room.WorkSpace.Width);
-
 			InitializeComponent();
 		}
 

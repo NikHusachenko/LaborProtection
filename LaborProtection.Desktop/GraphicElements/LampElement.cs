@@ -39,16 +39,6 @@ namespace LaborProtection.Desktop.GraphicElements
 			    Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
-			//Canvas.SetLeft(LampRectangleElement, LampSpaceCanvas.Width / 2 - LampRectangleElement.Width / 2);
-			//Canvas.SetTop(LampRectangleElement, LampSpaceCanvas.Height/2 - LampRectangleElement.Height / 2);
-			//LampSpaceElement = new Rectangle()
-			//{
-			//	Width = TransponeServiceWidth.ConditionalUnit * lampSpaceLenght,
-			//	Height = TransponeServiceHeight.ConditionalUnit * lampSpaceWidth,
-			//	//Stroke = Brushes.Black,
-			//	Fill = Brushes.Wheat,
-			//};
-			//LampSpaceCanvas.Children.Add(LampSpaceElement);
 			LampSpaceCanvas.Children.Add(LampRectangleElement);
 			roomCanvas.Children.Add(LampSpaceCanvas);
 		}
