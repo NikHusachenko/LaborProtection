@@ -14,42 +14,41 @@ namespace LaborProtection.Desktop.GraphicElements
 		private static TransponeService TransponeServiceWidth { get; set; }
 		private static TransponeService TransponeServiceHeight { get; set; }
 
-		public LampElement(TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas, double SetLeft, double SetTop)
+		public LampElement(double lampSpaceLenght,double lampSpaceWidth,TransponeService transponeServiceWidth, TransponeService transponeServiceLength, Canvas roomCanvas, double SetLeft, double SetTop)
 		{
 			TransponeServiceWidth = transponeServiceWidth;
 			TransponeServiceHeight = transponeServiceLength;
-			CreateElement(transponeServiceWidth, transponeServiceLength, roomCanvas, SetLeft, SetTop);
+			CreateElement(lampSpaceLenght,lampSpaceWidth,transponeServiceWidth, transponeServiceLength, roomCanvas, SetLeft, SetTop);
 		}
-		private void CreateElement(//double lampLenght,double lampWidth,double lampSpaceLenght,double lampSpaceHeight,
+		private void CreateElement(double lampSpaceLenght, double lampSpaceWidth,
 		TransponeService transponeServiceWidth, TransponeService transponeServiceLength,Canvas roomCanvas, double SetLeft,double SetTop)
 		{
 			Canvas LampSpaceCanvas = new Canvas()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * 1.5,
-				Height = TransponeServiceHeight.ConditionalUnit * 3,
-				//Background = Brushes.Black
+				Width = lampSpaceLenght,
+				Height = lampSpaceWidth,
+				Background = Brushes.Black
 			};
-
 			Canvas.SetLeft(LampSpaceCanvas, SetLeft);
 			Canvas.SetTop(LampSpaceCanvas,SetTop);
 
 			LampRectangleElement = new Rectangle()
 			{
-				Width = TransponeServiceWidth.ConditionalUnit * 0.5,
-				Height = TransponeServiceHeight.ConditionalUnit * 1.5,
+				Width =  lampSpaceLenght,
+				Height = lampSpaceWidth,
 			    Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
-			Canvas.SetLeft(LampRectangleElement, LampSpaceCanvas.Width / 2 - LampRectangleElement.Width / 2);
-			Canvas.SetTop(LampRectangleElement, LampSpaceCanvas.Height/2 - LampRectangleElement.Height / 2);
-			LampSpaceElement = new Rectangle()
-			{
-				Width = TransponeServiceWidth.ConditionalUnit * Limitations.DEFAULT_LAMP_SPACE_WIDTH,
-				Height = TransponeServiceHeight.ConditionalUnit * Limitations.DEFAULT_LAMP_SPACE_HEIGHT,
-				//Stroke = Brushes.Black,
-				Fill = Brushes.Wheat,
-			};
-			LampSpaceCanvas.Children.Add(LampSpaceElement);
+			//Canvas.SetLeft(LampRectangleElement, LampSpaceCanvas.Width / 2 - LampRectangleElement.Width / 2);
+			//Canvas.SetTop(LampRectangleElement, LampSpaceCanvas.Height/2 - LampRectangleElement.Height / 2);
+			//LampSpaceElement = new Rectangle()
+			//{
+			//	Width = TransponeServiceWidth.ConditionalUnit * lampSpaceLenght,
+			//	Height = TransponeServiceHeight.ConditionalUnit * lampSpaceWidth,
+			//	//Stroke = Brushes.Black,
+			//	Fill = Brushes.Wheat,
+			//};
+			//LampSpaceCanvas.Children.Add(LampSpaceElement);
 			LampSpaceCanvas.Children.Add(LampRectangleElement);
 			roomCanvas.Children.Add(LampSpaceCanvas);
 		}

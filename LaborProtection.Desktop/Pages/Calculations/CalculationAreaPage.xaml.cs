@@ -210,7 +210,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
             double wallRefl = Convert.ToDouble(wallReflectionComboBox.SelectedItem);
             double cellingRefl = Convert.ToDouble(cellingReflectionComboBox.SelectedItem);
 
-            RoomLampsWindow roomLampsWindow = new RoomLampsWindow(room);//,_lightService,_selectedLamp,_selectedBulb,floorRefl,wallRefl,cellingRefl,_selectedLamp.Type);
+            RoomLampsWindow roomLampsWindow = new RoomLampsWindow(room,_lightService,_selectedLamp,_selectedBulb,floorRefl,wallRefl,cellingRefl,_selectedLamp.Type);
             roomLampsWindow.ShowDialog();
 		}
 

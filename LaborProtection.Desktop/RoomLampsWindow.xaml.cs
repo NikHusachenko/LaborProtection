@@ -35,14 +35,14 @@ namespace LaborProtection.Desktop
 
 		private static int _lampsInWidth;
 		private static int _lampsInHeight;
-		public RoomLampsWindow(RoomEntity room)//, ILightService lightService, LampEntity lampEntity, BulbEntity bulbEntity,
-			//double floorReflection,double wallReflection, double ceillingReflection,LampType lampType)
+		public RoomLampsWindow(RoomEntity room, ILightService lightService, LampEntity lampEntity, BulbEntity bulbEntity,
+			double floorReflection,double wallReflection, double ceillingReflection,LampType lampType)
 		{
 			_roomEntity = room;
-			//_lightService = lightService;
+			_lightService = lightService;
 
-			//MessageBox.Show(lampsNumber.ToString());
-			//lampsNumber = _lightService.GetLampCount(room,lampEntity,bulbEntity,floorReflection,wallReflection,ceillingReflection,lampType);
+			lampsNumber = _lightService.GetLampCount(room,lampEntity,bulbEntity,floorReflection,wallReflection,ceillingReflection,lampType);
+			MessageBox.Show(lampsNumber.ToString());
 
 			
 			//int lampsNumber = _lightService.GetLampCount(room, lampEntity, bulbEntity, floorReflection, wallReflection, ceillingReflection, lampEntity.Type);
@@ -58,7 +58,7 @@ namespace LaborProtection.Desktop
 			_transponeServiceWidth = new TransponeService(_roomEntity.Width, canvasGrid.ActualWidth);
 			_transponseSerivceHeight = new TransponeService(_roomEntity.Length, canvasGrid.ActualHeight);
 
-			RoomElement<LampElement> roomElement = new RoomElement<LampElement>(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, 6,3, canvasGrid);
+			RoomElement<LampElement> roomElement = new RoomElement<LampElement>(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, lampsNumber,null, canvasGrid);
 		}
 	}
 }
