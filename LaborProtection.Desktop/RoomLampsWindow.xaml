@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LaborProtection.Desktop"
         mc:Ignorable="d"
-        Title="RoomLampsWindow" Height="450" Width="800">
+        Title="RoomLampsWindow" MinHeight="800" MinWidth="1230" MaxHeight="800" MaxWidth="1230">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Canvas x:Name="canvasGrid" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="canvasGrid_Loaded"></Canvas>
     </Grid>

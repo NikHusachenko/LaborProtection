@@ -184,6 +184,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             CalculationWorkArea();
 
+
 			TableEntity tableEntity = new TableEntity()
 			{
 				Length = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableWidthSlider.Value),
@@ -196,14 +197,22 @@ namespace LaborProtection.Desktop.Pages.Calculations
 				Height = Convert.ToDouble(roomHeightTextBox.Text),
 				Table = tableEntity,
 			};
-			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
-			{
-				Width = Convert.ToDouble(roomWidthTextBox.Text),
-				Length = Convert.ToDouble(roomLengthTextBox.Text),
-				Height = Convert.ToDouble(roomHeightTextBox.Text),
+            RoomEntity room = new RoomEntity()
+            {
+                Width = Convert.ToDouble(roomWidthTextBox.Text),
+                Length = Convert.ToDouble(roomLengthTextBox.Text),
+                Height = Convert.ToDouble(roomHeightTextBox.Text),
                 WorkSpace = workSpace,
-			});
+            };
+			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(room);
 			roomWorkSpacesWindow.ShowDialog();
+
+			double floorRefl = Convert.ToDouble(floorReflectionComboBox.SelectedItem);
+			double wallRefl = Convert.ToDouble(wallReflectionComboBox.SelectedItem);
+			double cellingRefl = Convert.ToDouble(cellingReflectionComboBox.SelectedItem);
+
+			RoomLampsWindow roomLampsWindow = new RoomLampsWindow(room, _lightService, _selectedLamp, _selectedBulb, floorRefl, wallRefl, cellingRefl, _selectedLamp.Type);
+			roomLampsWindow.ShowDialog();
 
 		}
 
