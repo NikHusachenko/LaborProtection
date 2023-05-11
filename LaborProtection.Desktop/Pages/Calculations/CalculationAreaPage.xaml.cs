@@ -150,8 +150,11 @@ namespace LaborProtection.Desktop.Pages.Calculations
                 _selectedLamp = response.Value;
                 lampInformationButton.IsEnabled = true;
 
-                BitmapImage bitmap = new BitmapImage(new Uri(Path.GetFullPath(_selectedLamp.ImagePath)));
-                selectedLampImage.Source = bitmap;
+                if (File.Exists(Path.GetFullPath(_selectedLamp.ImagePath)))
+                {
+                    BitmapImage bitmap = new BitmapImage(new Uri(Path.GetFullPath(_selectedLamp.ImagePath)));
+                    selectedLampImage.Source = bitmap;
+                }
 
                 CalculationWorkArea();
             }
