@@ -35,7 +35,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="White" ShowGridLines="True">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="8*"/>

@@ -71,8 +71,24 @@ namespace LaborProtection.Services.LampServices
                 return ResponseService.Error(Errors.NOT_FOUNT_ERROR);
             }
 
-            dbRecord.DeletedOn = DateTime.Now;
-            return await Update(dbRecord);
+            string pathToImage = dbRecord.ImagePath;
+
+            try
+            {
+                await _lampRepository.Delete(dbRecord);
+            }
+            catch (Exception ex)
+            {
+                return ResponseService.Error(ex.Message);
+            }
+
+            try
+            {
+                File.Delete(pathToImage);
+            }
+            catch (Exception ex) { }
+
+            return ResponseService.Ok();
         }
 
         public async Task<ICollection<LampEntity>> GetAll()

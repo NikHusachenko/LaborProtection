@@ -50,13 +50,12 @@ namespace LaborProtection.Desktop.Pages
                     CornerRadius = new CornerRadius(25, 0, 0, 25),
                     BorderThickness = new Thickness(1),
                 };
-
-                string lampInformation = $"{lamp.Id}\n{lamp.Name}\n{lamp.Type}\n{lamp.BulbCount}\n{lamp.Price}";
+                
                 TextBlock textBlock = new TextBlock()
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
-                    Text = lampInformation,
+                    Text = $"Id:\t{lamp.Id}\nНазва:\t{lamp.Name}\nТип:\t{lamp.Type}\nКількість лампочок:\t{lamp.BulbCount}\nЦіна:\t{lamp.Price}",
                     FontSize = 22,
                 };
                 informationBorder.Child = textBlock;
@@ -74,10 +73,14 @@ namespace LaborProtection.Desktop.Pages
 
                 if (File.Exists(lamp.ImagePath))
                 {
-                    BitmapImage bitmap = new BitmapImage(new Uri(Path.GetFullPath(lamp.ImagePath)));
+                    BitmapImage bitmap;
+
+                    bitmap = new BitmapImage(new Uri(Path.GetFullPath(lamp.ImagePath)));
+
                     Image image = new Image()
                     {
                         Source = bitmap,
+                        Name = $"image{lamp.Id}",
                     };
                     imageBorder.Child = image;
                     lampPanel.Children.Add(imageBorder);
@@ -99,7 +102,7 @@ namespace LaborProtection.Desktop.Pages
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
-                removeLabel.MouseLeftButtonDown += async (object sender, MouseButtonEventArgs e) => await RemoveHandler(lamp.Id);
+                removeLabel.MouseLeftButtonDown += async (object sender, MouseButtonEventArgs e) => await RemoveHandler(lamp.Id, $"image{lamp.Id}");
                 removeBorder.Child = removeLabel;
                 lampPanel.Children.Add(removeBorder);
 
@@ -107,13 +110,20 @@ namespace LaborProtection.Desktop.Pages
             }
         }
 
-        private async Task RemoveHandler(long id)
+        private async Task RemoveHandler(long id, string imageName)
         {
             MessageBoxButton button = MessageBoxButton.YesNo;
             MessageBoxResult result = MessageBox.Show(UILabels.CONFIRM_REMOVING, string.Empty, button);
 
             if (result == MessageBoxResult.Yes)
             {
+                Image imageToDelete = FindChild<Image>(this, imageName);
+                if (imageToDelete == null)
+                {
+                    return;
+                }
+
+                imageToDelete.Source = null;
                 var response = await _lampService.Delete(id);
                 if (response.IsError)
                 {
@@ -129,5 +139,29 @@ namespace LaborProtection.Desktop.Pages
                 return;
             }
         }
+
+        public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child != null && child is T && child.GetValue(FrameworkElement.NameProperty) as string == childName)
+                {
+                    return (T)child;
+                }
+                else
+                {
+                    var result = FindChild<T>(child, childName);
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 }

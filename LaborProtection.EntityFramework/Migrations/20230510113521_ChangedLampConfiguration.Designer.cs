@@ -4,6 +4,7 @@ using LaborProtection.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaborProtection.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230510113521_ChangedLampConfiguration")]
+    partial class ChangedLampConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3697),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4463),
                             LightFlux = 1060,
                             Name = "ЛБ18",
                             Power = (short)18,
@@ -75,7 +78,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3719),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4480),
                             LightFlux = 880,
                             Name = "ЛД18",
                             Power = (short)18,
@@ -86,7 +89,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3722),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4484),
                             LightFlux = 1060,
                             Name = "ЛБ20",
                             Power = (short)20,
@@ -97,7 +100,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3726),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4487),
                             LightFlux = 1060,
                             Name = "ЛБ20-2",
                             Power = (short)20,
@@ -108,7 +111,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3729),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4490),
                             LightFlux = 880,
                             Name = "ЛД20-2",
                             Power = (short)20,
@@ -119,7 +122,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3732),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4493),
                             LightFlux = 2020,
                             Name = "ЛБ30",
                             Power = (short)30,
@@ -130,7 +133,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 7L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3735),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4496),
                             LightFlux = 1980,
                             Name = "ЛБУ30",
                             Power = (short)30,
@@ -141,7 +144,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 8L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3738),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4499),
                             LightFlux = 2800,
                             Name = "ЛБ36",
                             Power = (short)36,
@@ -152,7 +155,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 9L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3742),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4502),
                             LightFlux = 2800,
                             Name = "ЛБ40",
                             Power = (short)40,
@@ -163,7 +166,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 10L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3745),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4505),
                             LightFlux = 3000,
                             Name = "ЛБ40-2",
                             Power = (short)40,
@@ -174,7 +177,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 11L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3748),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4508),
                             LightFlux = 2300,
                             Name = "ЛД40-2",
                             Power = (short)40,
@@ -185,7 +188,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 12L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3751),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4510),
                             LightFlux = 4600,
                             Name = "ЛБ65",
                             Power = (short)65,
@@ -196,7 +199,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 13L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3754),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4513),
                             LightFlux = 5200,
                             Name = "ЛБ80",
                             Power = (short)80,
@@ -207,7 +210,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         new
                         {
                             Id = 14L,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(3757),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(4516),
                             LightFlux = 4250,
                             Name = "ЛД80",
                             Power = (short)80,
@@ -261,7 +264,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 1L,
                             BulbCount = 4,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2361),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3384),
                             Height = 300f,
                             ImagePath = "Images/EGLO 31756.png",
                             Name = "EGLO 31756",
@@ -272,7 +275,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 2L,
                             BulbCount = 2,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2415),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3439),
                             Height = 650f,
                             ImagePath = "Images/Laguna Lightning.png",
                             Name = "Laguna Lightning",
@@ -283,7 +286,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 3L,
                             BulbCount = 4,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2420),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3442),
                             Height = 350f,
                             ImagePath = "Images/BS-24.png",
                             Name = "BS-24",
@@ -294,7 +297,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 4L,
                             BulbCount = 3,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2423),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3445),
                             Height = 700f,
                             ImagePath = "Images/Sign 48.png",
                             Name = "Sign 48",
@@ -305,7 +308,7 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 5L,
                             BulbCount = 3,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2426),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3448),
                             Height = 150f,
                             ImagePath = "Images/EuroLight.png",
                             Name = "EuroLight",
@@ -316,9 +319,9 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 6L,
                             BulbCount = 2,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2429),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3451),
                             Height = 200f,
-                            ImagePath = "Images/Brille BS-02.jpg",
+                            ImagePath = "Images/Brille BS-02.png",
                             Name = "Brille BS-02",
                             Price = 419f,
                             Type = 1
@@ -327,9 +330,9 @@ namespace LaborProtection.EntityFramework.Migrations
                         {
                             Id = 7L,
                             BulbCount = 2,
-                            CreatedOn = new DateTime(2023, 5, 10, 20, 18, 49, 232, DateTimeKind.Local).AddTicks(2432),
+                            CreatedOn = new DateTime(2023, 5, 10, 14, 35, 21, 807, DateTimeKind.Local).AddTicks(3454),
                             Height = 180f,
-                            ImagePath = "Images/MAGNUM PLF 30.jpg",
+                            ImagePath = "Images/MAGNUM PLF 30.png",
                             Name = "MAGNUM PLF 30",
                             Price = 267f,
                             Type = 1
