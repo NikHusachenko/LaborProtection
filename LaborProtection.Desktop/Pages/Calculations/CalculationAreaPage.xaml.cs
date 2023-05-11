@@ -41,6 +41,9 @@ namespace LaborProtection.Desktop.Pages.Calculations
         private bool _widthSliderIsLoaded = false;
         private bool _heightSliderIsLoaded = false;
 
+        private int _elementNumber = 0;
+        private int _workSpacesLength = 0;
+        private int _workSpacesWidth = 0;
         public CalculationAreaPage(IWorkSpaceService workSpaceService,
             ILampService lampService,
             IBulbService bulbService,
@@ -184,26 +187,35 @@ namespace LaborProtection.Desktop.Pages.Calculations
         {
             CalculationWorkArea();
 
+
 			TableEntity tableEntity = new TableEntity()
 			{
-				Length = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableWidthSlider.Value),
-				Width = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableLengthSlider.Value),
+				Length = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableLengthSlider.Value),
+				Width = Services.WorkSpaceServices.Helpers.LengthConverter.SantimettersToMetters(tableWidthSlider.Value),
 			};
 			WorkSpaceEntity workSpace = new WorkSpaceEntity()
 			{
-				Length = Limitations.BETWEEN_MONITORS,
-				Width = tableEntity.Width + Limitations.BETWEEN_TABLES,
+				Length = tableEntity.Length + Limitations.BETWEEN_TABLES,
+				Width = Limitations.BETWEEN_MONITORS,
 				Height = Convert.ToDouble(roomHeightTextBox.Text),
 				Table = tableEntity,
 			};
-			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(new RoomEntity()
-			{
-				Width = Convert.ToDouble(roomWidthTextBox.Text),
-				Length = Convert.ToDouble(roomLengthTextBox.Text),
-				Height = Convert.ToDouble(roomHeightTextBox.Text),
+            RoomEntity room = new RoomEntity()
+            {
+                Width = Convert.ToDouble(roomWidthTextBox.Text),
+                Length = Convert.ToDouble(roomLengthTextBox.Text),
+                Height = Convert.ToDouble(roomHeightTextBox.Text),
                 WorkSpace = workSpace,
-			});
+            };
+			RoomWorkSpacesWindow roomWorkSpacesWindow = new RoomWorkSpacesWindow(room, _workSpacesLength, _workSpacesWidth);
 			roomWorkSpacesWindow.ShowDialog();
+
+			double floorRefl = Convert.ToDouble(floorReflectionComboBox.SelectedItem);
+			double wallRefl = Convert.ToDouble(wallReflectionComboBox.SelectedItem);
+			double cellingRefl = Convert.ToDouble(cellingReflectionComboBox.SelectedItem);
+
+			RoomLampsWindow roomLampsWindow = new RoomLampsWindow(room, _elementNumber);
+			roomLampsWindow.ShowDialog();
 
 		}
 
@@ -265,7 +277,9 @@ namespace LaborProtection.Desktop.Pages.Calculations
             workWidthValueLabel.Content = spaceArea.Value.Width;
 
             int inLength = _workSpaceService.GetWorkSpacesInLegth(spaceArea.Value.Length, roomLength);
+            _workSpacesLength = inLength;
             int inWidth = _workSpaceService.GetWorkSpacesInWidth(spaceArea.Value.Width, roomWidth);
+            _workSpacesWidth = inWidth;
             tablesInLengthValueLabel.Content = inLength;
             tablesInWidthValueLabel.Content = inWidth;
             totalTablesCountValueLabel.Content = inLength * inWidth;
@@ -330,7 +344,7 @@ namespace LaborProtection.Desktop.Pages.Calculations
             }
 
             int lamps = lampResponse.Value;
-
+            _elementNumber = lamps;
             totalLampsCountValueLabel.Content = lamps;
             bulbsInLampValueLabel.Content = _selectedLamp.BulbCount;
             totalBulbsCountValueLabel.Content = lamps * _selectedLamp.BulbCount;

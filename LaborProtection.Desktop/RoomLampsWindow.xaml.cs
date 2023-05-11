@@ -1,5 +1,10 @@
 ﻿using LaborProtection.Calculation.Entities;
 using LaborProtection.Database.Entities;
+using LaborProtection.Database.Enums;
+using LaborProtection.Desktop.GraphicElements;
+using LaborProtection.Services.LightServices;
+using LaborProtection.Services.Response;
+using LaborProtection.Services.TransponeServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +26,25 @@ namespace LaborProtection.Desktop
 	/// </summary>
 	public partial class RoomLampsWindow : Window
 	{
+		private static TransponeService _transponeServiceLength;
+		private static TransponeService _transponseSerivceWidth;
 		private readonly RoomEntity _roomEntity;
-		private readonly LampEntity _lampEntity;
-		public RoomLampsWindow()
+		
+		private static int _lampsNumber;
+
+		public RoomLampsWindow(RoomEntity room, int numOfElements)
 		{
+			_roomEntity = room;
+			_lampsNumber = numOfElements;
 			InitializeComponent();
 		}
-
-		private void canvasGrid_Loaded(object sender, RoutedEventArgs e)
+		private async void canvasGrid_Loaded(object sender, RoutedEventArgs e)
 		{
 			canvasGrid.Visibility = Visibility.Visible;
+			_transponeServiceLength = new TransponeService(_roomEntity.Length, canvasGrid.ActualWidth);
+			_transponseSerivceWidth = new TransponeService(_roomEntity.Width, canvasGrid.ActualHeight);
 
+			RoomElement roomElement = new RoomElement(_roomEntity, _transponeServiceLength, _transponseSerivceWidth, _lampsNumber, canvasGrid);
 		}
 	}
 }

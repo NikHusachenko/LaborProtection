@@ -9,26 +9,24 @@ namespace LaborProtection.Desktop
 	public partial class RoomWorkSpacesWindow : Window
 	{
 		private readonly RoomEntity _roomEntity;
-		private static TransponeService _transponeServiceWidth;
-		private static TransponeService _transponseSerivceHeight;
+		private static TransponeService _transponseServiceLength;
+		private static TransponeService _transponseSerivceWidth;
+		private static int _tablesInLength;
 		private static int _tablesInWidth;
-		private static int _tablesInHeight;
-		public RoomWorkSpacesWindow(RoomEntity room)
+		public RoomWorkSpacesWindow(RoomEntity room, int workSpacesLenght,int workSpacesWidth)
 		{
 			_roomEntity = room;
-			_tablesInHeight = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Length, room.WorkSpace.Length);
-			_tablesInWidth = Services.WorkSpaceServices.Helpers.LengthConverter.NumbersOfElements(room.Width, room.WorkSpace.Width);
-
+			_tablesInLength = workSpacesLenght;
+			_tablesInWidth = workSpacesWidth;
 			InitializeComponent();
 		}
 
 		private void canvasGrid_Loaded(object sender, RoutedEventArgs e)
 		{
 			canvasGrid.Visibility = Visibility.Visible;
-			_transponeServiceWidth =  new TransponeService(_roomEntity.Width, canvasGrid.ActualWidth);
-			_transponseSerivceHeight = new TransponeService(_roomEntity.Length, canvasGrid.ActualHeight);
-
-			RoomElement roomElement = new RoomElement(_roomEntity, _transponeServiceWidth, _transponseSerivceHeight, _tablesInWidth,_tablesInHeight,canvasGrid);
+			_transponseServiceLength = new TransponeService(_roomEntity.Length, canvasGrid.ActualWidth);
+			_transponseSerivceWidth = new TransponeService(_roomEntity.Width, canvasGrid.ActualHeight);
+			RoomElement roomElement = new RoomElement(_roomEntity, _transponseServiceLength, _transponseSerivceWidth, _tablesInLength,_tablesInWidth,canvasGrid);
 		}
 	}
 }
