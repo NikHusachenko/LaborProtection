@@ -20,8 +20,11 @@ namespace LaborProtection.Desktop.Windows.Views
             lampBulbCountValueLabel.Content = lampEntity.BulbCount;
             lampHeightValueLabel.Content = lampEntity.Height;
 
-            BitmapImage bitmapImage = new BitmapImage(new Uri(Path.GetFullPath(lampEntity.ImagePath)));
-            lampDisplayImage.Source = bitmapImage;
+            if (File.Exists(Path.GetFullPath(lampEntity.ImagePath)))
+            {
+                BitmapImage bitmapImage = new BitmapImage(new Uri(Path.GetFullPath(lampEntity.ImagePath)));
+                lampDisplayImage.Source = bitmapImage;
+            }
         }
     }
 }
