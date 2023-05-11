@@ -11,16 +11,16 @@ namespace LaborProtection.Desktop.GraphicElements
 		public static Rectangle MonitorElement { get; set; }
 		public static Rectangle TableElement { get; set; }
 		public static Rectangle WorkAreaElement { get; set; }
-		public WorkSpaceElement(WorkSpaceEntity workSpace, TransponeService transponeServiceLength, TransponeService transponeServiceWidth, Canvas roomCanvas,double scaleLength,double scaleWidth ,double SetLeft, double SetTop)
+		public WorkSpaceElement(WorkSpaceEntity workSpace, TransponeService transponeServiceLength, TransponeService transponeServiceWidth, Canvas roomCanvas,double scale,double SetLeft, double SetTop)
 		{
-			CreateTable(transponeServiceLength,transponeServiceWidth,scaleLength,scaleWidth,workSpace, roomCanvas, SetLeft, SetTop);
+			CreateTable(transponeServiceLength,transponeServiceWidth,workSpace, roomCanvas,scale, SetLeft, SetTop);
 		}
-		public void CreateTable(TransponeService transponeServiceLength, TransponeService transponeServiceWidth, double scaleLength, double scaleWidth, WorkSpaceEntity workSpace, Canvas roomCanvas, double SetLeft, double SetTop)
+		public void CreateTable(TransponeService transponeServiceLength, TransponeService transponeServiceWidth, WorkSpaceEntity workSpace, Canvas roomCanvas, double scale, double SetLeft, double SetTop)
 		{
 			Canvas WorkSpaceCanvas = new Canvas()
 			{
-				Width = transponeServiceLength.ConditionalUnit * workSpace.Length * scaleLength,
-				Height = transponeServiceWidth.ConditionalUnit * workSpace.Width * scaleWidth,
+				Width = transponeServiceLength.ConditionalUnit * workSpace.Length,
+				Height = transponeServiceWidth.ConditionalUnit * workSpace.Width,
 				Background = Brushes.Black
 			};
 
@@ -29,8 +29,8 @@ namespace LaborProtection.Desktop.GraphicElements
 
 			MonitorElement = new Rectangle()
 			{
-				Width = transponeServiceLength.ConditionalUnit * 0.2 * scaleLength,
-				Height = transponeServiceWidth.ConditionalUnit * 0.1 * scaleWidth,
+				Width = transponeServiceLength.ConditionalUnit * 0.25,
+				Height = transponeServiceWidth.ConditionalUnit * 0.1,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White,
 
@@ -39,16 +39,16 @@ namespace LaborProtection.Desktop.GraphicElements
 			Canvas.SetLeft(MonitorElement, WorkSpaceCanvas.Width / 2 - MonitorElement.Width / 2);
 			TableElement = new Rectangle()
 			{
-				Width = transponeServiceLength.ConditionalUnit * workSpace.Table.Length * scaleLength,
-				Height = transponeServiceWidth.ConditionalUnit * workSpace.Table.Width * scaleWidth,
+				Width = transponeServiceLength.ConditionalUnit * workSpace.Table.Length,
+				Height = transponeServiceWidth.ConditionalUnit * workSpace.Table.Width,
 				Stroke = Brushes.Black,
 				Fill = Brushes.White
 			};
 			Canvas.SetLeft(TableElement, WorkSpaceCanvas.Width / 2 - TableElement.Width / 2);
 			WorkAreaElement = new Rectangle()
 			{
-				Width = transponeServiceLength.ConditionalUnit * workSpace.Length * scaleLength,
-				Height = transponeServiceWidth.ConditionalUnit * workSpace.Width * scaleWidth,
+				Width = transponeServiceLength.ConditionalUnit * workSpace.Length,
+				Height = transponeServiceWidth.ConditionalUnit * workSpace.Width,
 				Stroke = Brushes.Wheat,
 				Fill = Brushes.White
 			};

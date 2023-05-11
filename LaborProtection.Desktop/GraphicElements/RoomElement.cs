@@ -21,33 +21,82 @@ namespace LaborProtection.Desktop.GraphicElements
 		{
 			CreateRoomWithLamps(room, transponeServiceLength, transponeServiceWidth, elementNumber, canvas);
 		}
+
 		private void CreateRoomWithWorkSpaces(RoomEntity roomEntity, TransponeService transponeServiceLength, TransponeService transponeServiceWidth, int elementNumberLenght, int elementNumberWidth, Canvas canvas)
 		{
-			double scaleLength = 1;
-		    double scaleWidth= 1;
+			//double scaleLength = 1;
+			//double scaleWidth = 1;
+			//RoomRectangle = new Rectangle
+			//{
+			//	Width = transponeServiceLength.ConditionalUnit * roomEntity.Length,
+			//	Height = transponeServiceWidth.ConditionalUnit * roomEntity.Width,
+			//	Stroke = Brushes.Black,
+			//};
+
+			//double lenght = transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scaleLength * elementNumberLenght;
+			//double width = transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth * elementNumberWidth;
+			//double sizeAspLengToWid = roomEntity.WorkSpace.Length / roomEntity.WorkSpace.Width;
+			//double sizeAspWidToLeng = roomEntity.WorkSpace.Width / roomEntity.WorkSpace.Length;
+			//double a;
+			//double b;
+			//double aspectRatio = roomEntity.WorkSpace.Length / roomEntity.WorkSpace.Width;
+
+			//while (RoomRectangle.Width > transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scaleLength * elementNumberLenght
+			// && RoomRectangle.Height > transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth * elementNumberWidth)
+			//{
+			//	if (aspectRatio < 1)
+			//	{
+			//		roomEntity.WorkSpace.Width += 0.0001;
+			//		roomEntity.WorkSpace.Length += 0.0001 * aspectRatio;
+			//	}
+			//	else
+			//	{
+			//		roomEntity.WorkSpace.Length += 0.0001;
+			//		roomEntity.WorkSpace.Width += 0.0001 / aspectRatio;
+			//	}
+			//}
+
+
+			//a = transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scaleLength * elementNumberLenght;
+			//b = transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth * elementNumberWidth;
+
+			//if(a < b)
+			//{
+			//            roomEntity.WorkSpace.Length += 0.00001 * sizeAspLengToWid;
+			//roomEntity.WorkSpace.Width += 0.00001 * sizeAspWidToLeng;
+			//}
+			//if (a > b)
+			//{
+			//	roomEntity.WorkSpace.Length += 0.00001 * sizeAspWidToLeng;
+			//	roomEntity.WorkSpace.Width += 0.00001 *  sizeAspLengToWid;
+
+			//}
+
+
+			double scale = 1;
+
 			RoomRectangle = new Rectangle
 			{
 				Width = transponeServiceLength.ConditionalUnit * roomEntity.Length,
 				Height = transponeServiceWidth.ConditionalUnit * roomEntity.Width,
 				Stroke = Brushes.Black,
 			};
-			while (RoomRectangle.Width > transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scaleLength * elementNumberLenght)
+
+            if(elementNumberWidth < elementNumberLenght)
 			{
-				double a = transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scaleLength * elementNumberLenght;
-				scaleLength += 0.00001;
-			}
-			while (RoomRectangle.Height > transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth * elementNumberWidth)
-			{
-				double b = transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth * elementNumberWidth;
-				scaleWidth += 0.00001;
+				while (RoomRectangle.Width > transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length * scale * elementNumberLenght)
+				{
+					scale += 0.00001;
+					//roomEntity.WorkSpace.Length += 0.0001;
+				}
 			}
 			for (int i = 0; i < elementNumberLenght; i++)
 			{
 				for (int j = 0; j < elementNumberWidth; j++)
 				{
-					new WorkSpaceElement(roomEntity.WorkSpace, transponeServiceLength, transponeServiceWidth, canvas, scaleLength, scaleWidth,
-					i * transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length  * scaleLength, // SetLeft
-					j * transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width * scaleWidth); // SetTop
+					new WorkSpaceElement(roomEntity.WorkSpace, transponeServiceLength, transponeServiceWidth, canvas,scale,
+					i * transponeServiceLength.ConditionalUnit * roomEntity.WorkSpace.Length, // SetLeft
+					j * transponeServiceWidth.ConditionalUnit * roomEntity.WorkSpace.Width); // SetTop
 				}
 			}
 			canvas.Children.Add(RoomRectangle);
