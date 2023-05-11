@@ -30,8 +30,27 @@ namespace LaborProtection.Services.LampServices
                 Directory.CreateDirectory(Configuration.STATIC_FOLDER);
             }
 
+            LampEntity newRecord = new LampEntity()
+            {
+                BulbCount = vm.BulbCount,
+                Height = vm.Height,
+                Name = vm.Name,
+                Price = vm.Price,
+                Type = (LampType)vm.Type,
+                ImagePath = "",
+            };
+
+            try
+            {
+                await _lampRepository.Create(newRecord);
+            }
+            catch (Exception ex)
+            {
+                return ResponseService<long>.Error($"LOG: LampService -> Create exception: {ex.Message}");
+            }
+
             string imageExtenstion = vm.Image.Name.Split('.')[vm.Image.Name.Split('.').Length - 1];
-            string pathToSave = $"{Configuration.STATIC_FOLDER}{vm.Name}.{imageExtenstion}";
+            string pathToSave = $"{Configuration.STATIC_FOLDER}{newRecord.Id}.{imageExtenstion}";
             
             try
             {
@@ -42,25 +61,9 @@ namespace LaborProtection.Services.LampServices
                 return ResponseService<long>.Error($"LOG: LampService -> Create exception: {ex.Message}");
             }
 
-            LampEntity newRecord = new LampEntity()
-            {
-                BulbCount = vm.BulbCount,
-                Height = vm.Height,
-                Name = vm.Name,
-                Price = vm.Price,
-                Type = (LampType)vm.Type,
-                ImagePath = pathToSave,
-            };
-
-            try
-            {
-                await _lampRepository.Create(newRecord);
-                return ResponseService<long>.Ok(newRecord.Id);
-            }
-            catch (Exception ex)
-            {
-                return ResponseService<long>.Error($"LOG: LampService -> Create exception: {ex.Message}");
-            }
+            newRecord.ImagePath = pathToSave;
+            await Update(newRecord);
+            return ResponseService<long>.Ok(newRecord.Id);
         }
 
         public async Task<ResponseService> Delete(long id)
